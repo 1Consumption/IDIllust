@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  EntryViewController.swift
 //  IDIllust
 //
 //  Created by 신한섭 on 2020/09/03.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class EntryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

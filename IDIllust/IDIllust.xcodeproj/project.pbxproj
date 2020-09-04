@@ -10,7 +10,7 @@
 		A216A577971E24BCAAF7A14A /* Pods_IDIllust.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0F60B69323A78C0C7AA2367 /* Pods_IDIllust.framework */; };
 		A5F893422500A8C7002258EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893412500A8C7002258EA /* AppDelegate.swift */; };
 		A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893432500A8C7002258EA /* SceneDelegate.swift */; };
-		A5F893462500A8C7002258EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893452500A8C7002258EA /* ViewController.swift */; };
+		A5F893462500A8C7002258EA /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893452500A8C7002258EA /* EntryViewController.swift */; };
 		A5F893492500A8C7002258EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F893472500A8C7002258EA /* Main.storyboard */; };
 		A5F8934B2500A8C8002258EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F8934A2500A8C8002258EA /* Assets.xcassets */; };
 		A5F8934E2500A8C8002258EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F8934C2500A8C8002258EA /* LaunchScreen.storyboard */; };
@@ -43,7 +43,7 @@
 		A5F8933E2500A8C7002258EA /* IDIllust.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDIllust.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F893412500A8C7002258EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5F893432500A8C7002258EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A5F893452500A8C7002258EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A5F893452500A8C7002258EA /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		A5F893482500A8C7002258EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5F8934A2500A8C8002258EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5F8934D2500A8C8002258EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -117,12 +117,11 @@
 			isa = PBXGroup;
 			children = (
 				A5F9DC842501C78D00DAF991 /* CustomView */,
+				A5F9DC872501CFAA00DAF991 /* EntryScene */,
+				A5F9DC882501CFC800DAF991 /* StoryBoard */,
 				A5F893412500A8C7002258EA /* AppDelegate.swift */,
 				A5F893432500A8C7002258EA /* SceneDelegate.swift */,
-				A5F893452500A8C7002258EA /* ViewController.swift */,
-				A5F893472500A8C7002258EA /* Main.storyboard */,
 				A5F8934A2500A8C8002258EA /* Assets.xcassets */,
-				A5F8934C2500A8C8002258EA /* LaunchScreen.storyboard */,
 				A5F8934F2500A8C8002258EA /* Info.plist */,
 			);
 			path = IDIllust;
@@ -152,6 +151,23 @@
 				A5F9DC852501C7A200DAF991 /* BorderPaddingButton.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		A5F9DC872501CFAA00DAF991 /* EntryScene */ = {
+			isa = PBXGroup;
+			children = (
+				A5F893452500A8C7002258EA /* EntryViewController.swift */,
+			);
+			path = EntryScene;
+			sourceTree = "<group>";
+		};
+		A5F9DC882501CFC800DAF991 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				A5F893472500A8C7002258EA /* Main.storyboard */,
+				A5F8934C2500A8C8002258EA /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoard;
 			sourceTree = "<group>";
 		};
 		DBDADF95D6E23B76BFCE589C /* Pods */ = {
@@ -338,7 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5F893462500A8C7002258EA /* ViewController.swift in Sources */,
+				A5F893462500A8C7002258EA /* EntryViewController.swift in Sources */,
 				A5F9DC862501C7A200DAF991 /* BorderPaddingButton.swift in Sources */,
 				A5F893422500A8C7002258EA /* AppDelegate.swift in Sources */,
 				A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */,
