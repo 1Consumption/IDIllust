@@ -46,4 +46,41 @@ final class BorderPaddingButton: UIButton {
         return CGSize(width: width, height: height)
     }
     private var padding: CGSize = CGSize(width: 0, height: 0)
+    private var isClicked: Bool = false
+    
+    // MARK: - LifeCycle
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUp()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setUp()
+    }
+    
+    // MARK: - Methods
+    private func setUp() {
+        self.addTarget(self, action: #selector(animate(_:)), for: .touchUpInside)
+        self.addTarget(self, action: #selector(animate(_:)), for: .touchDown)
+        self.addTarget(self, action: #selector(animate(_:)), for: .touchUpOutside)
+    }
+    
+    private func scaleUp(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.15, delay: 0, options: .allowUserInteraction, animations: {
+            sender.transform = .identity
+        })
+    }
+    
+    private func scaleDown(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.15, delay: 0, options: .allowUserInteraction, animations: {
+            sender.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
+        })
+    }
+    
+    // MARK: - Objc
+    @objc private func animate(_ sender: UIButton) {
+        isClicked.toggle()
+        isClicked ? scaleDown(sender) : scaleUp(sender)
+    }
 }
