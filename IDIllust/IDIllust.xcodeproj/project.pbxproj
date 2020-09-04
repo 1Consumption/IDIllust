@@ -17,6 +17,7 @@
 		A5F893592500A8C8002258EA /* IDIllustTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893582500A8C8002258EA /* IDIllustTests.swift */; };
 		A5F893642500A8C9002258EA /* IDIllustUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893632500A8C9002258EA /* IDIllustUITests.swift */; };
 		A5F9DC862501C7A200DAF991 /* BorderPaddingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F9DC852501C7A200DAF991 /* BorderPaddingButton.swift */; };
+		A5F9DC8B2501D07900DAF991 /* CustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F9DC8A2501D07900DAF991 /* CustomizeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		A5F893632500A8C9002258EA /* IDIllustUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDIllustUITests.swift; sourceTree = "<group>"; };
 		A5F893652500A8C9002258EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5F9DC852501C7A200DAF991 /* BorderPaddingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderPaddingButton.swift; sourceTree = "<group>"; };
+		A5F9DC8A2501D07900DAF991 /* CustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +118,9 @@
 		A5F893402500A8C7002258EA /* IDIllust */ = {
 			isa = PBXGroup;
 			children = (
+				A5F9DC892501D04900DAF991 /* CustomizeView */,
 				A5F9DC842501C78D00DAF991 /* CustomView */,
-				A5F9DC872501CFAA00DAF991 /* EntryScene */,
+				A5F9DC872501CFAA00DAF991 /* EntryView */,
 				A5F9DC882501CFC800DAF991 /* StoryBoard */,
 				A5F893412500A8C7002258EA /* AppDelegate.swift */,
 				A5F893432500A8C7002258EA /* SceneDelegate.swift */,
@@ -153,12 +156,12 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
-		A5F9DC872501CFAA00DAF991 /* EntryScene */ = {
+		A5F9DC872501CFAA00DAF991 /* EntryView */ = {
 			isa = PBXGroup;
 			children = (
 				A5F893452500A8C7002258EA /* EntryViewController.swift */,
 			);
-			path = EntryScene;
+			path = EntryView;
 			sourceTree = "<group>";
 		};
 		A5F9DC882501CFC800DAF991 /* StoryBoard */ = {
@@ -168,6 +171,14 @@
 				A5F8934C2500A8C8002258EA /* LaunchScreen.storyboard */,
 			);
 			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		A5F9DC892501D04900DAF991 /* CustomizeView */ = {
+			isa = PBXGroup;
+			children = (
+				A5F9DC8A2501D07900DAF991 /* CustomizeViewController.swift */,
+			);
+			path = CustomizeView;
 			sourceTree = "<group>";
 		};
 		DBDADF95D6E23B76BFCE589C /* Pods */ = {
@@ -357,6 +368,7 @@
 				A5F893462500A8C7002258EA /* EntryViewController.swift in Sources */,
 				A5F9DC862501C7A200DAF991 /* BorderPaddingButton.swift in Sources */,
 				A5F893422500A8C7002258EA /* AppDelegate.swift in Sources */,
+				A5F9DC8B2501D07900DAF991 /* CustomizeViewController.swift in Sources */,
 				A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

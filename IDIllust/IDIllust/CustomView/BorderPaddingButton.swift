@@ -38,7 +38,7 @@ final class BorderPaddingButton: UIButton {
         set { padding.height = newValue }
     }
     
-    // MARK: Properties
+    // MARK: - Properties
     override var intrinsicContentSize: CGSize {
         let superIntrisicContentSize = super.intrinsicContentSize
         let width = superIntrisicContentSize.width + padding.width
