@@ -24,7 +24,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsc-00-5EK" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="39"/>
+                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="44"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Get your own IDIllust">
@@ -45,7 +45,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="eJb-ee-NG8" kind="presentation" modalPresentationStyle="fullScreen" id="iLd-kh-dxx"/>
+                                    <segue destination="g2x-8b-bhw" kind="presentation" modalPresentationStyle="fullScreen" id="bhE-Fa-emh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -66,24 +66,24 @@
             <point key="canvasLocation" x="35" y="94"/>
         </scene>
         <!--Customize View Controller-->
-        <scene sceneID="b55-zN-bXe">
+        <scene sceneID="Ahp-f6-lrk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="axP-lu-qbk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="CustomizeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eJb-ee-NG8" customClass="CustomizeViewController" customModule="IDIllust" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Qad-DW-PDx">
+                <viewController id="g2x-8b-bhw" customClass="CustomizeViewController" customModule="IDIllust" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z8d-ty-sDV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="DTg-Bw-wwu"/>
+                        <viewLayoutGuide key="safeArea" id="Y0t-gu-9BP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jBE-hf-gNy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732" y="94"/>
+            <point key="canvasLocation" x="816" y="96"/>
         </scene>
     </scenes>
     <designables>
         <designable name="bsc-00-5EK">
-            <size key="intrinsicContentSize" width="196" height="39"/>
+            <size key="intrinsicContentSize" width="196" height="44"/>
         </designable>
     </designables>
     <resources>

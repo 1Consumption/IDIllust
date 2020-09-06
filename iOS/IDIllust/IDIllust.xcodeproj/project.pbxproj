@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A216A577971E24BCAAF7A14A /* Pods_IDIllust.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0F60B69323A78C0C7AA2367 /* Pods_IDIllust.framework */; };
+		A532D2D72505094A009361DC /* CustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532D2D62505094A009361DC /* CustomizeViewController.swift */; };
 		A5F893422500A8C7002258EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893412500A8C7002258EA /* AppDelegate.swift */; };
 		A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893432500A8C7002258EA /* SceneDelegate.swift */; };
 		A5F893462500A8C7002258EA /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893452500A8C7002258EA /* EntryViewController.swift */; };
@@ -17,7 +18,6 @@
 		A5F893592500A8C8002258EA /* IDIllustTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893582500A8C8002258EA /* IDIllustTests.swift */; };
 		A5F893642500A8C9002258EA /* IDIllustUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893632500A8C9002258EA /* IDIllustUITests.swift */; };
 		A5F9DC862501C7A200DAF991 /* BorderPaddingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F9DC852501C7A200DAF991 /* BorderPaddingButton.swift */; };
-		A5F9DC8B2501D07900DAF991 /* CustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F9DC8A2501D07900DAF991 /* CustomizeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +41,7 @@
 		0889157591D15CEC47BF07AC /* Pods-IDIllust.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IDIllust.release.xcconfig"; path = "Target Support Files/Pods-IDIllust/Pods-IDIllust.release.xcconfig"; sourceTree = "<group>"; };
 		9A72923A735E012E2005AE0D /* Pods-IDIllust.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IDIllust.debug.xcconfig"; path = "Target Support Files/Pods-IDIllust/Pods-IDIllust.debug.xcconfig"; sourceTree = "<group>"; };
 		A0F60B69323A78C0C7AA2367 /* Pods_IDIllust.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IDIllust.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A532D2D62505094A009361DC /* CustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeViewController.swift; sourceTree = "<group>"; };
 		A5F8933E2500A8C7002258EA /* IDIllust.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDIllust.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F893412500A8C7002258EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5F893432500A8C7002258EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,7 +57,6 @@
 		A5F893632500A8C9002258EA /* IDIllustUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDIllustUITests.swift; sourceTree = "<group>"; };
 		A5F893652500A8C9002258EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5F9DC852501C7A200DAF991 /* BorderPaddingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderPaddingButton.swift; sourceTree = "<group>"; };
-		A5F9DC8A2501D07900DAF991 /* CustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +93,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A532D2D525050933009361DC /* CustomizeView */ = {
+			isa = PBXGroup;
+			children = (
+				A532D2D62505094A009361DC /* CustomizeViewController.swift */,
+			);
+			path = CustomizeView;
+			sourceTree = "<group>";
+		};
 		A5F893352500A8C7002258EA = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +126,7 @@
 		A5F893402500A8C7002258EA /* IDIllust */ = {
 			isa = PBXGroup;
 			children = (
-				A5F9DC892501D04900DAF991 /* CustomizeView */,
+				A532D2D525050933009361DC /* CustomizeView */,
 				A5F9DC842501C78D00DAF991 /* CustomView */,
 				A5F9DC872501CFAA00DAF991 /* EntryView */,
 				A5F9DC882501CFC800DAF991 /* StoryBoard */,
@@ -171,14 +179,6 @@
 				A5F8934C2500A8C8002258EA /* LaunchScreen.storyboard */,
 			);
 			path = StoryBoard;
-			sourceTree = "<group>";
-		};
-		A5F9DC892501D04900DAF991 /* CustomizeView */ = {
-			isa = PBXGroup;
-			children = (
-				A5F9DC8A2501D07900DAF991 /* CustomizeViewController.swift */,
-			);
-			path = CustomizeView;
 			sourceTree = "<group>";
 		};
 		DBDADF95D6E23B76BFCE589C /* Pods */ = {
@@ -368,7 +368,7 @@
 				A5F893462500A8C7002258EA /* EntryViewController.swift in Sources */,
 				A5F9DC862501C7A200DAF991 /* BorderPaddingButton.swift in Sources */,
 				A5F893422500A8C7002258EA /* AppDelegate.swift in Sources */,
-				A5F9DC8B2501D07900DAF991 /* CustomizeViewController.swift in Sources */,
+				A532D2D72505094A009361DC /* CustomizeViewController.swift in Sources */,
 				A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -565,7 +565,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 735P3R8MUU;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = IDIllust/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
