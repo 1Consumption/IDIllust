@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="idillust@database-1.cpaowkwr6z7o.ap-northeast-2.rds.amazonaws.com" uuid="d81fcff7-fe57-46c5-a1fc-c1cef904e231">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://database-1.cpaowkwr6z7o.ap-northeast-2.rds.amazonaws.com:3306/idillust</jdbc-url>
+    </data-source>
+  </component>
+</project>
