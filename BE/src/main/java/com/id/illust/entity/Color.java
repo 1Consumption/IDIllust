@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Data
 @Builder
-@ToString
+@ToString(exclude = {"component"})
 public class Color {
 
     @Id

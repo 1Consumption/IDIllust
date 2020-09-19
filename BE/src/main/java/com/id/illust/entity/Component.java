@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
-@ToString
+@ToString(exclude = {"colors", "category"})
 public class Component {
 
     @Id

@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
-@ToString
+@ToString(exclude = {"componentList"})
 public class Category {
 
     @Id

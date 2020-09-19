@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/categories/{categoryId}")
+@RequestMapping("/categories/{categoryId}/components")
 public class ComponentController {
 
     private final ComponentService componentService;
@@ -19,6 +19,6 @@ public class ComponentController {
 
     @GetMapping("")
     public ComponentApiResponse getComponents(@PathVariable Long categoryId) {
-        return componentService.readAll();
+        return componentService.readAll(categoryId);
     }
 }
