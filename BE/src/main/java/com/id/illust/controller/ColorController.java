@@ -2,10 +2,7 @@ package com.id.illust.controller;
 
 import com.id.illust.network.response.ColorApiResponse;
 import com.id.illust.service.ColorService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/categories/{categoryId}/components/{componentId}/colors")
@@ -20,5 +17,12 @@ public class ColorController {
     @GetMapping("")
     public ColorApiResponse getColors(@PathVariable Long categoryId, @PathVariable Long componentId) {
         return colorService.readAll(categoryId, componentId);
+    }
+
+    @PostMapping("/{colorId}")
+    public ColorApiResponse addSomething(@PathVariable Long categoryId,
+                                         @PathVariable Long componentId,
+                                         @PathVariable Long colorId) {
+        return ColorApiResponse.builder().build();
     }
 }
