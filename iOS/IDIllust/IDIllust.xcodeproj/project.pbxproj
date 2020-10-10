@@ -11,6 +11,8 @@
 		A532D2D72505094A009361DC /* CustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532D2D62505094A009361DC /* CustomizeViewController.swift */; };
 		A5EDB6142531B90B00E6078B /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */; };
 		A5EDB61925321E9C00E6078B /* CategoryCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */; };
+		A5EDB61E2532220C00E6078B /* ComponentCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB61D2532220C00E6078B /* ComponentCollectionViewDataSource.swift */; };
+		A5EDB6252532228900E6078B /* ComponentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB6242532228900E6078B /* ComponentCollectionViewCell.swift */; };
 		A5F893422500A8C7002258EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893412500A8C7002258EA /* AppDelegate.swift */; };
 		A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893432500A8C7002258EA /* SceneDelegate.swift */; };
 		A5F893462500A8C7002258EA /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893452500A8C7002258EA /* EntryViewController.swift */; };
@@ -46,6 +48,8 @@
 		A532D2D62505094A009361DC /* CustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeViewController.swift; sourceTree = "<group>"; };
 		A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		A5EDB61D2532220C00E6078B /* ComponentCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		A5EDB6242532228900E6078B /* ComponentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5F8933E2500A8C7002258EA /* IDIllust.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDIllust.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F893412500A8C7002258EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5F893432500A8C7002258EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 		A532D2D525050933009361DC /* CustomizeView */ = {
 			isa = PBXGroup;
 			children = (
+				A5EDB6232532226A00E6078B /* ComponentCollectionView */,
 				A5EDB6222532225A00E6078B /* CategoryCollectionView */,
 				A532D2D62505094A009361DC /* CustomizeViewController.swift */,
 			);
@@ -115,6 +120,13 @@
 			path = CategoryCollectionView;
 			sourceTree = "<group>";
 		};
+		A5EDB6232532226A00E6078B /* ComponentCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				A5EDB61D2532220C00E6078B /* ComponentCollectionViewDataSource.swift */,
+				A5EDB6242532228900E6078B /* ComponentCollectionViewCell.swift */,
+			);
+			path = ComponentCollectionView;
 			sourceTree = "<group>";
 		};
 		A5F893352500A8C7002258EA = {
@@ -388,6 +400,8 @@
 				A5EDB6142531B90B00E6078B /* CategoryCollectionViewCell.swift in Sources */,
 				A5EDB61925321E9C00E6078B /* CategoryCollectionViewDataSource.swift in Sources */,
 				A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */,
+				A5EDB6252532228900E6078B /* ComponentCollectionViewCell.swift in Sources */,
+				A5EDB61E2532220C00E6078B /* ComponentCollectionViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

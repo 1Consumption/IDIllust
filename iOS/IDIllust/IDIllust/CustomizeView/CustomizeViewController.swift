@@ -14,6 +14,7 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var componentCollectionView: UICollectionView!
     private var categoryCollectionViewDataSource = CategoryCollectionViewDataSource()
+    private var componentCollectionViewDataSource = ComponentCollectionViewDataSource()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -31,18 +32,6 @@ final class CustomizeViewController: UIViewController {
         setSquarCell(categoryCollectionView, factor: categoryCollectionView.frame.height)
         setSquarCell(componentCollectionView, factor: componentCollectionView.frame.width, divide: 3)
         categoryCollectionView.dataSource = categoryCollectionViewDataSource
-        componentCollectionView.dataSource = self
-    }
-}
-
-extension CustomizeViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "componentCell", for: indexPath)
-        cell.backgroundColor = .red
-        return cell
+        componentCollectionView.dataSource = componentCollectionViewDataSource
     }
 }
