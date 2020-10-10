@@ -100,11 +100,21 @@
 		A532D2D525050933009361DC /* CustomizeView */ = {
 			isa = PBXGroup;
 			children = (
+				A5EDB6222532225A00E6078B /* CategoryCollectionView */,
 				A532D2D62505094A009361DC /* CustomizeViewController.swift */,
+			);
+			path = CustomizeView;
+			sourceTree = "<group>";
+		};
+		A5EDB6222532225A00E6078B /* CategoryCollectionView */ = {
+			isa = PBXGroup;
+			children = (
 				A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */,
 				A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */,
 			);
-			path = CustomizeView;
+			path = CategoryCollectionView;
+			sourceTree = "<group>";
+		};
 			sourceTree = "<group>";
 		};
 		A5F893352500A8C7002258EA = {
