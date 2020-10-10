@@ -76,10 +76,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kDE-6u-U7f" userLabel="Container Stack View">
-                                <rect key="frame" x="0.0" y="363.66666666666674" width="375" height="365.33333333333326"/>
+                                <rect key="frame" x="0.0" y="404.33333333333326" width="375" height="324.66666666666674"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SRJ-t1-thA">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="109.66666666666667"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SRJ-t1-thA">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="64.666666666666671"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="f7O-4G-daq">
                                             <size key="itemSize" width="128" height="128"/>
@@ -88,8 +88,8 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="6Hq-OU-pe3">
-                                                <rect key="frame" x="0.0" y="-9" width="128" height="128"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="6Hq-OU-pe3">
+                                                <rect key="frame" x="0.0" y="-31.666666666666668" width="128" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bvV-Gw-09t">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -98,8 +98,15 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UqZ-Z9-7XH">
+                                        <rect key="frame" x="0.0" y="64.666666666666686" width="375" height="1"/>
+                                        <color key="backgroundColor" name="DivisionColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="LQb-Ce-88N"/>
+                                        </constraints>
+                                    </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2sc-lb-6ml">
-                                        <rect key="frame" x="0.0" y="109.66666666666661" width="375" height="255.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="65.666666666666686" width="375" height="259"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="wfm-lF-9eZ">
                                             <size key="itemSize" width="128" height="128"/>
@@ -108,7 +115,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Azx-o3-gtv">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="componentCell" id="Azx-o3-gtv">
                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gcw-eI-2hb">
@@ -121,22 +128,22 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="SRJ-t1-thA" firstAttribute="height" secondItem="kDE-6u-U7f" secondAttribute="height" multiplier="0.3" id="fJK-Jr-NrH"/>
+                                    <constraint firstItem="SRJ-t1-thA" firstAttribute="height" secondItem="kDE-6u-U7f" secondAttribute="height" multiplier="0.2" id="fJK-Jr-NrH"/>
                                 </constraints>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample" translatesAutoresizingMaskIntoConstraints="NO" id="aqu-Mu-v2u" userLabel="PreView Image View">
-                                <rect key="frame" x="67.666666666666671" y="44" width="239.66666666666663" height="319.66666666666669"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumb_skin_2" translatesAutoresizingMaskIntoConstraints="NO" id="aqu-Mu-v2u" userLabel="PreView Image View">
+                                <rect key="frame" x="52.333333333333343" y="44" width="270.33333333333326" height="360.33333333333331"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="aqu-Mu-v2u" secondAttribute="height" multiplier="3:4" id="ayJ-fZ-f14"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Y0t-gu-9BP"/>
-                        <color key="backgroundColor" red="0.99981433149999999" green="0.88850092889999999" blue="0.58428448440000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="aqu-Mu-v2u" firstAttribute="centerX" secondItem="Y0t-gu-9BP" secondAttribute="centerX" id="2WI-IE-BBY"/>
                             <constraint firstItem="kDE-6u-U7f" firstAttribute="top" secondItem="aqu-Mu-v2u" secondAttribute="bottom" id="5We-39-oYE"/>
-                            <constraint firstItem="kDE-6u-U7f" firstAttribute="height" secondItem="Z8d-ty-sDV" secondAttribute="height" multiplier="0.45" id="HEJ-Gp-wIy"/>
+                            <constraint firstItem="kDE-6u-U7f" firstAttribute="height" secondItem="Z8d-ty-sDV" secondAttribute="height" multiplier="0.4" id="HEJ-Gp-wIy"/>
                             <constraint firstItem="Y0t-gu-9BP" firstAttribute="trailing" secondItem="kDE-6u-U7f" secondAttribute="trailing" id="PEG-bj-2uU"/>
                             <constraint firstItem="Y0t-gu-9BP" firstAttribute="bottom" secondItem="kDE-6u-U7f" secondAttribute="bottom" id="Zgb-QA-d9b"/>
                             <constraint firstItem="aqu-Mu-v2u" firstAttribute="top" secondItem="Y0t-gu-9BP" secondAttribute="top" id="hVO-qW-IOs"/>
@@ -144,6 +151,10 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="5VS-e0-AAh"/>
+                    <connections>
+                        <outlet property="categoryCollectionView" destination="SRJ-t1-thA" id="Bat-gD-YMm"/>
+                        <outlet property="componentCollectionView" destination="2sc-lb-6ml" id="z2q-vP-g14"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jBE-hf-gNy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -156,6 +167,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="0fP-2J-Uc5"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7UW-65-EV4">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -175,9 +187,12 @@
     </designables>
     <resources>
         <image name="main" width="341.33334350585938" height="341.33334350585938"/>
-        <image name="sample" width="1008" height="1344"/>
+        <image name="thumb_skin_2" width="300" height="400"/>
+        <namedColor name="DivisionColor">
+            <color red="0.90600001811981201" green="0.90600001811981201" blue="0.90600001811981201" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="TabBarColor">
-            <color red="0.98039871450000005" green="0.98038035629999998" blue="0.98039287330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.98000001907348633" green="0.98000001907348633" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
