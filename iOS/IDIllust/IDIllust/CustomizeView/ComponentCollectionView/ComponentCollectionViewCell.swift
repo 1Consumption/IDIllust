@@ -11,9 +11,9 @@ import UIKit
 class ComponentCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var isSelectedImageView: UIImageView!
-    static let identifier: String = "componentCell"
+    public static let identifier: String = "componentCell"
+    public var imageView: UIImageView = UIImageView()
+    public var selectedImageView: UIImageView = UIImageView()
     
     override var isSelected: Bool {
         didSet {
@@ -23,10 +23,45 @@ class ComponentCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        isSelectedImageView.isHidden = true
+        selectedImageView.isHidden = true
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
     private func setHiddentSelectedImageView() {
-        isSelectedImageView.isHidden = !isSelected
+        selectedImageView.isHidden = !isSelected
+    }
+    
+    private func setLayout() {
+        setImageViewLayout()
+        setSelectedImageViewLayout()
+    }
+    
+    private func setImageViewLayout() {
+        contentView.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
+        imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).isActive = true
+    }
+    
+    private func setSelectedImageViewLayout() {
+        contentView.addSubview(selectedImageView)
+        selectedImageView.translatesAutoresizingMaskIntoConstraints = false
+        selectedImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        selectedImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        selectedImageView.heightAnchor.constraint(equalTo: selectedImageView.widthAnchor).isActive = true
+        selectedImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).isActive = true
+        selectedImageView.image = UIImage(systemName: "checkmark")
+        selectedImageView.tintColor = .label
+        selectedImageView.isHidden = true
     }
 }
