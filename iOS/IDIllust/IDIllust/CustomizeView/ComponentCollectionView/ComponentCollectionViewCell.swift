@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComponentCollectionViewCell: UICollectionViewCell {
+final class ComponentCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     public static let identifier: String = "componentCell"

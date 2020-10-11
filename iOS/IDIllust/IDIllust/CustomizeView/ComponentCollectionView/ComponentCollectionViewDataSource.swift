@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComponentCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+final class ComponentCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10

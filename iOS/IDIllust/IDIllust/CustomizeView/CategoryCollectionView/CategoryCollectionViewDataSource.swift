@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+final class CategoryCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     let modelCount = 8
     
