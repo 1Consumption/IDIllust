@@ -13,6 +13,7 @@ final class CustomizeViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var componentsStackView: UIStackView!
+    @IBOutlet weak var componentScrollView: UIScrollView!
     private var componentCollectionViews: [UICollectionView] = [UICollectionView]()
     private var categoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private var componentCollectionViewDataSource = ComponentCollectionViewDataSource()
@@ -20,8 +21,10 @@ final class CustomizeViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        addObserves()
         setCategoryCollectionView()
         setComponentCollectionViews()
+        componentScrollView.delegate = self
     }
     
     // MARK: - Methods
@@ -51,4 +54,33 @@ final class CustomizeViewController: UIViewController {
             collectionView.dataSource = componentCollectionViewDataSource
         }
     }
+    
+    private func addObserves() {
+        NotificationCenter.default.addObserver(self, selector: #selector(scrollCategoryCollectionView(_:)), name: .ComponentScrollViewSrcolled, object: nil)
+    }
+    
+    // MARK: @objc
+    @objc func scrollCategoryCollectionView(_ notification: Notification) {
+        guard let row = notification.userInfo?["row"] as? Int else { return }
+        categoryCollectionView.selectItem(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        // todo: 이미 선택된 row에 대해서는 요청 보내지 않기
+    }
+}
+
+extension CustomizeViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let curX = scrollView.contentOffset.x
+        let width = view.frame.width
+        let index = Int(curX / width)
+        
+        if (curX.truncatingRemainder(dividingBy: width)) == 0 {
+            NotificationCenter.default.post(name: .ComponentScrollViewSrcolled,
+                                            object: nil,
+                                            userInfo: ["row": index])
+        }
+    }
+}
+
+extension Notification.Name {
+    static let ComponentScrollViewSrcolled = Notification.Name(rawValue: "componentScrollViewSrcolled")
 }

@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsc-00-5EK" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="44"/>
+                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="39"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Get your own IDIllust">
@@ -78,7 +78,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kDE-6u-U7f" userLabel="Container Stack View">
                                 <rect key="frame" x="0.0" y="404.33333333333326" width="375" height="324.66666666666674"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SRJ-t1-thA">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SRJ-t1-thA" customClass="CategoryCollectionView" customModule="IDIllust" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="64.666666666666671"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="f7O-4G-daq">
@@ -170,7 +170,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="5VS-e0-AAh"/>
                     <connections>
-                        <outlet property="categoryCollectionView" destination="SRJ-t1-thA" id="Bat-gD-YMm"/>
+                        <outlet property="categoryCollectionView" destination="SRJ-t1-thA" id="45p-Nr-0QD"/>
+                        <outlet property="componentScrollView" destination="JUz-cU-jmh" id="38g-d3-0pR"/>
                         <outlet property="componentsStackView" destination="Zc7-k9-Gr9" id="b9R-Mr-Cuy"/>
                     </connections>
                 </viewController>
@@ -200,7 +201,7 @@
     </scenes>
     <designables>
         <designable name="bsc-00-5EK">
-            <size key="intrinsicContentSize" width="196" height="44"/>
+            <size key="intrinsicContentSize" width="196" height="39"/>
         </designable>
     </designables>
     <resources>
