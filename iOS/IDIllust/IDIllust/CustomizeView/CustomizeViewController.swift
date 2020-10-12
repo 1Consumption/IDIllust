@@ -56,14 +56,34 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func addObserves() {
-        NotificationCenter.default.addObserver(self, selector: #selector(scrollCategoryCollectionView(_:)), name: .ComponentScrollViewSrcolled, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(scrollCategoryCollectionView(_:)),
+                                               name: .ComponentScrollViewSrcolled,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(scrollComponentScrollView),
+                                               name: .ChangedSelection,
+                                               object: nil)
     }
     
     // MARK: @objc
     @objc func scrollCategoryCollectionView(_ notification: Notification) {
         guard let row = notification.userInfo?["row"] as? Int else { return }
-        categoryCollectionView.selectItem(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-        // todo: 이미 선택된 row에 대해서는 요청 보내지 않기
+        guard let selected = categoryCollectionView.indexPathsForSelectedItems else { return }
+        
+        if selected[0].row != row {
+            categoryCollectionView.selectItem(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        }
+    }
+    
+    @objc func scrollComponentScrollView() {
+        guard let selected = categoryCollectionView.indexPathsForSelectedItems else { return }
+        let willX = selected[0].row * Int(view.frame.width)
+        let currentX = Int(componentScrollView.contentOffset.x)
+        
+        if willX != currentX {
+            componentScrollView.setContentOffset(CGPoint(x: willX, y: 0), animated: true)
+        }
     }
 }
 

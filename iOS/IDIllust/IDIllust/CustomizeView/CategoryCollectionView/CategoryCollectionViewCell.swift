@@ -18,7 +18,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             changeBackgroundColor()
-            // Todo: 이미 선택되어 있는 상태에서 다시 선택된 경우는 노티피케이션을 보내지 않도록 구현
+            sendNotification(oldValue)
         }
     }
     
@@ -29,4 +29,14 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
             backgroundColor = .clear
         }
     }
+    
+    private func sendNotification(_ oldValue: Bool) {
+        if oldValue == false && isSelected == true {
+            NotificationCenter.default.post(name: .ChangedSelection, object: nil)
+        }
+    }
+}
+
+extension Notification.Name {
+    static let ChangedSelection = Notification.Name("changedSelection")
 }
