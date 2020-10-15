@@ -14,7 +14,7 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var componentsStackView: UIStackView!
     @IBOutlet weak var componentScrollView: UIScrollView!
-    private var componentCollectionViews: [UICollectionView] = [UICollectionView]()
+    private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var categoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private var componentCollectionViewDataSource = ComponentCollectionViewDataSource()
     
@@ -44,7 +44,7 @@ final class CustomizeViewController: UIViewController {
     
     private func setComponentCollectionViews() {
         for _ in 0..<categoryCollectionViewDataSource.modelCount {
-            let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+            let collectionView = ComponentCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
             collectionView.translatesAutoresizingMaskIntoConstraints = false
             collectionView.register(ComponentCollectionViewCell.self, forCellWithReuseIdentifier: ComponentCollectionViewCell.identifier)
             componentCollectionViews.append(collectionView)
