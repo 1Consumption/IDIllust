@@ -178,6 +178,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="5VS-e0-AAh"/>
                     <connections>
                         <outlet property="categoryCollectionView" destination="SRJ-t1-thA" id="45p-Nr-0QD"/>
+                        <outlet property="colorSelectView" destination="JdK-C9-rsT" id="1h9-zZ-h3L"/>
                         <outlet property="componentScrollView" destination="JUz-cU-jmh" id="38g-d3-0pR"/>
                         <outlet property="componentsStackView" destination="Zc7-k9-Gr9" id="b9R-Mr-Cuy"/>
                     </connections>

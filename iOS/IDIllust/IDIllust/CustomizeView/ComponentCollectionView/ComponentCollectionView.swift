@@ -30,9 +30,22 @@ class ComponentCollectionView: UICollectionView {
         
         switch recognizer.state {
         case .ended: print("LongPress Ended \(point)")
-        case .began: print("LongPress Began \(point)")
+            
+        case .began:
+            guard let indexPath = indexPathForItem(at: point) else { return }
+            guard let origin = cellForItem(at: indexPath)?.frame.origin else { return }
+            
+            NotificationCenter.default.post(name: .LongPressBegan,
+                                            object: nil,
+                                            userInfo: ["point": origin, "indexPath": indexPath])
+            
         case .changed: print("LongPress Changed \(point)")
+            
         default: break
         }
     }
+}
+
+extension Notification.Name {
+    static let LongPressBegan = Notification.Name("longPressBegan")
 }

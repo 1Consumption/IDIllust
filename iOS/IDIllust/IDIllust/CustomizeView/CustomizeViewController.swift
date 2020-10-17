@@ -14,6 +14,7 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var componentsStackView: UIStackView!
     @IBOutlet weak var componentScrollView: UIScrollView!
+    @IBOutlet weak var colorSelectView: UIView!
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var categoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private var componentCollectionViewDataSource = ComponentCollectionViewDataSource()
@@ -64,6 +65,32 @@ final class CustomizeViewController: UIViewController {
                                                selector: #selector(scrollComponentScrollView),
                                                name: .ChangedSelection,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showColorSelectView(_:)),
+                                               name: .LongPressBegan,
+                                               object: nil)
+    }
+    
+    private func convert(point: CGPoint, to views: [UIView]) -> CGPoint {
+        var converted: CGPoint = point
+        for index in 0..<views.count - 1 {
+            converted = views[index].convert(converted, to: views[index + 1])
+        }
+        
+        return converted
+    }
+    
+    private func setColorSelectViewSize() {
+        guard let colorSelectVC = children.first as? ColorSelectViewController else { return }
+        colorSelectView.frame.size = colorSelectVC.colorSelectCollectionView.contentSize
+    }
+    
+    private func correct(point: inout CGPoint) {
+        point.y -= colorSelectView.frame.height / 1.5
+        
+        guard point.x + colorSelectView.frame.width >= view.frame.width else { return }
+        
+        point.x = view.frame.width - colorSelectView.frame.width
     }
     
     // MARK: @objc
@@ -84,6 +111,17 @@ final class CustomizeViewController: UIViewController {
         if willX != currentX {
             componentScrollView.setContentOffset(CGPoint(x: willX, y: 0), animated: true)
         }
+    }
+    
+    @objc func showColorSelectView(_ notification: Notification) {
+        guard let point = notification.userInfo?["point"] as? CGPoint else { return }
+        guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
+        var convertedPoint = convert(point: point, to: [componentCollectionViews[selected], componentsStackView, view])
+    
+        setColorSelectViewSize()
+        correct(point: &convertedPoint)
+        
+        colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
     }
 }
 
