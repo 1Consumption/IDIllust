@@ -16,6 +16,7 @@ final class ColorSelectViewController: UIViewController {
     // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        setObservers()
         setCollectionViewLayout()
         colorSelectCollectionView.dataSource = self
     }
@@ -27,6 +28,27 @@ final class ColorSelectViewController: UIViewController {
         layout?.itemSize = CGSize(width: height, height: height)
         layout?.minimumLineSpacing = 0
         layout?.minimumLineSpacing = 0
+    }
+    
+    private func setObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(selectCell(_:)),
+                                               name: .LongPressChanged,
+                                               object: nil)
+    }
+    
+    // MARK: @objc
+    @objc func selectCell(_ notification: Notification) {
+        guard let currentX = notification.userInfo?["x"] as? CGFloat else { return }
+        guard let parentView = parent?.view else { return }
+        let calibratedX = currentX - view.convert(view.frame.origin, to: parentView).x
+        
+        let currentIndexPath = colorSelectCollectionView.indexPathForItem(at: CGPoint(x: calibratedX, y: 0))
+        let selectedIndexPath = colorSelectCollectionView.indexPathsForSelectedItems?.first
+        
+        guard selectedIndexPath != currentIndexPath else { return }
+            
+        colorSelectCollectionView.selectItem(at: currentIndexPath, animated: false, scrollPosition: .left)
     }
 }
 

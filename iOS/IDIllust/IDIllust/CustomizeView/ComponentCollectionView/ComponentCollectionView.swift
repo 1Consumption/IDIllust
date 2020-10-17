@@ -41,7 +41,10 @@ class ComponentCollectionView: UICollectionView {
                                             object: nil,
                                             userInfo: ["point": origin, "indexPath": indexPath])
             
-        case .changed: print("LongPress Changed \(point)")
+        case .changed:
+            NotificationCenter.default.post(name: .LongPressChanged,
+                                            object: nil,
+                                            userInfo: ["x": point.x])
             
         default: break
         }
@@ -51,4 +54,5 @@ class ComponentCollectionView: UICollectionView {
 extension Notification.Name {
     static let LongPressBegan = Notification.Name("longPressBegan")
     static let LongPressEnded = Notification.Name("longPressEnded")
+    static let LongPressChanged = Notification.Name("longPressChanged")
 }
