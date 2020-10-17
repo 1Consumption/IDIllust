@@ -19,13 +19,14 @@ final class ColorSelectViewController: UIViewController {
         setObservers()
         setCollectionViewLayout()
         colorSelectCollectionView.dataSource = self
+        colorSelectCollectionView.delegate = self
     }
     
     // MARK: Methods
     private func setCollectionViewLayout() {
         let layout = colorSelectCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         let height = colorSelectCollectionView.frame.height
-        layout?.itemSize = CGSize(width: height, height: height)
+        layout?.itemSize = CGSize(width: min(height * 0.7, height - 20), height: min(height * 0.7, height - 20))
         layout?.minimumLineSpacing = 0
         layout?.minimumLineSpacing = 0
     }
@@ -42,8 +43,7 @@ final class ColorSelectViewController: UIViewController {
         guard let currentX = notification.userInfo?["x"] as? CGFloat else { return }
         guard let parentView = parent?.view else { return }
         let calibratedX = currentX - view.convert(view.frame.origin, to: parentView).x
-        
-        let currentIndexPath = colorSelectCollectionView.indexPathForItem(at: CGPoint(x: calibratedX, y: 0))
+        let currentIndexPath = colorSelectCollectionView.indexPathForItem(at: CGPoint(x: calibratedX, y: view.frame.midY))
         let selectedIndexPath = colorSelectCollectionView.indexPathsForSelectedItems?.first
         
         guard selectedIndexPath != currentIndexPath else { return }
@@ -61,5 +61,11 @@ extension ColorSelectViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorSelectCollectionViewCell.identifier, for: indexPath) as? ColorSelectCollectionViewCell else { return UICollectionViewCell() }
         return cell
+    }
+}
+
+extension ColorSelectViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }

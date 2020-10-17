@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsc-00-5EK" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="39"/>
+                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="44"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Get your own IDIllust">
@@ -78,7 +78,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kDE-6u-U7f" userLabel="Container Stack View">
                                 <rect key="frame" x="0.0" y="404.33333333333326" width="375" height="324.66666666666674"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SRJ-t1-thA" customClass="CategoryCollectionView" customModule="IDIllust" customModuleProvider="target">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SRJ-t1-thA">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="64.666666666666671"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="f7O-4G-daq">
@@ -210,29 +210,29 @@
         <scene sceneID="A6o-GN-AyF">
             <objects>
                 <viewController id="zjx-o0-P1X" customClass="ColorSelectViewController" customModule="IDIllust" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="y0d-y8-tc9">
+                    <view key="view" contentMode="scaleToFill" id="y0d-y8-tc9" customClass="CornerRadiusView" customModule="IDIllust" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="240" height="66"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tka-rE-Iy1">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="66"/>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4gC-we-uvj">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="52" height="46"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="colorSelectCollectionViewCell" id="IuB-ub-nFp" customClass="ColorSelectCollectionViewCell" customModule="IDIllust" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-31" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="10" width="52" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9OP-ee-43y">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="52" height="46"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="v2G-24-wbB">
-                                                    <rect key="frame" x="19.333333333333336" y="21.666666666666664" width="89.333333333333314" height="85.333333333333343"/>
+                                                    <rect key="frame" x="10" y="9.3333333333333339" width="32" height="28.000000000000004"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="v2G-24-wbB" secondAttribute="height" multiplier="1:1" id="0RC-fc-WVP"/>
@@ -245,6 +245,18 @@
                                                 <constraint firstItem="v2G-24-wbB" firstAttribute="centerX" secondItem="9OP-ee-43y" secondAttribute="centerX" id="yeE-hh-FDV"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="52" height="46"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="colorImageView" destination="v2G-24-wbB" id="Isb-ME-cGf"/>
                                         </connections>
@@ -252,13 +264,24 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Tka-rE-Iy1" secondAttribute="bottom" id="Ae9-7N-X03"/>
                             <constraint firstItem="Tka-rE-Iy1" firstAttribute="leading" secondItem="y0d-y8-tc9" secondAttribute="leading" id="Bo9-4S-bec"/>
                             <constraint firstItem="Tka-rE-Iy1" firstAttribute="top" secondItem="y0d-y8-tc9" secondAttribute="top" id="PKj-qb-ljT"/>
                             <constraint firstAttribute="trailing" secondItem="Tka-rE-Iy1" secondAttribute="trailing" id="tin-vu-qZT"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" systemColor="systemGray2Color"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="colorSelectCollectionView" destination="Tka-rE-Iy1" id="ycd-5c-5v5"/>
@@ -266,12 +289,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yT6-k0-mf5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2323" y="-22"/>
+            <point key="canvasLocation" x="2321.5999999999999" y="-22.167487684729064"/>
         </scene>
     </scenes>
     <designables>
         <designable name="bsc-00-5EK">
-            <size key="intrinsicContentSize" width="196" height="39"/>
+            <size key="intrinsicContentSize" width="196" height="44"/>
         </designable>
     </designables>
     <resources>

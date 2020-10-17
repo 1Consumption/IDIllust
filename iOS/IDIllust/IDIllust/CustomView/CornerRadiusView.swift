@@ -1,16 +1,18 @@
 //
-//  ColorSelectCollectionViewCell.swift
+//  CornerRadiusView.swift
 //  IDIllust
 //
-//  Created by 신한섭 on 2020/10/17.
+//  Created by 신한섭 on 2020/10/18.
 //  Copyright © 2020 신한섭. All rights reserved.
 //
 
 import UIKit
 
-final class ColorSelectCollectionViewCell: UICollectionViewCell {
+@IBDesignable
+final class CornerRadiusView: UIView {
     
-    // MARK: - IBInspectable
+    // MARK: - IBInspectables
+    // MARK: Border
     @IBInspectable public var borderWidth: CGFloat {
         get { layer.borderWidth }
         set { layer.borderWidth = newValue }
@@ -24,19 +26,5 @@ final class ColorSelectCollectionViewCell: UICollectionViewCell {
     @IBInspectable public var cornerRadius: CGFloat {
         get { layer.cornerRadius }
         set { layer.cornerRadius = newValue }
-    }
-    
-    static let identifier = "colorSelectCollectionViewCell"
-    
-    @IBOutlet weak var colorImageView: UIImageView!
-    
-    override var isSelected: Bool {
-        didSet {
-            if isSelected {
-                backgroundColor = .link
-            } else {
-                backgroundColor = .clear
-            }
-        }
     }
 }
