@@ -43,7 +43,8 @@ final class ColorSelectViewController: UIViewController {
         guard let currentX = notification.userInfo?["x"] as? CGFloat else { return }
         guard let parentView = parent?.view else { return }
         let calibratedX = currentX - view.convert(view.frame.origin, to: parentView).x
-        let currentIndexPath = colorSelectCollectionView.indexPathForItem(at: CGPoint(x: calibratedX, y: view.frame.midY))
+        
+        guard let currentIndexPath = colorSelectCollectionView.indexPathForItem(at: CGPoint(x: calibratedX, y: view.frame.midY)) else { return }
         let selectedIndexPath = colorSelectCollectionView.indexPathsForSelectedItems?.first
         
         guard selectedIndexPath != currentIndexPath else { return }
