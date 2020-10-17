@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsc-00-5EK" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="44"/>
+                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="39"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Get your own IDIllust">
@@ -155,7 +155,7 @@
                                     <constraint firstAttribute="width" secondItem="aqu-Mu-v2u" secondAttribute="height" multiplier="3:4" id="ayJ-fZ-f14"/>
                                 </constraints>
                             </imageView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JdK-C9-rsT">
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JdK-C9-rsT">
                                 <rect key="frame" x="0.0" y="44" width="240" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
@@ -271,7 +271,7 @@
     </scenes>
     <designables>
         <designable name="bsc-00-5EK">
-            <size key="intrinsicContentSize" width="196" height="44"/>
+            <size key="intrinsicContentSize" width="196" height="39"/>
         </designable>
     </designables>
     <resources>

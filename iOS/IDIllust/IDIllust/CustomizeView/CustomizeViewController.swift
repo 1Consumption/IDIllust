@@ -69,6 +69,10 @@ final class CustomizeViewController: UIViewController {
                                                selector: #selector(showColorSelectView(_:)),
                                                name: .LongPressBegan,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(hideColorSelectView),
+                                               name: .LongPressEnded,
+                                               object: nil)
     }
     
     private func convert(point: CGPoint, to views: [UIView]) -> CGPoint {
@@ -122,6 +126,12 @@ final class CustomizeViewController: UIViewController {
         correct(point: &convertedPoint)
         
         colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
+        
+        colorSelectView.isHidden = false
+    }
+    
+    @objc func hideColorSelectView() {
+        colorSelectView.isHidden = true
     }
 }
 

@@ -29,7 +29,9 @@ class ComponentCollectionView: UICollectionView {
         let point = recognizer.location(in: self)
         
         switch recognizer.state {
-        case .ended: print("LongPress Ended \(point)")
+        case .ended:
+            NotificationCenter.default.post(name: .LongPressEnded,
+                                            object: nil)
             
         case .began:
             guard let indexPath = indexPathForItem(at: point) else { return }
@@ -48,4 +50,5 @@ class ComponentCollectionView: UICollectionView {
 
 extension Notification.Name {
     static let LongPressBegan = Notification.Name("longPressBegan")
+    static let LongPressEnded = Notification.Name("longPressEnded")
 }
