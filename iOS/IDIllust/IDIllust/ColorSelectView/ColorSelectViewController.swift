@@ -49,6 +49,7 @@ final class ColorSelectViewController: UIViewController {
         guard selectedIndexPath != currentIndexPath else { return }
             
         colorSelectCollectionView.selectItem(at: currentIndexPath, animated: false, scrollPosition: .left)
+        UIDevice.vibrate(style: .light)
     }
 }
 

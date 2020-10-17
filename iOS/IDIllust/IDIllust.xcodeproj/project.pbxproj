@@ -12,6 +12,7 @@
 		A5434F0B2538238D00782F2C /* ComponentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5434F0A2538238D00782F2C /* ComponentCollectionView.swift */; };
 		A5511436253B22040068A4D2 /* ColorSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5511435253B22040068A4D2 /* ColorSelectViewController.swift */; };
 		A551143E253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A551143D253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift */; };
+		A5511444253B2E880068A4D2 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5511443253B2E880068A4D2 /* UIDevice.swift */; };
 		A5EDB6142531B90B00E6078B /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */; };
 		A5EDB61925321E9C00E6078B /* CategoryCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */; };
 		A5EDB61E2532220C00E6078B /* ComponentCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB61D2532220C00E6078B /* ComponentCollectionViewDataSource.swift */; };
@@ -52,6 +53,7 @@
 		A5434F0A2538238D00782F2C /* ComponentCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionView.swift; sourceTree = "<group>"; };
 		A5511435253B22040068A4D2 /* ColorSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectViewController.swift; sourceTree = "<group>"; };
 		A551143D253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectCollectionViewCell.swift; sourceTree = "<group>"; };
+		A5511443253B2E880068A4D2 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		A5EDB61D2532220C00E6078B /* ComponentCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -126,6 +128,14 @@
 			path = ColorSelectView;
 			sourceTree = "<group>";
 		};
+		A5511442253B2E700068A4D2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A5511443253B2E880068A4D2 /* UIDevice.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A5EDB6222532225A00E6078B /* CategoryCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +180,7 @@
 		A5F893402500A8C7002258EA /* IDIllust */ = {
 			isa = PBXGroup;
 			children = (
+				A5511442253B2E700068A4D2 /* Extensions */,
 				A5511434253B21F50068A4D2 /* ColorSelectView */,
 				A532D2D525050933009361DC /* CustomizeView */,
 				A5F9DC842501C78D00DAF991 /* CustomView */,
@@ -418,6 +429,7 @@
 				A5EDB6142531B90B00E6078B /* CategoryCollectionViewCell.swift in Sources */,
 				A5EDB61925321E9C00E6078B /* CategoryCollectionViewDataSource.swift in Sources */,
 				A5511436253B22040068A4D2 /* ColorSelectViewController.swift in Sources */,
+				A5511444253B2E880068A4D2 /* UIDevice.swift in Sources */,
 				A551143E253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift in Sources */,
 				A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */,
 				A5EDB6252532228900E6078B /* ComponentCollectionViewCell.swift in Sources */,

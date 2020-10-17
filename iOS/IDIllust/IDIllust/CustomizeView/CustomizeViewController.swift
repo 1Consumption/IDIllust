@@ -128,6 +128,7 @@ final class CustomizeViewController: UIViewController {
         colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
         
         colorSelectView.isHidden = false
+        UIDevice.vibrate(style: .light)
     }
     
     @objc func hideColorSelectView() {
