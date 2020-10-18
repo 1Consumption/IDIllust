@@ -22,6 +22,9 @@ public class Color {
     private String url;
 
     @JsonIgnore
+    private String thumbUrl;
+
+    @JsonIgnore
     @ManyToOne
     private Component component;
 }
