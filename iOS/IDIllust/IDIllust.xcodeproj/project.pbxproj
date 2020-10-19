@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A216A577971E24BCAAF7A14A /* Pods_IDIllust.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0F60B69323A78C0C7AA2367 /* Pods_IDIllust.framework */; };
+		A52D7065253D51770071613B /* NetworkManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D7064253D51770071613B /* NetworkManageable.swift */; };
 		A532D2D72505094A009361DC /* CustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532D2D62505094A009361DC /* CustomizeViewController.swift */; };
 		A5434F0B2538238D00782F2C /* ComponentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5434F0A2538238D00782F2C /* ComponentCollectionView.swift */; };
 		A5511436253B22040068A4D2 /* ColorSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5511435253B22040068A4D2 /* ColorSelectViewController.swift */; };
@@ -50,6 +51,7 @@
 		0889157591D15CEC47BF07AC /* Pods-IDIllust.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IDIllust.release.xcconfig"; path = "Target Support Files/Pods-IDIllust/Pods-IDIllust.release.xcconfig"; sourceTree = "<group>"; };
 		9A72923A735E012E2005AE0D /* Pods-IDIllust.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IDIllust.debug.xcconfig"; path = "Target Support Files/Pods-IDIllust/Pods-IDIllust.debug.xcconfig"; sourceTree = "<group>"; };
 		A0F60B69323A78C0C7AA2367 /* Pods_IDIllust.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IDIllust.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A52D7064253D51770071613B /* NetworkManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManageable.swift; sourceTree = "<group>"; };
 		A532D2D62505094A009361DC /* CustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeViewController.swift; sourceTree = "<group>"; };
 		A5434F0A2538238D00782F2C /* ComponentCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionView.swift; sourceTree = "<group>"; };
 		A5511435253B22040068A4D2 /* ColorSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 				A0F60B69323A78C0C7AA2367 /* Pods_IDIllust.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A52D704C253D50AF0071613B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A52D7064253D51770071613B /* NetworkManageable.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		A532D2D525050933009361DC /* CustomizeView */ = {
@@ -182,6 +192,7 @@
 		A5F893402500A8C7002258EA /* IDIllust */ = {
 			isa = PBXGroup;
 			children = (
+				A52D704C253D50AF0071613B /* Network */,
 				A5511442253B2E700068A4D2 /* Extensions */,
 				A5511434253B21F50068A4D2 /* ColorSelectView */,
 				A532D2D525050933009361DC /* CustomizeView */,
@@ -437,6 +448,7 @@
 				A551143E253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift in Sources */,
 				A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */,
 				A5EDB6252532228900E6078B /* ComponentCollectionViewCell.swift in Sources */,
+				A52D7065253D51770071613B /* NetworkManageable.swift in Sources */,
 				A5EDB61E2532220C00E6078B /* ComponentCollectionViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
