@@ -20,6 +20,7 @@
 		A5511444253B2E880068A4D2 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5511443253B2E880068A4D2 /* UIDevice.swift */; };
 		A5511454253B5C540068A4D2 /* CornerRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5511453253B5C540068A4D2 /* CornerRadiusView.swift */; };
 		A5844A98253D66B300A24256 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5844A97253D66B300A24256 /* EndPoint.swift */; };
+		A5844A9C253D67B600A24256 /* EndPoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5844A9B253D67B600A24256 /* EndPoinTests.swift */; };
 		A5C8D8EF253D5B94002ADD9E /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */; };
 		A5EDB6142531B90B00E6078B /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */; };
 		A5EDB61925321E9C00E6078B /* CategoryCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */; };
@@ -60,6 +61,7 @@
 		A5511443253B2E880068A4D2 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		A5511453253B5C540068A4D2 /* CornerRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusView.swift; sourceTree = "<group>"; };
 		A5844A97253D66B300A24256 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		A5844A9B253D67B600A24256 /* EndPoinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoinTests.swift; sourceTree = "<group>"; };
 		A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				A5F8935A2500A8C8002258EA /* Info.plist */,
 				A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */,
+				A5844A9B253D67B600A24256 /* EndPoinTests.swift */,
 			);
 			path = IDIllustTests;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5C8D8EF253D5B94002ADD9E /* NetworkTests.swift in Sources */,
+				A5844A9C253D67B600A24256 /* EndPoinTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
