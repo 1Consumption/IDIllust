@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct EntryImage: Decodable {
+struct EntryImage: Codable, Equatable {
     
     let url: String
 }
