@@ -21,6 +21,7 @@
 		A5511454253B5C540068A4D2 /* CornerRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5511453253B5C540068A4D2 /* CornerRadiusView.swift */; };
 		A5844A98253D66B300A24256 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5844A97253D66B300A24256 /* EndPoint.swift */; };
 		A5844A9C253D67B600A24256 /* EndPoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5844A9B253D67B600A24256 /* EndPoinTests.swift */; };
+		A5844AA4253D6A8600A24256 /* EntryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5844AA3253D6A8600A24256 /* EntryImage.swift */; };
 		A5C8D8EF253D5B94002ADD9E /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */; };
 		A5EDB6142531B90B00E6078B /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */; };
 		A5EDB61925321E9C00E6078B /* CategoryCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */; };
@@ -62,6 +63,7 @@
 		A5511453253B5C540068A4D2 /* CornerRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusView.swift; sourceTree = "<group>"; };
 		A5844A97253D66B300A24256 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		A5844A9B253D67B600A24256 /* EndPoinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoinTests.swift; sourceTree = "<group>"; };
+		A5844AA3253D6A8600A24256 /* EntryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryImage.swift; sourceTree = "<group>"; };
 		A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -147,6 +149,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A5844AA1253D6A7400A24256 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A5844AA2253D6A7800A24256 /* EntrtyView */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5844AA2253D6A7800A24256 /* EntrtyView */ = {
+			isa = PBXGroup;
+			children = (
+				A5844AA3253D6A8600A24256 /* EntryImage.swift */,
+			);
+			path = EntrtyView;
+			sourceTree = "<group>";
+		};
 		A5EDB6222532225A00E6078B /* CategoryCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +207,7 @@
 		A5F893402500A8C7002258EA /* IDIllust */ = {
 			isa = PBXGroup;
 			children = (
+				A5844AA1253D6A7400A24256 /* Model */,
 				A52D704C253D50AF0071613B /* Network */,
 				A5511442253B2E700068A4D2 /* Extensions */,
 				A5511434253B21F50068A4D2 /* ColorSelectView */,
@@ -397,6 +416,7 @@
 				A5F893462500A8C7002258EA /* EntryViewController.swift in Sources */,
 				A5F9DC862501C7A200DAF991 /* BorderPaddingButton.swift in Sources */,
 				A5844A98253D66B300A24256 /* EndPoint.swift in Sources */,
+				A5844AA4253D6A8600A24256 /* EntryImage.swift in Sources */,
 				A5F893422500A8C7002258EA /* AppDelegate.swift in Sources */,
 				A532D2D72505094A009361DC /* CustomizeViewController.swift in Sources */,
 				A5434F0B2538238D00782F2C /* ComponentCollectionView.swift in Sources */,
