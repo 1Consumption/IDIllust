@@ -11,7 +11,7 @@ import Foundation
 struct EntryImageUseCase {
     
     @discardableResult
-    public func retrieveEntryImageInfo(networkManager: NetworkManageable, failureHandler: @escaping (NetworkError) -> Void = { _ in }, successHandler: @escaping (EntryImage) -> Void) -> URLSessionDataTask? {
+    public func retrieveEntryImageInfo(networkManager: NetworkManageable, failureHandler: @escaping (UseCaseError) -> Void = { _ in }, successHandler: @escaping (EntryImage) -> Void) -> URLSessionDataTask? {
         let endPoint = EndPoint(path: .entry)
         
         let task = networkManager.getResource(url: endPoint.url,
@@ -28,7 +28,7 @@ struct EntryImageUseCase {
                                                     }
                                                     
                                                 case .failure(let error):
-                                                    failureHandler(error)
+                                                    failureHandler(.networkError(error))
                                                 }
                                               })
         

@@ -10,7 +10,6 @@ import Foundation
 
 enum NetworkError: Error {
     case dataEmpty
-    case decodeError
     case invalidHTTPResonse
     case invalidStatusCode(Int)
     case emptyURL
@@ -20,8 +19,6 @@ enum NetworkError: Error {
         switch self {
         case .dataEmpty:
             return "데이터가 비었어요."
-        case .decodeError:
-            return "응답을 복호화 하는 도중 문제가 발생했어요."
         case .invalidHTTPResonse:
             return "HTTP 응답이 유효하지 않아요."
         case .invalidStatusCode(let code):
