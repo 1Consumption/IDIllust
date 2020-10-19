@@ -29,20 +29,11 @@
 		A5F893492500A8C7002258EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F893472500A8C7002258EA /* Main.storyboard */; };
 		A5F8934B2500A8C8002258EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F8934A2500A8C8002258EA /* Assets.xcassets */; };
 		A5F8934E2500A8C8002258EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F8934C2500A8C8002258EA /* LaunchScreen.storyboard */; };
-		A5F893592500A8C8002258EA /* IDIllustTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893582500A8C8002258EA /* IDIllustTests.swift */; };
-		A5F893642500A8C9002258EA /* IDIllustUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F893632500A8C9002258EA /* IDIllustUITests.swift */; };
 		A5F9DC862501C7A200DAF991 /* BorderPaddingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F9DC852501C7A200DAF991 /* BorderPaddingButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		A5F893552500A8C8002258EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5F893362500A8C7002258EA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A5F8933D2500A8C7002258EA;
-			remoteInfo = IDIllust;
-		};
-		A5F893602500A8C8002258EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A5F893362500A8C7002258EA /* Project object */;
 			proxyType = 1;
@@ -79,11 +70,7 @@
 		A5F8934D2500A8C8002258EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5F8934F2500A8C8002258EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5F893542500A8C8002258EA /* IDIllustTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IDIllustTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5F893582500A8C8002258EA /* IDIllustTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDIllustTests.swift; sourceTree = "<group>"; };
 		A5F8935A2500A8C8002258EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5F8935F2500A8C8002258EA /* IDIllustUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IDIllustUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5F893632500A8C9002258EA /* IDIllustUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDIllustUITests.swift; sourceTree = "<group>"; };
-		A5F893652500A8C9002258EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5F9DC852501C7A200DAF991 /* BorderPaddingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderPaddingButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,13 +84,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A5F893512500A8C8002258EA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5F8935C2500A8C8002258EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -184,7 +164,6 @@
 			children = (
 				A5F893402500A8C7002258EA /* IDIllust */,
 				A5F893572500A8C8002258EA /* IDIllustTests */,
-				A5F893622500A8C9002258EA /* IDIllustUITests */,
 				A5F8933F2500A8C7002258EA /* Products */,
 				DBDADF95D6E23B76BFCE589C /* Pods */,
 				4E356F84D63D8A3F17C54249 /* Frameworks */,
@@ -196,7 +175,6 @@
 			children = (
 				A5F8933E2500A8C7002258EA /* IDIllust.app */,
 				A5F893542500A8C8002258EA /* IDIllustTests.xctest */,
-				A5F8935F2500A8C8002258EA /* IDIllustUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,19 +200,9 @@
 		A5F893572500A8C8002258EA /* IDIllustTests */ = {
 			isa = PBXGroup;
 			children = (
-				A5F893582500A8C8002258EA /* IDIllustTests.swift */,
 				A5F8935A2500A8C8002258EA /* Info.plist */,
 			);
 			path = IDIllustTests;
-			sourceTree = "<group>";
-		};
-		A5F893622500A8C9002258EA /* IDIllustUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A5F893632500A8C9002258EA /* IDIllustUITests.swift */,
-				A5F893652500A8C9002258EA /* Info.plist */,
-			);
-			path = IDIllustUITests;
 			sourceTree = "<group>";
 		};
 		A5F9DC842501C78D00DAF991 /* CustomView */ = {
@@ -312,24 +280,6 @@
 			productReference = A5F893542500A8C8002258EA /* IDIllustTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A5F8935E2500A8C8002258EA /* IDIllustUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A5F8936E2500A8C9002258EA /* Build configuration list for PBXNativeTarget "IDIllustUITests" */;
-			buildPhases = (
-				A5F8935B2500A8C8002258EA /* Sources */,
-				A5F8935C2500A8C8002258EA /* Frameworks */,
-				A5F8935D2500A8C8002258EA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A5F893612500A8C8002258EA /* PBXTargetDependency */,
-			);
-			name = IDIllustUITests;
-			productName = IDIllustUITests;
-			productReference = A5F8935F2500A8C8002258EA /* IDIllustUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -344,10 +294,6 @@
 						CreatedOnToolsVersion = 11.7;
 					};
 					A5F893532500A8C8002258EA = {
-						CreatedOnToolsVersion = 11.7;
-						TestTargetID = A5F8933D2500A8C7002258EA;
-					};
-					A5F8935E2500A8C8002258EA = {
 						CreatedOnToolsVersion = 11.7;
 						TestTargetID = A5F8933D2500A8C7002258EA;
 					};
@@ -368,7 +314,6 @@
 			targets = (
 				A5F8933D2500A8C7002258EA /* IDIllust */,
 				A5F893532500A8C8002258EA /* IDIllustTests */,
-				A5F8935E2500A8C8002258EA /* IDIllustUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -385,13 +330,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A5F893522500A8C8002258EA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5F8935D2500A8C8002258EA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -473,15 +411,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5F893592500A8C8002258EA /* IDIllustTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5F8935B2500A8C8002258EA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A5F893642500A8C9002258EA /* IDIllustUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,11 +421,6 @@
 			isa = PBXTargetDependency;
 			target = A5F8933D2500A8C7002258EA /* IDIllust */;
 			targetProxy = A5F893552500A8C8002258EA /* PBXContainerItemProxy */;
-		};
-		A5F893612500A8C8002258EA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A5F8933D2500A8C7002258EA /* IDIllust */;
-			targetProxy = A5F893602500A8C8002258EA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -718,46 +642,6 @@
 			};
 			name = Release;
 		};
-		A5F8936F2500A8C9002258EA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 735P3R8MUU;
-				INFOPLIST_FILE = IDIllustUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hanseop.IDIllustUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = IDIllust;
-			};
-			name = Debug;
-		};
-		A5F893702500A8C9002258EA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 735P3R8MUU;
-				INFOPLIST_FILE = IDIllustUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hanseop.IDIllustUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = IDIllust;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -784,15 +668,6 @@
 			buildConfigurations = (
 				A5F8936C2500A8C9002258EA /* Debug */,
 				A5F8936D2500A8C9002258EA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A5F8936E2500A8C9002258EA /* Build configuration list for PBXNativeTarget "IDIllustUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A5F8936F2500A8C9002258EA /* Debug */,
-				A5F893702500A8C9002258EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
