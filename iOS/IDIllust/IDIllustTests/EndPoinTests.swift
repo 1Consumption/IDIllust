@@ -11,8 +11,13 @@ import XCTest
 
 final class EndPoinTests: XCTestCase {
     
-    func testEndPointValid() {
+    func testEntryEndPointValid() {
         let entry = EndPoint(path: .entry)
         XCTAssertEqual(entry.url, URL(string: "http://3.34.77.7/api/entry"))
+    }
+    
+    func testCategorieEndPointValid() {
+        let categories = EndPoint(path: .categories)
+        XCTAssertEqual(categories.url, URL(string: "http://3.34.77.7/api/categories"))
     }
 }

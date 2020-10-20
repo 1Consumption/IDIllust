@@ -29,11 +29,14 @@ struct EndPoint {
     
     enum Path {
         case entry
+        case categories
         
         var description: String {
             switch self {
             case .entry:
                 return "/api/entry"
+            case .categories:
+                return "/api/categories"
             }
         }
     }
