@@ -14,12 +14,17 @@ final class EntryViewController: UIViewController {
     // MARK: - @IBOutlet
     @IBOutlet weak var entryImageView: UIImageView!
     
-    // MARK: - Properties
-    private var entryImage: EntryImage?
+    // MARK: Properties
+    private var entryImage: EntryImage? {
+        didSet {
+            setEntryImage()
+        }
+    }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        entryImageView.kf.indicatorType = .activity
         entryImageUseCase()
     }
     
@@ -33,5 +38,12 @@ final class EntryViewController: UIViewController {
                                     successHandler: { [weak self] in
                                         self?.entryImage = $0
                                     })
+    }
+    
+    private func setEntryImage() {
+        guard let imageURL = entryImage?.url else { return }
+        DispatchQueue.main.async { [weak self] in
+            self?.entryImageView.kf.setImage(with: URL(string: imageURL))
+        }
     }
 }
