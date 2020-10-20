@@ -11,8 +11,8 @@ import Foundation
 struct CategoriesUseCase {
     
     @discardableResult
-    public func retrieveCategories(networkManager: NetworkManageable, failureHandler: @escaping (UseCaseError) -> Void = { _ in }, successHandler: @escaping ([Category]) -> Void) -> URLSessionDataTask? {
-        let endPoint = EndPoint(path: .entry)
+    public func retrieveCategories(networkManager: NetworkManageable, failureHandler: @escaping (UseCaseError) -> Void = { _ in }, successHandler: @escaping (Categories) -> Void) -> URLSessionDataTask? {
+        let endPoint = EndPoint(path: .categories)
         
         let task = networkManager.getResource(url: endPoint.url,
                                               method: .get,
@@ -22,7 +22,7 @@ struct CategoriesUseCase {
                                                 case .success(let data):
                                                     do {
                                                         let model = try JSONDecoder().decode(Categories.self, from: data)
-                                                        successHandler(model.categories)
+                                                        successHandler(model)
                                                     } catch {
                                                         failureHandler(.decodeError)
                                                     }

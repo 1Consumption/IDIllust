@@ -18,11 +18,13 @@ final class CustomizeViewController: UIViewController {
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var categoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private var componentCollectionViewDataSource = ComponentCollectionViewDataSource()
+    private var categories: Categories?
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserves()
+        categoriesUseCase()
         setCategoryCollectionView()
         setComponentCollectionViews()
         componentScrollView.delegate = self
@@ -66,6 +68,17 @@ final class CustomizeViewController: UIViewController {
                                                selector: #selector(hideColorSelectView),
                                                name: .LongPressEnded,
                                                object: nil)
+    }
+    
+    private func categoriesUseCase() {
+        CategoriesUseCase()
+            .retrieveCategories(networkManager: NetworkManager(),
+                                failureHandler: { _ in
+                                    // Todo: UseCaseError에 따른 예외 처리
+                                },
+                                successHandler: { [weak self] in
+                                    self?.categories = $0
+                                })
     }
     
     private func convert(point: CGPoint, to views: [UIView]) -> CGPoint {
