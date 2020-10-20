@@ -19,14 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main" translatesAutoresizingMaskIntoConstraints="NO" id="UTm-9v-Sr1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UTm-9v-Sr1">
                                 <rect key="frame" x="0.0" y="124" width="375" height="375"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UTm-9v-Sr1" secondAttribute="height" multiplier="1:1" id="Ncw-WW-vVQ"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsc-00-5EK" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="44"/>
+                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="39"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Get your own IDIllust">
@@ -62,6 +62,9 @@
                             <constraint firstItem="bsc-00-5EK" firstAttribute="top" secondItem="UTm-9v-Sr1" secondAttribute="bottom" constant="100" id="YUy-mP-zwQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="entryImageView" destination="UTm-9v-Sr1" id="NwT-aR-jK1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -264,6 +267,7 @@
                                 </cells>
                             </collectionView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="dGU-rt-JB9"/>
                         <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Tka-rE-Iy1" secondAttribute="bottom" id="Ae9-7N-X03"/>
@@ -294,12 +298,11 @@
     </scenes>
     <designables>
         <designable name="bsc-00-5EK">
-            <size key="intrinsicContentSize" width="196" height="44"/>
+            <size key="intrinsicContentSize" width="196" height="39"/>
         </designable>
     </designables>
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>
-        <image name="main" width="341.33334350585938" height="341.33334350585938"/>
         <image name="thumb_skin_2" width="300" height="400"/>
         <namedColor name="DivisionColor">
             <color red="0.90600001811981201" green="0.90600001811981201" blue="0.90600001811981201" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

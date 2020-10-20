@@ -6,6 +6,7 @@ target 'IDIllust' do
   use_frameworks! 
 
   pod 'SwiftLint'
+  pod 'Kingfisher'
 
   post_install do |pi|
     pi.pods_project.targets.each do |t|
