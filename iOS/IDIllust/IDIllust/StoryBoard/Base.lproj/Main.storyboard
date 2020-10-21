@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsc-00-5EK" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="39"/>
+                                <rect key="frame" x="37.666666666666657" y="599" width="300" height="44"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Get your own IDIllust">
@@ -81,8 +81,15 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kDE-6u-U7f" userLabel="Container Stack View">
                                 <rect key="frame" x="0.0" y="404.33333333333326" width="375" height="324.66666666666674"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mrd-zo-ici">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                                        <color key="backgroundColor" name="DivisionColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="9dP-58-Qiw"/>
+                                        </constraints>
+                                    </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SRJ-t1-thA">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="64.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="1" width="375" height="64.666666666666671"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="f7O-4G-daq">
                                             <size key="itemSize" width="128" height="128"/>
@@ -116,17 +123,17 @@
                                         </cells>
                                     </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UqZ-Z9-7XH">
-                                        <rect key="frame" x="0.0" y="64.666666666666686" width="375" height="1"/>
+                                        <rect key="frame" x="0.0" y="65.666666666666686" width="375" height="1"/>
                                         <color key="backgroundColor" name="DivisionColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="LQb-Ce-88N"/>
                                         </constraints>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUz-cU-jmh">
-                                        <rect key="frame" x="0.0" y="65.666666666666686" width="375" height="259"/>
+                                        <rect key="frame" x="0.0" y="66.666666666666686" width="375" height="258"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Zc7-k9-Gr9">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="259"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="258"/>
                                                 <subviews>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBC-aO-KRc" userLabel="Dummy View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="259"/>
@@ -298,7 +305,7 @@
     </scenes>
     <designables>
         <designable name="bsc-00-5EK">
-            <size key="intrinsicContentSize" width="196" height="39"/>
+            <size key="intrinsicContentSize" width="196" height="44"/>
         </designable>
     </designables>
     <resources>
