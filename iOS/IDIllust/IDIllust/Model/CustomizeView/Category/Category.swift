@@ -11,6 +11,14 @@ import Foundation
 struct Categories: Codable {
     
     let categories: [Category]
+    
+    func category(of index: Int) -> Category? {
+        if index > categories.count {
+            return nil
+        }
+        
+        return categories[index]
+    }
 }
 
 struct Category: Codable, Equatable {
