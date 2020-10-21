@@ -21,6 +21,7 @@ final class CustomizeViewController: UIViewController {
     private var categories: Categories? {
         didSet {
             categoryCollectionViewDataSource.model = categories
+            reloadCategoryCollectionView()
         }
     }
     
@@ -38,7 +39,6 @@ final class CustomizeViewController: UIViewController {
     private func setCategoryCollectionView() {
         categoryCollectionView.setSquarCell(factor: categoryCollectionView.frame.height)
         categoryCollectionView.dataSource = categoryCollectionViewDataSource
-        categoryCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
     }
     
     private func setComponentCollectionViews() {
@@ -83,6 +83,13 @@ final class CustomizeViewController: UIViewController {
                                 successHandler: { [weak self] in
                                     self?.categories = $0
                                 })
+    }
+    
+    private func reloadCategoryCollectionView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.categoryCollectionView.reloadData()
+            self?.categoryCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
+        }
     }
     
     private func convert(point: CGPoint, to views: [UIView]) -> CGPoint {
