@@ -10,10 +10,11 @@ import UIKit
 
 final class CategoryCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    let modelCount = 8
+    var model: Categories?
+    var modelCount: Int { return model?.categories.count ?? 0 }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return modelCount
+        return model?.categories.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

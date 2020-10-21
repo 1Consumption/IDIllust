@@ -18,14 +18,18 @@ final class CustomizeViewController: UIViewController {
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var categoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private var componentCollectionViewDataSource = ComponentCollectionViewDataSource()
-    private var categories: Categories?
+    private var categories: Categories? {
+        didSet {
+            categoryCollectionViewDataSource.model = categories
+        }
+    }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserves()
-        categoriesUseCase()
         setCategoryCollectionView()
+        categoriesUseCase()
         setComponentCollectionViews()
         componentScrollView.delegate = self
     }
