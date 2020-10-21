@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Categories: Codable {
+struct Categories: Codable, Equatable {
     
     let categories: [Category]
     

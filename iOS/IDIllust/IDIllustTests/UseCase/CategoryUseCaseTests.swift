@@ -12,7 +12,7 @@ import XCTest
 class CategoryUseCaseTests: XCTestCase {
     
     private var mockNetworkManager: NetworkManageable!
-    private var model: [IDIllust.Category]!
+    private var model: Categories!
     
     private class MockSuccessNetworkManager: NetworkManageable {
         
@@ -31,11 +31,11 @@ class CategoryUseCaseTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        model = [Category(id: 1, name: "category", url: "test")]
+        model = Categories(categories: [Category(id: 1, name: "category", url: "test")])
     }
     
     func testSuccess() {
-        mockNetworkManager = MockSuccessNetworkManager(model: Categories(categories: model))
+        mockNetworkManager = MockSuccessNetworkManager(model: model)
         
         CategoriesUseCase().retrieveCategories(networkManager: mockNetworkManager,
                                                     successHandler: { model in
@@ -44,10 +44,10 @@ class CategoryUseCaseTests: XCTestCase {
     }
     
     func testSuccessWithNotEquealResult() {
-        mockNetworkManager = MockSuccessNetworkManager(model: Categories(categories: model))
+        mockNetworkManager = MockSuccessNetworkManager(model: model)
         
         CategoriesUseCase().retrieveCategories(networkManager: mockNetworkManager, successHandler: { received in
-            XCTAssertNotEqual(received, [Category(id: 1, name: "not equal", url: "test")])
+            XCTAssertNotEqual(received, Categories(categories: [Category(id: 1, name: "not equal", url: "test")]))
         })
     }
 }
