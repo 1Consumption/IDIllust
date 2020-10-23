@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A216A577971E24BCAAF7A14A /* Pods_IDIllust.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0F60B69323A78C0C7AA2367 /* Pods_IDIllust.framework */; };
+		A506C99A254272D100E6BCE6 /* RetrieveModelFromServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */; };
 		A52D704E253D50FE0071613B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D704D253D50FE0071613B /* NetworkManager.swift */; };
 		A52D7056253D51280071613B /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D7055253D51280071613B /* HTTPMethod.swift */; };
 		A52D705B253D51440071613B /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D705A253D51440071613B /* HTTPHeaders.swift */; };
@@ -59,6 +60,7 @@
 		0889157591D15CEC47BF07AC /* Pods-IDIllust.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IDIllust.release.xcconfig"; path = "Target Support Files/Pods-IDIllust/Pods-IDIllust.release.xcconfig"; sourceTree = "<group>"; };
 		9A72923A735E012E2005AE0D /* Pods-IDIllust.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IDIllust.debug.xcconfig"; path = "Target Support Files/Pods-IDIllust/Pods-IDIllust.debug.xcconfig"; sourceTree = "<group>"; };
 		A0F60B69323A78C0C7AA2367 /* Pods_IDIllust.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IDIllust.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveModelFromServer.swift; sourceTree = "<group>"; };
 		A52D704D253D50FE0071613B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A52D7055253D51280071613B /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A52D705A253D51440071613B /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
@@ -125,6 +127,14 @@
 				A0F60B69323A78C0C7AA2367 /* Pods_IDIllust.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A506C9982542729100E6BCE6 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A52D704C253D50AF0071613B /* Network */ = {
@@ -262,6 +272,7 @@
 		A5F893402500A8C7002258EA /* IDIllust */ = {
 			isa = PBXGroup;
 			children = (
+				A506C9982542729100E6BCE6 /* Protocols */,
 				A53241EF253DAF80004FEF3C /* Errors */,
 				A5844AA1253D6A7400A24256 /* Model */,
 				A52D704C253D50AF0071613B /* Network */,
@@ -505,6 +516,7 @@
 				A5EDB6142531B90B00E6078B /* CategoryCollectionViewCell.swift in Sources */,
 				A5EDB61925321E9C00E6078B /* CategoryCollectionViewDataSource.swift in Sources */,
 				A52D705B253D51440071613B /* HTTPHeaders.swift in Sources */,
+				A506C99A254272D100E6BCE6 /* RetrieveModelFromServer.swift in Sources */,
 				A5EEC115253F63200048A13D /* CategoriesUseCase.swift in Sources */,
 				A5511436253B22040068A4D2 /* ColorSelectViewController.swift in Sources */,
 				A5511444253B2E880068A4D2 /* UIDevice.swift in Sources */,
