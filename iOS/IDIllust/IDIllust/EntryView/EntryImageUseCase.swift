@@ -8,30 +8,14 @@
 
 import Foundation
 
-struct EntryImageUseCase {
+struct EntryImageUseCase: RetrieveModelFromServer {
+    
+    typealias Model = EntryImage
     
     @discardableResult
     public func retrieveEntryImageInfo(networkManager: NetworkManageable, failureHandler: @escaping (UseCaseError) -> Void = { _ in }, successHandler: @escaping (EntryImage) -> Void) -> URLSessionDataTask? {
         let endPoint = EndPoint(path: .entry)
         
-        let task = networkManager.getResource(url: endPoint.url,
-                                              method: .get,
-                                              headers: nil,
-                                              handler: { result in
-                                                switch result {
-                                                case .success(let data):
-                                                    do {
-                                                        let model = try JSONDecoder().decode(EntryImage.self, from: data)
-                                                        successHandler(model)
-                                                    } catch {
-                                                        failureHandler(.decodeError)
-                                                    }
-                                                    
-                                                case .failure(let error):
-                                                    failureHandler(.networkError(error))
-                                                }
-                                              })
-        
-        return task
+        return retrieveModel(from: endPoint, networkManager: networkManager, failurehandler: failureHandler, successHandler: successHandler)
     }
 }

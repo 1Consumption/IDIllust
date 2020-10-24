@@ -13,6 +13,12 @@ class CategoryUseCaseTests: XCTestCase {
     
     private var mockNetworkManager: NetworkManageable!
     private var model: Categories!
+    
+    override func setUp() {
+        super.setUp()
+        let category = IDIllust.Category(id: 1, name: "test", url: "url")
+        model = Categories(categories: [category])
+    }
 
     func testSuccess() {
         mockNetworkManager = MockSuccessNetworkManager(model: model)
