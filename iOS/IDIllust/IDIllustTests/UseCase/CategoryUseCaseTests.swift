@@ -13,27 +13,7 @@ class CategoryUseCaseTests: XCTestCase {
     
     private var mockNetworkManager: NetworkManageable!
     private var model: Categories!
-    
-    private class MockSuccessNetworkManager: NetworkManageable {
-        
-        private let model: Categories!
-        
-        init(model: Categories) {
-            self.model = model
-        }
-        
-        func getResource(url: URL?, method: HTTPMethod, headers: HTTPHeaders?, handler: @escaping DataHandler) -> URLSessionDataTask? {
-            let data = try! JSONEncoder().encode(model)
-            handler(.success(data))
-            return nil
-        }
-    }
-    
-    override func setUp() {
-        super.setUp()
-        model = Categories(categories: [Category(id: 1, name: "category", url: "test")])
-    }
-    
+
     func testSuccess() {
         mockNetworkManager = MockSuccessNetworkManager(model: model)
         
@@ -41,13 +21,5 @@ class CategoryUseCaseTests: XCTestCase {
                                                     successHandler: { model in
                                                         XCTAssertEqual(self.model, model)
                                                     })
-    }
-    
-    func testSuccessWithNotEquealResult() {
-        mockNetworkManager = MockSuccessNetworkManager(model: model)
-        
-        CategoriesUseCase().retrieveCategories(networkManager: mockNetworkManager, successHandler: { received in
-            XCTAssertNotEqual(received, Categories(categories: [Category(id: 1, name: "not equal", url: "test")]))
-        })
     }
 }

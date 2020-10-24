@@ -22,50 +22,12 @@ class RetrieveModelFromServerTests: XCTestCase {
         typealias Model = T
     }
     
-    private class MockSuccessNetworkManager<T>: NetworkManageable where T: Codable {
-        
-        private let model: T!
-        
-        init(model: T) {
-            self.model = model
-        }
-        
-        func getResource(url: URL?, method: HTTPMethod, headers: HTTPHeaders?, handler: @escaping DataHandler) -> URLSessionDataTask? {
-            let data = try! JSONEncoder().encode(model)
-            handler(.success(data))
-            return nil
-        }
-    }
-    
-    private class MockDecodeFailureNetworkManager: NetworkManageable {
-        
-        struct DecodeErrorModel: Codable {
-            let fake: String
-        }
-        
-        func getResource(url: URL?, method: HTTPMethod, headers: HTTPHeaders?, handler: @escaping DataHandler) -> URLSessionDataTask? {
-            let model = DecodeErrorModel(fake: "fake")
-            let data = try! JSONEncoder().encode(model)
-            handler(.success(data))
-            return nil
-        }
-    }
-    
-    private class MockNetworkFailureNetworkManager: NetworkManageable {
-        
-        func getResource(url: URL?, method: HTTPMethod, headers: HTTPHeaders?, handler: @escaping DataHandler) -> URLSessionDataTask? {
-            handler(.failure(.requestError))
-            return nil
-        }
-    }
-    
     override func setUpWithError() throws {
         mockModel = MockModel(id: 1)
     }
     
     func testSuccess() {
         mockNetworkManager = MockSuccessNetworkManager(model: mockModel)
-        
         MockUseCase().retrieveModel(from: .init(path: .entry),
                                     networkManager: mockNetworkManager,
                                     failurehandler: { _ in
@@ -99,5 +61,17 @@ class RetrieveModelFromServerTests: XCTestCase {
                                                successHandler: { _ in
                                                 XCTFail()
                                                })
+    }
+}
+
+extension UseCaseError: Equatable {
+    public static func == (lhs: UseCaseError, rhs: UseCaseError) -> Bool {
+        switch (lhs, rhs) {
+        case (.decodeError, .decodeError), (.networkError, .networkError):
+            return true
+            
+        default:
+            return false
+        }
     }
 }

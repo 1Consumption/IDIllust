@@ -10,6 +10,7 @@
 		A216A577971E24BCAAF7A14A /* Pods_IDIllust.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0F60B69323A78C0C7AA2367 /* Pods_IDIllust.framework */; };
 		A506C99A254272D100E6BCE6 /* RetrieveModelFromServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */; };
 		A506C9A12542758200E6BCE6 /* RetrieveModelFromServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */; };
+		A521F0082543DD8B0002031A /* MockNetworkManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521F0072543DD8B0002031A /* MockNetworkManagers.swift */; };
 		A52D704E253D50FE0071613B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D704D253D50FE0071613B /* NetworkManager.swift */; };
 		A52D7056253D51280071613B /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D7055253D51280071613B /* HTTPMethod.swift */; };
 		A52D705B253D51440071613B /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D705A253D51440071613B /* HTTPHeaders.swift */; };
@@ -63,6 +64,7 @@
 		A0F60B69323A78C0C7AA2367 /* Pods_IDIllust.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IDIllust.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveModelFromServer.swift; sourceTree = "<group>"; };
 		A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveModelFromServerTests.swift; sourceTree = "<group>"; };
+		A521F0072543DD8B0002031A /* MockNetworkManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManagers.swift; sourceTree = "<group>"; };
 		A52D704D253D50FE0071613B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A52D7055253D51280071613B /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A52D705A253D51440071613B /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		A5F893572500A8C8002258EA /* IDIllustTests */ = {
 			isa = PBXGroup;
 			children = (
+				A521F0072543DD8B0002031A /* MockNetworkManagers.swift */,
 				A506C99F2542756900E6BCE6 /* Protocol */,
 				A5EEC11C253F64640048A13D /* UseCase */,
 				A5F8935A2500A8C8002258EA /* Info.plist */,
@@ -551,6 +554,7 @@
 				A53241E8253D9B3D004FEF3C /* EntryImageUseCaseTests.swift in Sources */,
 				A5844A9C253D67B600A24256 /* EndPoinTests.swift in Sources */,
 				A5EEC119253F64620048A13D /* CategoryUseCaseTests.swift in Sources */,
+				A521F0082543DD8B0002031A /* MockNetworkManagers.swift in Sources */,
 				A506C9A12542758200E6BCE6 /* RetrieveModelFromServerTests.swift in Sources */,
 				A5AEDF56253FF3670083F3D2 /* ComponentsTest.swift in Sources */,
 			);
