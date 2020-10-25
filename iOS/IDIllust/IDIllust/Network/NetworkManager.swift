@@ -28,7 +28,7 @@ final class NetworkManager: NetworkManageable {
                 return
             }
             
-            guard httpResponse.statusCode == 200 else {
+            guard (200..<300).contains(httpResponse.statusCode) else {
                 handler(.failure(.invalidStatusCode(httpResponse.statusCode)))
                 return
             }

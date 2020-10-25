@@ -14,7 +14,7 @@ protocol RetrieveModelFromServer {
     func retrieveModel(from endPoint: EndPoint, networkManager: NetworkManageable, failurehandler: @escaping (UseCaseError) -> Void, successHandler: @escaping (Model) -> Void) -> URLSessionDataTask?
 }
 
-extension RetrieveModelFromServer where Model: Codable {
+extension RetrieveModelFromServer where Model: Decodable {
     @discardableResult
     func retrieveModel(from endPoint: EndPoint, networkManager: NetworkManageable, failurehandler: @escaping (UseCaseError) -> Void, successHandler: @escaping (Model) -> Void) -> URLSessionDataTask? {
         let url = endPoint.url
