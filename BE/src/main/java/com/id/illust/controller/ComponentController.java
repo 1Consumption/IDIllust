@@ -1,5 +1,6 @@
 package com.id.illust.controller;
 
+import com.id.illust.network.response.ChoiceApiResponse;
 import com.id.illust.network.response.ComponentApiResponse;
 import com.id.illust.service.ComponentService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,5 +21,10 @@ public class ComponentController {
     @GetMapping("")
     public ComponentApiResponse getComponents(@PathVariable Long categoryId) {
         return componentService.readAll(categoryId);
+    }
+
+    @GetMapping("/{componentId}")
+    public ChoiceApiResponse getDefaultUrl(@PathVariable Long categoryId, @PathVariable Long componentId) {
+        return componentService.readFirst(categoryId, componentId);
     }
 }
