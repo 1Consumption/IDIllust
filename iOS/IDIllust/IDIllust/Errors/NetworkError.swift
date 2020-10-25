@@ -15,7 +15,7 @@ enum NetworkError: Error {
     case emptyURL
     case requestError
     
-    func message() -> String {
+    var message: String {
         switch self {
         case .dataEmpty:
             return "데이터가 비었어요."
