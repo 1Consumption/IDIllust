@@ -13,6 +13,7 @@
 		A506C9A12542758200E6BCE6 /* RetrieveModelFromServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */; };
 		A521F0082543DD8B0002031A /* MockNetworkManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521F0072543DD8B0002031A /* MockNetworkManagers.swift */; };
 		A521F0142543FEA00002031A /* ComponentsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521F0132543FEA00002031A /* ComponentsUseCaseTests.swift */; };
+		A521F021254557BB0002031A /* CategoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521F020254557BB0002031A /* CategoriesTests.swift */; };
 		A52D704E253D50FE0071613B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D704D253D50FE0071613B /* NetworkManager.swift */; };
 		A52D7056253D51280071613B /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D7055253D51280071613B /* HTTPMethod.swift */; };
 		A52D705B253D51440071613B /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D705A253D51440071613B /* HTTPHeaders.swift */; };
@@ -32,7 +33,7 @@
 		A5844AA9253D6B0D00A24256 /* EntryImageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5844AA8253D6B0D00A24256 /* EntryImageUseCase.swift */; };
 		A5AEDF44253F69700083F3D2 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEDF43253F69700083F3D2 /* UICollectionView.swift */; };
 		A5AEDF4D253FCDA10083F3D2 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEDF4C253FCDA10083F3D2 /* Component.swift */; };
-		A5AEDF56253FF3670083F3D2 /* ComponentsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEDF55253FF3660083F3D2 /* ComponentsTest.swift */; };
+		A5AEDF56253FF3670083F3D2 /* ComponentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEDF55253FF3660083F3D2 /* ComponentsTests.swift */; };
 		A5C8D8EF253D5B94002ADD9E /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */; };
 		A5EDB6142531B90B00E6078B /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */; };
 		A5EDB61925321E9C00E6078B /* CategoryCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */; };
@@ -69,6 +70,7 @@
 		A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveModelFromServerTests.swift; sourceTree = "<group>"; };
 		A521F0072543DD8B0002031A /* MockNetworkManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManagers.swift; sourceTree = "<group>"; };
 		A521F0132543FEA00002031A /* ComponentsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsUseCaseTests.swift; sourceTree = "<group>"; };
+		A521F020254557BB0002031A /* CategoriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTests.swift; sourceTree = "<group>"; };
 		A52D704D253D50FE0071613B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A52D7055253D51280071613B /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A52D705A253D51440071613B /* HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
@@ -88,7 +90,7 @@
 		A5844AA8253D6B0D00A24256 /* EntryImageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryImageUseCase.swift; sourceTree = "<group>"; };
 		A5AEDF43253F69700083F3D2 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		A5AEDF4C253FCDA10083F3D2 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
-		A5AEDF55253FF3660083F3D2 /* ComponentsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsTest.swift; sourceTree = "<group>"; };
+		A5AEDF55253FF3660083F3D2 /* ComponentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsTests.swift; sourceTree = "<group>"; };
 		A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -317,7 +319,8 @@
 				A5F8935A2500A8C8002258EA /* Info.plist */,
 				A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */,
 				A5844A9B253D67B600A24256 /* EndPoinTests.swift */,
-				A5AEDF55253FF3660083F3D2 /* ComponentsTest.swift */,
+				A5AEDF55253FF3660083F3D2 /* ComponentsTests.swift */,
+				A521F020254557BB0002031A /* CategoriesTests.swift */,
 			);
 			path = IDIllustTests;
 			sourceTree = "<group>";
@@ -564,7 +567,8 @@
 				A5EEC119253F64620048A13D /* CategoryUseCaseTests.swift in Sources */,
 				A521F0082543DD8B0002031A /* MockNetworkManagers.swift in Sources */,
 				A506C9A12542758200E6BCE6 /* RetrieveModelFromServerTests.swift in Sources */,
-				A5AEDF56253FF3670083F3D2 /* ComponentsTest.swift in Sources */,
+				A5AEDF56253FF3670083F3D2 /* ComponentsTests.swift in Sources */,
+				A521F021254557BB0002031A /* CategoriesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

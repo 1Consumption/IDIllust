@@ -55,7 +55,7 @@ final class ComponentsManager {
     }
 }
 
-struct Components: Codable, Equatable {
+struct Components: Decodable {
     
     let components: [Component]
     
@@ -70,7 +70,7 @@ struct Components: Codable, Equatable {
     }
 }
 
-struct Component: Codable, Equatable {
+struct Component: Decodable {
     
     let id: Int
     let name: String

@@ -8,20 +8,22 @@
 
 import Foundation
 
-struct Categories: Codable, Equatable {
+struct Categories: Decodable {
     
     let categories: [Category]
     
     func category(of index: Int) -> Category? {
-        if index > categories.count {
-            return nil
-        }
+        guard !isExceed(index: index) else { return nil }
         
         return categories[index]
     }
+    
+    private func isExceed(index: Int) -> Bool {
+        return index >= categories.count
+    }
 }
 
-struct Category: Codable, Equatable {
+struct Category: Decodable {
     
     let id: Int
     let name: String
