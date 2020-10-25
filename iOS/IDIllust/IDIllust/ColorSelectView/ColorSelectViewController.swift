@@ -24,11 +24,9 @@ final class ColorSelectViewController: UIViewController {
     
     // MARK: Methods
     private func setCollectionViewLayout() {
-        let layout = colorSelectCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         let height = colorSelectCollectionView.frame.height
-        layout?.itemSize = CGSize(width: min(height * 0.7, height - 20), height: min(height * 0.7, height - 20))
-        layout?.minimumLineSpacing = 0
-        layout?.minimumLineSpacing = 0
+        colorSelectCollectionView.setSquarCell(factor: min(height * 0.7, height - 20))
+        colorSelectCollectionView.setSpacing(line: 0, interItem: 0)
     }
     
     private func setObservers() {

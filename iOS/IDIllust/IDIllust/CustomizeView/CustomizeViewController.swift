@@ -18,29 +18,27 @@ final class CustomizeViewController: UIViewController {
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var categoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private var componentCollectionViewDataSource = ComponentCollectionViewDataSource()
+    private var categories: Categories? {
+        didSet {
+            categoryCollectionViewDataSource.model = categories
+            reloadCategoryCollectionView()
+        }
+    }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserves()
         setCategoryCollectionView()
+        categoriesUseCase()
         setComponentCollectionViews()
         componentScrollView.delegate = self
     }
     
     // MARK: - Methods
-    private func setSquarCell(_ collectionView: UICollectionView, factor: CGFloat, divide: CGFloat = 1) {
-        let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-        layout?.estimatedItemSize = .zero
-        layout?.minimumLineSpacing = 0
-        layout?.minimumInteritemSpacing = 0
-        layout?.itemSize = CGSize(width: factor / divide, height: factor / divide)
-    }
-    
     private func setCategoryCollectionView() {
-        setSquarCell(categoryCollectionView, factor: categoryCollectionView.frame.height)
+        categoryCollectionView.setSquarCell(factor: categoryCollectionView.frame.height)
         categoryCollectionView.dataSource = categoryCollectionViewDataSource
-        categoryCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
     }
     
     private func setComponentCollectionViews() {
@@ -51,7 +49,8 @@ final class CustomizeViewController: UIViewController {
             componentCollectionViews.append(collectionView)
             componentsStackView.addArrangedSubview(collectionView)
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-            setSquarCell(collectionView, factor: view.frame.width, divide: 3)
+            collectionView.setSquarCell(factor: view.frame.width, divide: 3)
+            collectionView.setSpacing(line: 0, interItem: 0)
             collectionView.dataSource = componentCollectionViewDataSource
         }
     }
@@ -73,6 +72,24 @@ final class CustomizeViewController: UIViewController {
                                                selector: #selector(hideColorSelectView),
                                                name: .LongPressEnded,
                                                object: nil)
+    }
+    
+    private func categoriesUseCase() {
+        CategoriesUseCase()
+            .retrieveCategories(networkManager: NetworkManager(),
+                                failureHandler: { _ in
+                                    // Todo: UseCaseError에 따른 예외 처리
+                                },
+                                successHandler: { [weak self] in
+                                    self?.categories = $0
+                                })
+    }
+    
+    private func reloadCategoryCollectionView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.categoryCollectionView.reloadData()
+            self?.categoryCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
+        }
     }
     
     private func convert(point: CGPoint, to views: [UIView]) -> CGPoint {
