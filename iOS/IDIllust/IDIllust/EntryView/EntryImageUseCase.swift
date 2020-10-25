@@ -13,7 +13,7 @@ struct EntryImageUseCase: RetrieveModelFromServer {
     typealias Model = EntryImage
     
     @discardableResult
-    public func retrieveEntryImageInfo(networkManager: NetworkManageable, failureHandler: @escaping (UseCaseError) -> Void = { _ in }, successHandler: @escaping (EntryImage) -> Void) -> URLSessionDataTask? {
+    func retrieveEntryImageInfo(networkManager: NetworkManageable, failureHandler: @escaping (UseCaseError) -> Void = { _ in }, successHandler: @escaping (EntryImage) -> Void) -> URLSessionDataTask? {
         let endPoint = EndPoint(path: .entry)
         
         return retrieveModel(from: endPoint, networkManager: networkManager, failurehandler: failureHandler, successHandler: successHandler)
