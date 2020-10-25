@@ -1,5 +1,5 @@
 //
-//  EndPoinTest.swift
+//  EndPointTest.swift
 //  IDIllustTests
 //
 //  Created by 신한섭 on 2020/10/19.
@@ -9,7 +9,7 @@
 @testable import IDIllust
 import XCTest
 
-final class EndPoinTests: XCTestCase {
+final class EndPointTests: XCTestCase {
     
     func testEntryEndPointValid() {
         let entry = EndPoint(path: .entry)
