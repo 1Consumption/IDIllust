@@ -17,15 +17,17 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet weak var colorSelectView: UIView!
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var categoryCollectionViewDataSource = CategoryCollectionViewDataSource()
-    private var componentCollectionViewDataSource = ComponentCollectionViewDataSource()
+    private var componentCollectionViewDataSources = [ComponentCollectionViewDataSource]()
     private var categories: Categories? {
         didSet {
             categoryCollectionViewDataSource.model = categories
             DispatchQueue.main.async { [weak self] in
                 self?.setCategoryCollectionView()
+                self?.setComponentCollectionViews()
             }
         }
     }
+    private var componentsManager: ComponentsManager = ComponentsManager()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -41,10 +43,13 @@ final class CustomizeViewController: UIViewController {
         categoryCollectionView.setSquarCell(factor: categoryCollectionView.frame.height)
         categoryCollectionView.dataSource = categoryCollectionViewDataSource
         categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)
+        setComponentsUseCase(categories?.category(of: 0)?.id)
     }
     
     private func setComponentCollectionViews() {
         for _ in 0..<categoryCollectionViewDataSource.modelCount {
+            let dataSource = ComponentCollectionViewDataSource()
+            componentCollectionViewDataSources.append(dataSource)
             let collectionView = ComponentCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
             collectionView.translatesAutoresizingMaskIntoConstraints = false
             collectionView.register(ComponentCollectionViewCell.self, forCellWithReuseIdentifier: ComponentCollectionViewCell.identifier)
@@ -53,7 +58,8 @@ final class CustomizeViewController: UIViewController {
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
             collectionView.setSquarCell(factor: view.frame.width, divide: 3)
             collectionView.setSpacing(line: 0, interItem: 0)
-            collectionView.dataSource = componentCollectionViewDataSource
+            collectionView.dataSource = dataSource
+            collectionView.backgroundColor = .systemBackground
         }
     }
     
@@ -83,6 +89,18 @@ final class CustomizeViewController: UIViewController {
                                                },
                                                successHandler: { [weak self] in
                                                 self?.categories = $0
+                                               })
+    }
+    
+    private func setComponentsUseCase(_ categoryId: Int?) {
+        guard let categoryId = categoryId else { return }
+        ComponentsUseCase().retrieveComponents(networkManager: NetworkManager(),
+                                               categoryId: categoryId,
+                                               failurehandler: { _ in
+                                                // Todo: UseCaseError에 따른 예외 처리
+                                               },
+                                               successHandler: {
+                                                self.componentsManager.append($0)
                                                })
     }
     
