@@ -107,7 +107,7 @@ final class CustomizeViewController: UIViewController {
     private func reloadCategoryCollectionView() {
         DispatchQueue.main.async { [weak self] in
             self?.categoryCollectionView.reloadData()
-            self?.categoryCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
+            self?.categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
         }
     }
     
@@ -135,20 +135,22 @@ final class CustomizeViewController: UIViewController {
     
     // MARK: @objc
     @objc func scrollCategoryCollectionView(_ notification: Notification) {
-        guard let row = notification.userInfo?["row"] as? Int else { return }
-        guard let selected = categoryCollectionView.indexPathsForSelectedItems else { return }
+        guard let item = notification.userInfo?["item"] as? Int else { return }
+        guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first else { return }
         
-        if selected[0].row != row {
-            categoryCollectionView.selectItem(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        if selected.item != item {
+            categoryCollectionView.selectItem(at: IndexPath(item: item, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+            setComponentsUseCase(categories?.category(of: item)?.id)
         }
     }
     
     @objc func scrollComponentScrollView() {
-        guard let selected = categoryCollectionView.indexPathsForSelectedItems else { return }
-        let willX = selected[0].row * Int(view.frame.width)
+        guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first else { return }
+        let willX = selected.item * Int(view.frame.width)
         let currentX = Int(componentScrollView.contentOffset.x)
         
         if willX != currentX {
+            setComponentsUseCase(categories?.category(of: selected.item)?.id)
             componentScrollView.setContentOffset(CGPoint(x: willX, y: 0), animated: true)
         }
     }
@@ -181,7 +183,7 @@ extension CustomizeViewController: UIScrollViewDelegate {
         if (curX.truncatingRemainder(dividingBy: width)) == 0 {
             NotificationCenter.default.post(name: .ComponentScrollViewSrcolled,
                                             object: nil,
-                                            userInfo: ["row": index])
+                                            userInfo: ["item": index])
         }
     }
 }
