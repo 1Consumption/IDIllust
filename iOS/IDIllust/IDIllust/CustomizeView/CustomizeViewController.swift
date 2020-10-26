@@ -21,7 +21,9 @@ final class CustomizeViewController: UIViewController {
     private var categories: Categories? {
         didSet {
             categoryCollectionViewDataSource.model = categories
-            reloadCategoryCollectionView()
+            DispatchQueue.main.async { [weak self] in
+                self?.setCategoryCollectionView()
+            }
         }
     }
     
@@ -29,8 +31,7 @@ final class CustomizeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserves()
-        setCategoryCollectionView()
-        categoriesUseCase()
+        setCategoriesUseCase()
         setComponentCollectionViews()
         componentScrollView.delegate = self
     }
@@ -39,6 +40,7 @@ final class CustomizeViewController: UIViewController {
     private func setCategoryCollectionView() {
         categoryCollectionView.setSquarCell(factor: categoryCollectionView.frame.height)
         categoryCollectionView.dataSource = categoryCollectionViewDataSource
+        categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)
     }
     
     private func setComponentCollectionViews() {
@@ -74,15 +76,14 @@ final class CustomizeViewController: UIViewController {
                                                object: nil)
     }
     
-    private func categoriesUseCase() {
-        CategoriesUseCase()
-            .retrieveCategories(networkManager: NetworkManager(),
-                                failureHandler: { _ in
-                                    // Todo: UseCaseError에 따른 예외 처리
-                                },
-                                successHandler: { [weak self] in
-                                    self?.categories = $0
-                                })
+    private func setCategoriesUseCase() {
+        CategoriesUseCase().retrieveCategories(networkManager: NetworkManager(),
+                                               failureHandler: { _ in
+                                                // Todo: UseCaseError에 따른 예외 처리
+                                               },
+                                               successHandler: { [weak self] in
+                                                self?.categories = $0
+                                               })
     }
     
     private func reloadCategoryCollectionView() {
@@ -138,7 +139,7 @@ final class CustomizeViewController: UIViewController {
         guard let point = notification.userInfo?["point"] as? CGPoint else { return }
         guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
         var convertedPoint = convert(point: point, to: [componentCollectionViews[selected], componentsStackView, view])
-    
+        
         setColorSelectViewSize()
         correct(point: &convertedPoint)
         
