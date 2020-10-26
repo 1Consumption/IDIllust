@@ -50,7 +50,7 @@ final class ComponentCollectionViewCell: UICollectionViewCell {
         imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
-        imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).isActive = true
+        imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.6).isActive = true
     }
     
     private func setSelectedImageViewLayout() {

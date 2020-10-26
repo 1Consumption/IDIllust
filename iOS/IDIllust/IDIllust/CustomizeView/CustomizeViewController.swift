@@ -80,6 +80,10 @@ final class CustomizeViewController: UIViewController {
                                                selector: #selector(hideColorSelectView),
                                                name: .LongPressEnded,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadComponentsCollectionView),
+                                               name: .ComponentsAppended,
+                                               object: nil)
     }
     
     private func setCategoriesUseCase() {
@@ -171,6 +175,14 @@ final class CustomizeViewController: UIViewController {
     
     @objc func hideColorSelectView() {
         colorSelectView.isHidden = true
+    }
+    
+    @objc func reloadComponentsCollectionView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let selected = self?.categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
+            self?.componentCollectionViewDataSources[selected].components = self?.componentsManager.components(of: selected)
+            self?.componentCollectionViews[selected].reloadData()
+        }
     }
 }
 

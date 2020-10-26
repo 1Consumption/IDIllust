@@ -21,6 +21,9 @@ final class ComponentsManager {
     
     func append(_ components: Components) {
         componentsList.append(components)
+        
+        NotificationCenter.default.post(name: .ComponentsAppended,
+                                        object: nil)
     }
     
     func insert(_ components: Components, at index: Int) {
@@ -59,6 +62,10 @@ struct Components: Decodable {
     
     let components: [Component]
     
+    var count: Int {
+        return components.count
+    }
+    
     func component(of index: Int) -> Component? {
         guard !isExceed(index: index) else { return nil }
         
@@ -81,4 +88,8 @@ struct Component: Decodable {
         case name
         case url = "thumb_url"
     }
+}
+
+extension Notification.Name {
+    static let ComponentsAppended = Notification.Name("componentsAppended")
 }
