@@ -101,13 +101,6 @@ final class CustomizeViewController: UIViewController {
                                                })
     }
     
-    private func reloadCategoryCollectionView() {
-        DispatchQueue.main.async { [weak self] in
-            self?.categoryCollectionView.reloadData()
-            self?.categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
-        }
-    }
-    
     private func convert(point: CGPoint, to views: [UIView]) -> CGPoint {
         var converted: CGPoint = point
         for index in 0..<views.count - 1 {
