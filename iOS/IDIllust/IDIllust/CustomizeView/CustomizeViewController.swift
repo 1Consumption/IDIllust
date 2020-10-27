@@ -130,7 +130,12 @@ final class CustomizeViewController: UIViewController {
         
         if selected.item != item {
             categoryCollectionView.selectItem(at: IndexPath(item: item, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-            setComponentsUseCase(categories?.category(of: item)?.id)
+            
+            guard let categoryId = categoryComponentManager.category(of: item)?.id else { return }
+            guard categoryComponentManager.isExistComponents(with: categoryId) else {
+                setComponentsUseCase(categoryComponentManager.category(of: item)?.id)
+                return
+            }
         }
     }
     
