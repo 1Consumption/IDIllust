@@ -40,13 +40,9 @@ final class CustomizeViewController: UIViewController {
             let dataSource = ComponentCollectionViewDataSource()
             componentCollectionViewDataSources.append(dataSource)
             let collectionView = ComponentCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-            collectionView.translatesAutoresizingMaskIntoConstraints = false
-            collectionView.register(ComponentCollectionViewCell.self, forCellWithReuseIdentifier: ComponentCollectionViewCell.identifier)
             componentCollectionViews.append(collectionView)
             componentsStackView.addArrangedSubview(collectionView)
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-            collectionView.setSquarCell(factor: view.frame.width, divide: 3)
-            collectionView.setSpacing(line: 0, interItem: 0)
             collectionView.dataSource = dataSource
             collectionView.backgroundColor = .systemBackground
         }
