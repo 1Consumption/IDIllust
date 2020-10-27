@@ -8,56 +8,6 @@
 
 import Foundation
 
-final class ComponentsManager {
-    
-    private var componentsList: [Components]
-    var count: Int {
-        return componentsList.count
-    }
-    
-    init(_ components: [Components] = [Components]()) {
-        self.componentsList = components
-    }
-    
-    func append(_ components: Components) {
-        componentsList.append(components)
-        
-        NotificationCenter.default.post(name: .ComponentsAppended,
-                                        object: nil)
-    }
-    
-    func insert(_ components: Components, at index: Int) {
-        guard !isExceed(index: index) else { return }
-        
-        componentsList.insert(components, at: index)
-    }
-    
-    func components(of index: Int) -> Components? {
-        guard !isExceed(index: index) else { return nil }
-        
-        return componentsList[index]
-    }
-    
-    func component(of indexPath: IndexPath) -> Component? {
-        guard !isExceed(indexPath: indexPath) else { return nil }
-        
-        return componentsList[indexPath.section].component(of: indexPath.item)
-    }
-    
-    private func isExceed(index: Int) -> Bool {
-        guard index < componentsList.count else { return true }
-        
-        return false
-    }
-    
-    private func isExceed(indexPath: IndexPath) -> Bool {
-        guard !isExceed(index: indexPath.section) else { return true }
-        guard componentsList[indexPath.section].component(of: indexPath.item) != nil else { return true }
-        
-        return false
-    }
-}
-
 struct Components: Decodable {
     
     let components: [Component]

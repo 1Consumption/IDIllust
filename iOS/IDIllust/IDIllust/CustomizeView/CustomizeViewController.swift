@@ -18,23 +18,13 @@ final class CustomizeViewController: UIViewController {
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var categoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private var componentCollectionViewDataSources = [ComponentCollectionViewDataSource]()
-    private var categories: Categories? {
-        didSet {
-            categoryCollectionViewDataSource.model = categories
-            DispatchQueue.main.async { [weak self] in
-                self?.setCategoryCollectionView()
-                self?.setComponentCollectionViews()
-            }
-        }
-    }
-    private var componentsManager: ComponentsManager = ComponentsManager()
+    private var categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserves()
         setCategoriesUseCase()
-        setComponentCollectionViews()
         componentScrollView.delegate = self
     }
     
@@ -43,7 +33,6 @@ final class CustomizeViewController: UIViewController {
         categoryCollectionView.setSquarCell(factor: categoryCollectionView.frame.height)
         categoryCollectionView.dataSource = categoryCollectionViewDataSource
         categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)
-        setComponentsUseCase(categories?.category(of: 0)?.id)
     }
     
     private func setComponentCollectionViews() {
@@ -81,6 +70,10 @@ final class CustomizeViewController: UIViewController {
                                                name: .LongPressEnded,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
+                                               selector: #selector(tasksForCategoryChanged),
+                                               name: .CategoryChanged,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadComponentsCollectionView),
                                                name: .ComponentsAppended,
                                                object: nil)
@@ -92,7 +85,7 @@ final class CustomizeViewController: UIViewController {
                                                 // Todo: UseCaseError에 따른 예외 처리
                                                },
                                                successHandler: { [weak self] in
-                                                self?.categories = $0
+                                                self?.categoryComponentManager.insert(categories: $0)
                                                })
     }
     
@@ -103,8 +96,8 @@ final class CustomizeViewController: UIViewController {
                                                failurehandler: { _ in
                                                 // Todo: UseCaseError에 따른 예외 처리
                                                },
-                                               successHandler: {
-                                                self.componentsManager.append($0)
+                                               successHandler: { [weak self] in
+                                                self?.categoryComponentManager.insert(components: $0, by: categoryId)
                                                })
     }
     
@@ -177,10 +170,20 @@ final class CustomizeViewController: UIViewController {
         colorSelectView.isHidden = true
     }
     
+    @objc func tasksForCategoryChanged() {
+        categoryCollectionViewDataSource.model = categoryComponentManager.categories
+        DispatchQueue.main.sync { [weak self] in
+            self?.setCategoryCollectionView()
+            self?.setComponentCollectionViews()
+        }
+        setComponentsUseCase(categoryComponentManager.category(of: 0)?.id)
+    }
+    
     @objc func reloadComponentsCollectionView() {
         DispatchQueue.main.async { [weak self] in
             guard let selected = self?.categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
-            self?.componentCollectionViewDataSources[selected].components = self?.componentsManager.components(of: selected)
+            guard let categoryId = self?.categoryComponentManager.category(of: selected)?.id else { return }
+            self?.componentCollectionViewDataSources[selected].components = self?.categoryComponentManager.components(of: categoryId)
             self?.componentCollectionViews[selected].reloadData()
         }
     }
