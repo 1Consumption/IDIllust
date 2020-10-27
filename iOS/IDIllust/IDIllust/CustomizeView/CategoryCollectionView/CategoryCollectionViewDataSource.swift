@@ -24,11 +24,7 @@ final class CategoryCollectionViewDataSource: NSObject, UICollectionViewDataSour
         
         cell.imageView.kf.indicatorType = .activity
         cell.imageView.kf.setImage(with: URL(string: url))
-        
-        if collectionView.indexPathsForSelectedItems == nil && indexPath.row == 0 {
-            cell.isSelected = true
-        }
-        
+
         return cell
     }
 }

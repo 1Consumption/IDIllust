@@ -17,21 +17,14 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet weak var colorSelectView: UIView!
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var categoryCollectionViewDataSource = CategoryCollectionViewDataSource()
-    private var componentCollectionViewDataSource = ComponentCollectionViewDataSource()
-    private var categories: Categories? {
-        didSet {
-            categoryCollectionViewDataSource.model = categories
-            reloadCategoryCollectionView()
-        }
-    }
+    private var componentCollectionViewDataSources = [ComponentCollectionViewDataSource]()
+    private var categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserves()
-        setCategoryCollectionView()
-        categoriesUseCase()
-        setComponentCollectionViews()
+        setCategoriesUseCase()
         componentScrollView.delegate = self
     }
     
@@ -39,19 +32,19 @@ final class CustomizeViewController: UIViewController {
     private func setCategoryCollectionView() {
         categoryCollectionView.setSquarCell(factor: categoryCollectionView.frame.height)
         categoryCollectionView.dataSource = categoryCollectionViewDataSource
+        categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)
     }
     
     private func setComponentCollectionViews() {
         for _ in 0..<categoryCollectionViewDataSource.modelCount {
+            let dataSource = ComponentCollectionViewDataSource()
+            componentCollectionViewDataSources.append(dataSource)
             let collectionView = ComponentCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-            collectionView.translatesAutoresizingMaskIntoConstraints = false
-            collectionView.register(ComponentCollectionViewCell.self, forCellWithReuseIdentifier: ComponentCollectionViewCell.identifier)
             componentCollectionViews.append(collectionView)
             componentsStackView.addArrangedSubview(collectionView)
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-            collectionView.setSquarCell(factor: view.frame.width, divide: 3)
-            collectionView.setSpacing(line: 0, interItem: 0)
-            collectionView.dataSource = componentCollectionViewDataSource
+            collectionView.dataSource = dataSource
+            collectionView.backgroundColor = .systemBackground
         }
     }
     
@@ -72,24 +65,36 @@ final class CustomizeViewController: UIViewController {
                                                selector: #selector(hideColorSelectView),
                                                name: .LongPressEnded,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(tasksForCategoryChanged),
+                                               name: .CategoryChanged,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadComponentsCollectionView),
+                                               name: .ComponentsAppended,
+                                               object: nil)
     }
     
-    private func categoriesUseCase() {
-        CategoriesUseCase()
-            .retrieveCategories(networkManager: NetworkManager(),
-                                failureHandler: { _ in
-                                    // Todo: UseCaseError에 따른 예외 처리
-                                },
-                                successHandler: { [weak self] in
-                                    self?.categories = $0
-                                })
+    private func setCategoriesUseCase() {
+        CategoriesUseCase().retrieveCategories(networkManager: NetworkManager(),
+                                               failureHandler: { _ in
+                                                // Todo: UseCaseError에 따른 예외 처리
+                                               },
+                                               successHandler: { [weak self] in
+                                                self?.categoryComponentManager.insert(categories: $0)
+                                               })
     }
     
-    private func reloadCategoryCollectionView() {
-        DispatchQueue.main.async { [weak self] in
-            self?.categoryCollectionView.reloadData()
-            self?.categoryCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
-        }
+    private func setComponentsUseCase(_ categoryId: Int?) {
+        guard let categoryId = categoryId else { return }
+        ComponentsUseCase().retrieveComponents(networkManager: NetworkManager(),
+                                               categoryId: categoryId,
+                                               failurehandler: { _ in
+                                                // Todo: UseCaseError에 따른 예외 처리
+                                               },
+                                               successHandler: { [weak self] in
+                                                self?.categoryComponentManager.insert(components: $0, by: categoryId)
+                                               })
     }
     
     private func convert(point: CGPoint, to views: [UIView]) -> CGPoint {
@@ -116,21 +121,32 @@ final class CustomizeViewController: UIViewController {
     
     // MARK: @objc
     @objc func scrollCategoryCollectionView(_ notification: Notification) {
-        guard let row = notification.userInfo?["row"] as? Int else { return }
-        guard let selected = categoryCollectionView.indexPathsForSelectedItems else { return }
+        guard let item = notification.userInfo?["item"] as? Int else { return }
+        guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first else { return }
         
-        if selected[0].row != row {
-            categoryCollectionView.selectItem(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        if selected.item != item {
+            categoryCollectionView.selectItem(at: IndexPath(item: item, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+            
+            guard let categoryId = categoryComponentManager.category(of: item)?.id else { return }
+            guard categoryComponentManager.isExistComponents(with: categoryId) else {
+                setComponentsUseCase(categoryComponentManager.category(of: item)?.id)
+                return
+            }
         }
     }
     
     @objc func scrollComponentScrollView() {
-        guard let selected = categoryCollectionView.indexPathsForSelectedItems else { return }
-        let willX = selected[0].row * Int(view.frame.width)
+        guard let index = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
+        let willX = index * Int(view.frame.width)
         let currentX = Int(componentScrollView.contentOffset.x)
         
         if willX != currentX {
             componentScrollView.setContentOffset(CGPoint(x: willX, y: 0), animated: true)
+            guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
+            guard categoryComponentManager.isExistComponents(with: categoryId) else {
+                setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
+                return
+            }
         }
     }
     
@@ -138,7 +154,7 @@ final class CustomizeViewController: UIViewController {
         guard let point = notification.userInfo?["point"] as? CGPoint else { return }
         guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
         var convertedPoint = convert(point: point, to: [componentCollectionViews[selected], componentsStackView, view])
-    
+        
         setColorSelectViewSize()
         correct(point: &convertedPoint)
         
@@ -151,6 +167,24 @@ final class CustomizeViewController: UIViewController {
     @objc func hideColorSelectView() {
         colorSelectView.isHidden = true
     }
+    
+    @objc func tasksForCategoryChanged() {
+        categoryCollectionViewDataSource.model = categoryComponentManager.categories
+        DispatchQueue.main.sync { [weak self] in
+            self?.setCategoryCollectionView()
+            self?.setComponentCollectionViews()
+        }
+        setComponentsUseCase(categoryComponentManager.category(of: 0)?.id)
+    }
+    
+    @objc func reloadComponentsCollectionView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let selected = self?.categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
+            guard let categoryId = self?.categoryComponentManager.category(of: selected)?.id else { return }
+            self?.componentCollectionViewDataSources[selected].components = self?.categoryComponentManager.components(of: categoryId)
+            self?.componentCollectionViews[selected].reloadData()
+        }
+    }
 }
 
 extension CustomizeViewController: UIScrollViewDelegate {
@@ -162,7 +196,7 @@ extension CustomizeViewController: UIScrollViewDelegate {
         if (curX.truncatingRemainder(dividingBy: width)) == 0 {
             NotificationCenter.default.post(name: .ComponentScrollViewSrcolled,
                                             object: nil,
-                                            userInfo: ["row": index])
+                                            userInfo: ["item": index])
         }
     }
 }

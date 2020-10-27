@@ -11,6 +11,9 @@ import Foundation
 struct Categories: Decodable {
     
     let categories: [Category]
+    var count: Int {
+        return categories.count
+    }
     
     func category(of index: Int) -> Category? {
         guard !isExceed(index: index) else { return nil }
@@ -28,4 +31,8 @@ struct Category: Decodable {
     let id: Int
     let name: String
     let url: String
+}
+
+extension Notification.Name {
+    static let CategoryChanged = Notification.Name("categoryChanged")
 }

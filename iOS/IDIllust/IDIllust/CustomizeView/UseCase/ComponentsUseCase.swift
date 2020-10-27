@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct ComponentsUseCase<T>: RetrieveModelFromServer where T: Codable {
+struct ComponentsUseCase: RetrieveModelFromServer {
     
-    typealias Model = T
+    typealias Model = Components
     
     @discardableResult
     func retrieveComponents(networkManager: NetworkManageable, categoryId: Int, failurehandler: @escaping (UseCaseError) -> Void = { _ in }, successHandler: @escaping (Model) -> Void) -> URLSessionDataTask? {

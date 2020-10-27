@@ -13,11 +13,23 @@ final class ComponentCollectionView: UICollectionView {
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         registGesture()
+        setUpCollectionView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         registGesture()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setSquarCell(factor: frame.width, divide: 3)
+        setSpacing(line: 0, interItem: 0)
+    }
+    
+    private func setUpCollectionView() {
+        translatesAutoresizingMaskIntoConstraints = false
+        register(ComponentCollectionViewCell.self, forCellWithReuseIdentifier: ComponentCollectionViewCell.identifier)
     }
     
     private func registGesture() {
