@@ -39,7 +39,3 @@ struct Component: Decodable {
         case url = "thumb_url"
     }
 }
-
-extension Notification.Name {
-    static let ComponentsAppended = Notification.Name("componentsAppended")
-}

@@ -32,23 +32,29 @@ final class ColorSelectViewController: UIViewController {
     private func setObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(selectCell(_:)),
-                                               name: .LongPressChanged,
+                                               name: ComponentCollectionViewEvent.LongPressGestureStateChanged,
                                                object: nil)
     }
     
     // MARK: @objc
     @objc func selectCell(_ notification: Notification) {
-        guard let currentX = notification.userInfo?["x"] as? CGFloat else { return }
-        guard let parentView = parent?.view else { return }
-        let calibratedX = currentX - view.convert(view.frame.origin, to: parentView).x
+        guard let object = notification.object as? ComponentCollectionViewEvent else { return }
         
-        guard let currentIndexPath = colorSelectCollectionView.indexPathForItem(at: CGPoint(x: calibratedX, y: view.frame.midY)) else { return }
-        let selectedIndexPath = colorSelectCollectionView.indexPathsForSelectedItems?.first
-        
-        guard selectedIndexPath != currentIndexPath else { return }
+        switch object {
+        case .longPressChanged(let currentX):
+            guard let parentView = parent?.view else { return }
+            let calibratedX = currentX - view.convert(view.frame.origin, to: parentView).x
             
-        colorSelectCollectionView.selectItem(at: currentIndexPath, animated: false, scrollPosition: .left)
-        UIDevice.vibrate(style: .light)
+            guard let currentIndexPath = colorSelectCollectionView.indexPathForItem(at: CGPoint(x: calibratedX, y: view.frame.midY)) else { return }
+            let selectedIndexPath = colorSelectCollectionView.indexPathsForSelectedItems?.first
+            
+            guard selectedIndexPath != currentIndexPath else { return }
+                
+            colorSelectCollectionView.selectItem(at: currentIndexPath, animated: false, scrollPosition: .left)
+            UIDevice.vibrate(style: .light)
+            
+        default: break
+        }
     }
 }
 

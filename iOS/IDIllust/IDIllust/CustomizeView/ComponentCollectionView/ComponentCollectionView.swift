@@ -41,30 +41,31 @@ final class ComponentCollectionView: UICollectionView {
         let point = recognizer.location(in: self)
         
         switch recognizer.state {
-        case .ended:
-            NotificationCenter.default.post(name: .LongPressEnded,
-                                            object: nil)
+        case .ended: ComponentCollectionViewEvent.longPressEnded.post()
             
         case .began:
             guard let indexPath = indexPathForItem(at: point) else { return }
             guard let origin = cellForItem(at: indexPath)?.frame.origin else { return }
-            
-            NotificationCenter.default.post(name: .LongPressBegan,
-                                            object: nil,
-                                            userInfo: ["point": origin, "indexPath": indexPath])
+            ComponentCollectionViewEvent.longPressBegan(origin, indexPath).post()
             
         case .changed:
-            NotificationCenter.default.post(name: .LongPressChanged,
-                                            object: nil,
-                                            userInfo: ["x": point.x])
+            ComponentCollectionViewEvent.longPressChanged(point.x).post()
             
         default: break
         }
     }
 }
 
-extension Notification.Name {
-    static let LongPressBegan = Notification.Name("longPressBegan")
-    static let LongPressEnded = Notification.Name("longPressEnded")
-    static let LongPressChanged = Notification.Name("longPressChanged")
+enum ComponentCollectionViewEvent {
+    
+    case longPressBegan(CGPoint, IndexPath)
+    case longPressEnded
+    case longPressChanged(CGFloat)
+    
+    static let LongPressGestureStateChanged = Notification.Name("longPressGestureStateChanged")
+    
+    func post() {
+        NotificationCenter.default.post(name: ComponentCollectionViewEvent.LongPressGestureStateChanged,
+                                        object: self)
+    }
 }

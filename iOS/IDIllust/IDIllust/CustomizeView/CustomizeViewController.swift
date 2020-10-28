@@ -50,28 +50,16 @@ final class CustomizeViewController: UIViewController {
     
     private func addObserves() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(scrollCategoryCollectionView(_:)),
-                                               name: .ComponentScrollViewSrcolled,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
                                                selector: #selector(scrollComponentScrollView),
                                                name: .ChangedSelection,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(showColorSelectView(_:)),
-                                               name: .LongPressBegan,
+                                               selector: #selector(categoryComponentManagerEventHandler(_:)),
+                                               name: CategoryComponentManagerEvent.ModelChanged,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(hideColorSelectView),
-                                               name: .LongPressEnded,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(tasksForCategoryChanged),
-                                               name: .CategoryChanged,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(reloadComponentsCollectionView),
-                                               name: .ComponentsAppended,
+                                               selector: #selector(componentCollectionViewEventHandler(_:)),
+                                               name: ComponentCollectionViewEvent.LongPressGestureStateChanged,
                                                object: nil)
     }
     
@@ -97,6 +85,24 @@ final class CustomizeViewController: UIViewController {
                                                })
     }
     
+    private func tasksForCategoryChanged() {
+        categoryCollectionViewDataSource.model = categoryComponentManager.categories
+        DispatchQueue.main.sync { [weak self] in
+            self?.setCategoryCollectionView()
+            self?.setComponentCollectionViews()
+        }
+        setComponentsUseCase(categoryComponentManager.category(of: 0)?.id)
+    }
+    
+    private func reloadComponentsCollectionView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let selected = self?.categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
+            guard let categoryId = self?.categoryComponentManager.category(of: selected)?.id else { return }
+            self?.componentCollectionViewDataSources[selected].components = self?.categoryComponentManager.components(of: categoryId)
+            self?.componentCollectionViews[selected].reloadData()
+        }
+    }
+    
     private func convert(point: CGPoint, to views: [UIView]) -> CGPoint {
         var converted: CGPoint = point
         for index in 0..<views.count - 1 {
@@ -119,22 +125,24 @@ final class CustomizeViewController: UIViewController {
         point.x = view.frame.width - colorSelectView.frame.width
     }
     
-    // MARK: @objc
-    @objc func scrollCategoryCollectionView(_ notification: Notification) {
-        guard let item = notification.userInfo?["item"] as? Int else { return }
-        guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first else { return }
+    private func showColorSelectView(_ point: CGPoint) {
+        guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
+        var convertedPoint = convert(point: point, to: [componentCollectionViews[selected], componentsStackView, view])
         
-        if selected.item != item {
-            categoryCollectionView.selectItem(at: IndexPath(item: item, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-            
-            guard let categoryId = categoryComponentManager.category(of: item)?.id else { return }
-            guard categoryComponentManager.isExistComponents(with: categoryId) else {
-                setComponentsUseCase(categoryComponentManager.category(of: item)?.id)
-                return
-            }
-        }
+        setColorSelectViewSize()
+        correct(point: &convertedPoint)
+        
+        colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
+        
+        colorSelectView.isHidden = false
+        UIDevice.vibrate(style: .light)
     }
     
+    private func hideColorSelectView() {
+        colorSelectView.isHidden = true
+    }
+    
+    // MARK: @objc
     @objc func scrollComponentScrollView() {
         guard let index = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
         let willX = index * Int(view.frame.width)
@@ -150,39 +158,21 @@ final class CustomizeViewController: UIViewController {
         }
     }
     
-    @objc func showColorSelectView(_ notification: Notification) {
-        guard let point = notification.userInfo?["point"] as? CGPoint else { return }
-        guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
-        var convertedPoint = convert(point: point, to: [componentCollectionViews[selected], componentsStackView, view])
-        
-        setColorSelectViewSize()
-        correct(point: &convertedPoint)
-        
-        colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
-        
-        colorSelectView.isHidden = false
-        UIDevice.vibrate(style: .light)
-    }
-    
-    @objc func hideColorSelectView() {
-        colorSelectView.isHidden = true
-    }
-    
-    @objc func tasksForCategoryChanged() {
-        categoryCollectionViewDataSource.model = categoryComponentManager.categories
-        DispatchQueue.main.sync { [weak self] in
-            self?.setCategoryCollectionView()
-            self?.setComponentCollectionViews()
+    @objc private func categoryComponentManagerEventHandler(_ notification: Notification) {
+        guard let object = notification.object as? CategoryComponentManagerEvent else { return }
+        switch object {
+        case .categoryChanged: tasksForCategoryChanged()
+        case .componentsAppended: reloadComponentsCollectionView()
         }
-        setComponentsUseCase(categoryComponentManager.category(of: 0)?.id)
     }
     
-    @objc func reloadComponentsCollectionView() {
-        DispatchQueue.main.async { [weak self] in
-            guard let selected = self?.categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
-            guard let categoryId = self?.categoryComponentManager.category(of: selected)?.id else { return }
-            self?.componentCollectionViewDataSources[selected].components = self?.categoryComponentManager.components(of: categoryId)
-            self?.componentCollectionViews[selected].reloadData()
+    @objc private func componentCollectionViewEventHandler(_ notification: Notification) {
+        guard let object = notification.object as? ComponentCollectionViewEvent else { return }
+        
+        switch object {
+        case .longPressBegan(let origin, _): showColorSelectView(origin)
+        case .longPressEnded: hideColorSelectView()
+        default: break
         }
     }
 }
@@ -194,13 +184,17 @@ extension CustomizeViewController: UIScrollViewDelegate {
         let index = Int(curX / width)
         
         if (curX.truncatingRemainder(dividingBy: width)) == 0 {
-            NotificationCenter.default.post(name: .ComponentScrollViewSrcolled,
-                                            object: nil,
-                                            userInfo: ["item": index])
+            guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first else { return }
+            
+            if selected.item != index {
+                categoryCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+                
+                guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
+                guard categoryComponentManager.isExistComponents(with: categoryId) else {
+                    setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
+                    return
+                }
+            }
         }
     }
-}
-
-extension Notification.Name {
-    static let ComponentScrollViewSrcolled = Notification.Name(rawValue: "componentScrollViewSrcolled")
 }
