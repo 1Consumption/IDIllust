@@ -16,8 +16,8 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet weak var componentScrollView: UIScrollView!
     @IBOutlet weak var colorSelectView: UIView!
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
-    private var categoryCollectionViewDataSource = CategoryCollectionViewDataSource()
-    private var componentCollectionViewDataSources = [ComponentCollectionViewDataSource]()
+    private var categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
+    private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
     private var categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     
     // MARK: - LifeCycle
