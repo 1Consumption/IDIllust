@@ -13,6 +13,7 @@
 		A506C9A12542758200E6BCE6 /* RetrieveModelFromServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */; };
 		A50E3A9B254960750004DEA7 /* ComponentColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E3A9A254960750004DEA7 /* ComponentColor.swift */; };
 		A50E3AA2254962700004DEA7 /* ComponentColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E3AA1254962700004DEA7 /* ComponentColorTests.swift */; };
+		A50E3AA82549660A0004DEA7 /* ModelManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E3AA72549660A0004DEA7 /* ModelManageable.swift */; };
 		A521F0082543DD8B0002031A /* MockNetworkManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521F0072543DD8B0002031A /* MockNetworkManagers.swift */; };
 		A521F0142543FEA00002031A /* ComponentsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521F0132543FEA00002031A /* ComponentsUseCaseTests.swift */; };
 		A521F021254557BB0002031A /* CategoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521F020254557BB0002031A /* CategoriesTests.swift */; };
@@ -74,6 +75,7 @@
 		A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveModelFromServerTests.swift; sourceTree = "<group>"; };
 		A50E3A9A254960750004DEA7 /* ComponentColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentColor.swift; sourceTree = "<group>"; };
 		A50E3AA1254962700004DEA7 /* ComponentColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentColorTests.swift; sourceTree = "<group>"; };
+		A50E3AA72549660A0004DEA7 /* ModelManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManageable.swift; sourceTree = "<group>"; };
 		A521F0072543DD8B0002031A /* MockNetworkManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManagers.swift; sourceTree = "<group>"; };
 		A521F0132543FEA00002031A /* ComponentsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsUseCaseTests.swift; sourceTree = "<group>"; };
 		A521F020254557BB0002031A /* CategoriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTests.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */,
+				A50E3AA72549660A0004DEA7 /* ModelManageable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				A52D7065253D51770071613B /* NetworkManageable.swift in Sources */,
 				A5EDB61E2532220C00E6078B /* ComponentCollectionViewDataSource.swift in Sources */,
 				A5EEC10A253F5FC60048A13D /* Category.swift in Sources */,
+				A50E3AA82549660A0004DEA7 /* ModelManageable.swift in Sources */,
 				A534809725481E40001C039E /* CategoryComponentManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
