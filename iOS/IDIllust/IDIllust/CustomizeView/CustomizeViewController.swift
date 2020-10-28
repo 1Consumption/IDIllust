@@ -144,12 +144,15 @@ final class CustomizeViewController: UIViewController {
     
     // MARK: @objc
     @objc func scrollComponentScrollView() {
-        guard let index = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
+        guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first else { return }
+        let index = selected.item
+        
         let willX = index * Int(view.frame.width)
         let currentX = Int(componentScrollView.contentOffset.x)
         
         guard willX != currentX else { return }
         
+        categoryCollectionView.selectItem(at: selected, animated: true, scrollPosition: .centeredHorizontally)
         componentScrollView.setContentOffset(CGPoint(x: willX, y: 0), animated: true)
         
         guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
