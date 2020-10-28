@@ -1,5 +1,5 @@
 //
-//  CategoriesTests.swift
+//  Categories.swift
 //  IDIllustTests
 //
 //  Created by 신한섭 on 2020/10/25.
@@ -7,24 +7,6 @@
 //
 
 @testable import IDIllust
-import XCTest
-
-final class CategoriesTests: XCTestCase {
-    
-    private var category: IDIllust.Category!
-    private var categories: Categories!
-
-    override func setUpWithError() throws {
-        category = IDIllust.Category(id: 1, name: "test", url: "url")
-        categories = Categories(categories: [category])
-    }
-    
-    func testGetCategories() {
-        XCTAssertEqual(categories.category(of: 0), category)
-        XCTAssertNil(categories.category(of: 1))
-    }
-    
-}
 
 extension IDIllust.Category: Equatable, Encodable {
     public static func == (lhs: IDIllust.Category, rhs: IDIllust.Category) -> Bool {
@@ -47,15 +29,11 @@ extension IDIllust.Category: Equatable, Encodable {
 
 extension Categories: Equatable, Encodable {
     public static func == (lhs: Categories, rhs: Categories) -> Bool {
-        return lhs.categories == rhs.categories
+        return lhs.models == rhs.models
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(categories, forKey: .categories)
-    }
-    
-    enum CodingKeys : String, CodingKey{
-        case categories
+        try container.encode(models, forKey: .models)
     }
 }

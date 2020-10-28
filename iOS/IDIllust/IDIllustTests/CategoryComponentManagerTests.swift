@@ -20,9 +20,9 @@ final class CategoryComponentManagerTests: XCTestCase {
     override func setUpWithError() throws {
         categoryComponentManager = CategoryComponentManager()
         category = IDIllust.Category(id: 1, name: "category", url: "url")
-        categories = Categories(categories: [category])
+        categories = Categories(models: [category])
         component = Component(id: 1, name: "component", url: "url")
-        components = Components(components: [component])
+        components = Components(models: [component])
     }
     
     func testInsertCategories() {

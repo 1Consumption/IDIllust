@@ -17,7 +17,7 @@ class CategoryUseCaseTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let category = IDIllust.Category(id: 1, name: "test", url: "url")
-        model = Categories(categories: [category])
+        model = Categories(models: [category])
     }
 
     func testSuccess() {

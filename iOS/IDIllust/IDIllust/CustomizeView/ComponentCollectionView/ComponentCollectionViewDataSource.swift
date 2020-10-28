@@ -14,12 +14,12 @@ final class ComponentCollectionViewDataSource: NSObject, UICollectionViewDataSou
     var components: Components?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return components?.count ?? 10
+        return components?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ComponentCollectionViewCell.identifier, for: indexPath) as? ComponentCollectionViewCell else { return UICollectionViewCell() }
-        guard let url = components?.component(of: indexPath.item)?.url else { return cell }
+        guard let url = components?.model(of: indexPath.item)?.url else { return cell }
         
         cell.imageView.kf.indicatorType = .activity
         cell.imageView.kf.setImage(with: URL(string: url))
