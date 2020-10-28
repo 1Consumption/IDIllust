@@ -148,13 +148,14 @@ final class CustomizeViewController: UIViewController {
         let willX = index * Int(view.frame.width)
         let currentX = Int(componentScrollView.contentOffset.x)
         
-        if willX != currentX {
-            componentScrollView.setContentOffset(CGPoint(x: willX, y: 0), animated: true)
-            guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
-            guard categoryComponentManager.isExistComponents(with: categoryId) else {
-                setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
-                return
-            }
+        guard willX != currentX else { return }
+        
+        componentScrollView.setContentOffset(CGPoint(x: willX, y: 0), animated: true)
+        
+        guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
+        guard categoryComponentManager.isExistComponents(with: categoryId) else {
+            setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
+            return
         }
     }
     
@@ -183,18 +184,19 @@ extension CustomizeViewController: UIScrollViewDelegate {
         let width = view.frame.width
         let index = Int(curX / width)
         
-        if (curX.truncatingRemainder(dividingBy: width)) == 0 {
-            guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first else { return }
-            
-            if selected.item != index {
-                categoryCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-                
-                guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
-                guard categoryComponentManager.isExistComponents(with: categoryId) else {
-                    setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
-                    return
-                }
-            }
+        guard (curX.truncatingRemainder(dividingBy: width)) == 0 else { return }
+        
+        guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
+        
+        guard selected != index else { return }
+        
+        categoryCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        
+        guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
+        
+        guard categoryComponentManager.isExistComponents(with: categoryId) else {
+            setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
+            return
         }
     }
 }
