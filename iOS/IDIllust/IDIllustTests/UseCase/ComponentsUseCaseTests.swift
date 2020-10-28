@@ -16,7 +16,7 @@ class ComponentsUseCaseTests: XCTestCase {
 
     override func setUpWithError() throws {
         let component = IDIllust.Component(id: 1, name: "test", url: "url")
-        model = Components(components: [component])
+        model = Components(models: [component])
     }
     
     func testSuccess() {
