@@ -10,7 +10,7 @@ import Foundation
 
 struct HTTPHeaders {
    
-    private(set) var list = [String: String]()
+    private(set) var list: [String: String] = [String: String]()
     
     mutating func setValue(value: String, field: String) {
         guard list[field] != nil else {

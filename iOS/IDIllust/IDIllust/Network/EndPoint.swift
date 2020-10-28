@@ -23,8 +23,8 @@ struct EndPoint {
         return components.url
     }
     
-    private let scheme = "http"
-    private let host = "3.34.77.7"
+    private let scheme: String = "http"
+    private let host: String = "3.34.77.7"
     private let path: Path
     
     enum Path {

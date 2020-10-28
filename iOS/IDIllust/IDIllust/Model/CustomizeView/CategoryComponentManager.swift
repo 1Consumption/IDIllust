@@ -18,15 +18,12 @@ final class CategoryComponentManager {
     
     func insert(categories: Categories) {
         self.categories = categories
-        NotificationCenter.default.post(name: .CategoryChanged,
-                                        object: nil)
+        CategoryComponentManagerEvent.categoryChanged.post()
     }
     
     func insert(components: Components, by categoryId: Int) {
         componentsOfCategoryId[categoryId] = components
-        
-        NotificationCenter.default.post(name: .ComponentsAppended,
-                                        object: nil)
+        CategoryComponentManagerEvent.componentsAppended.post()
     }
     
     func category(of index: Int) -> Category? {
@@ -45,5 +42,18 @@ final class CategoryComponentManager {
         guard componentsOfCategoryId[categoryId] != nil else { return false }
         
         return true
+    }
+}
+
+enum CategoryComponentManagerEvent {
+    
+    case categoryChanged
+    case componentsAppended
+    
+    static let ModelChanged = Notification.Name("modelChanged")
+    
+    func post() {
+        NotificationCenter.default.post(name: CategoryComponentManagerEvent.ModelChanged,
+                                        object: self)
     }
 }

@@ -32,7 +32,3 @@ struct Category: Decodable {
     let name: String
     let url: String
 }
-
-extension Notification.Name {
-    static let CategoryChanged = Notification.Name("categoryChanged")
-}

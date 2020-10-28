@@ -12,7 +12,7 @@ import UIKit
 final class EntryViewController: UIViewController {
     
     // MARK: - @IBOutlet
-    @IBOutlet weak var entryImageView: UIImageView!
+    @IBOutlet private weak var entryImageView: UIImageView!
     
     // MARK: Properties
     private var entryImage: EntryImage? {
