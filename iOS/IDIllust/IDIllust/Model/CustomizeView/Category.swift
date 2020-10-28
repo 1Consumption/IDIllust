@@ -8,21 +8,14 @@
 
 import Foundation
 
-struct Categories: Decodable {
+struct Categories: Decodable, ModelManageable {
     
-    let categories: [Category]
-    var count: Int {
-        return categories.count
-    }
+    typealias Model = Category
     
-    func category(of index: Int) -> Category? {
-        guard !isExceed(index: index) else { return nil }
-        
-        return categories[index]
-    }
+    let models: [Model]
     
-    private func isExceed(index: Int) -> Bool {
-        return index >= categories.count
+    enum CodingKeys: String, CodingKey {
+        case models = "categories"
     }
 }
 

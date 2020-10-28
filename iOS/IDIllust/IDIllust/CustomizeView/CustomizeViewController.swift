@@ -86,7 +86,7 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func tasksForCategoryChanged() {
-        categoryCollectionViewDataSource.model = categoryComponentManager.categories
+        categoryCollectionViewDataSource.categories = categoryComponentManager.categories
         DispatchQueue.main.async { [weak self] in
             self?.setCategoryCollectionView()
             self?.setComponentCollectionViews()

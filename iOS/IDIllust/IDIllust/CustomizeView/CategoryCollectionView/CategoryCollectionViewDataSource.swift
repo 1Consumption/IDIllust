@@ -11,16 +11,16 @@ import UIKit
 
 final class CategoryCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    var model: Categories?
-    var modelCount: Int { return model?.categories.count ?? 0 }
+    var categories: Categories?
+    var modelCount: Int { return categories?.count ?? 0 }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model?.categories.count ?? 0
+        return categories?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
-        guard let url = model?.category(of: indexPath.item)?.url else { return cell }
+        guard let url = categories?.model(of: indexPath.item)?.url else { return cell }
         
         cell.imageView.kf.indicatorType = .activity
         cell.imageView.kf.setImage(with: URL(string: url))

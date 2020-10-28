@@ -8,21 +8,14 @@
 
 import Foundation
 
-struct ComponentColors: Decodable {
+struct ComponentColors: Decodable, ModelManageable {
     
-    let colors: [ComponentColor]
-    var count: Int {
-        return colors.count
-    }
+    typealias Model = ComponentColor
     
-    func componentColor(of index: Int) -> ComponentColor? {
-        guard !isExceed(index: index) else { return nil }
-        
-        return colors[index]
-    }
+    let models: [ComponentColor]
     
-    private func isExceed(index: Int) -> Bool {
-        return index >= colors.count
+    enum CodigKeys: String, CodingKey {
+        case models = "colors"
     }
 }
 
