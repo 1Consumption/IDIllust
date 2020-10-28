@@ -12,8 +12,8 @@ final class ComponentCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     public static let identifier: String = "componentCell"
-    public var imageView: UIImageView = UIImageView()
-    public var selectedImageView: UIImageView = UIImageView()
+    public let imageView: UIImageView = UIImageView()
+    public let selectedImageView: UIImageView = UIImageView()
     
     override var isSelected: Bool {
         didSet {

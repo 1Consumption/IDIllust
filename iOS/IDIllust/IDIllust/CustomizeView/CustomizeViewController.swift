@@ -11,14 +11,14 @@ import UIKit
 final class CustomizeViewController: UIViewController {
     
     // MARK: - Properties
-    @IBOutlet weak var categoryCollectionView: UICollectionView!
-    @IBOutlet weak var componentsStackView: UIStackView!
-    @IBOutlet weak var componentScrollView: UIScrollView!
-    @IBOutlet weak var colorSelectView: UIView!
+    @IBOutlet private weak var categoryCollectionView: UICollectionView!
+    @IBOutlet private weak var componentsStackView: UIStackView!
+    @IBOutlet private weak var componentScrollView: UIScrollView!
+    @IBOutlet private weak var colorSelectView: UIView!
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
-    private var categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
-    private var categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
+    private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
+    private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {

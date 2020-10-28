@@ -37,7 +37,7 @@ final class ComponentCollectionView: UICollectionView {
         self.addGestureRecognizer(longPressGesture)
     }
     
-    @objc func pressed(_ recognizer: UILongPressGestureRecognizer) {
+    @objc private func pressed(_ recognizer: UILongPressGestureRecognizer) {
         let point = recognizer.location(in: self)
         
         switch recognizer.state {
