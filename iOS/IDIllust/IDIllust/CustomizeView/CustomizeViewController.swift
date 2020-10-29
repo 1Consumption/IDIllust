@@ -11,6 +11,7 @@ import UIKit
 final class CustomizeViewController: UIViewController {
     
     // MARK: - Properties
+    @IBOutlet private weak var thumbnailView: UIView!
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
     @IBOutlet private weak var componentsStackView: UIStackView!
     @IBOutlet private weak var componentScrollView: UIScrollView!

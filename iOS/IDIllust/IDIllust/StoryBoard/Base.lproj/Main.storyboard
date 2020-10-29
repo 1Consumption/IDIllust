@@ -78,6 +78,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1lZ-Ip-0rH" userLabel="ThumbnailView">
+                                <rect key="frame" x="52.333333333333343" y="44" width="270.33333333333326" height="360.33333333333331"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1lZ-Ip-0rH" secondAttribute="height" multiplier="3:4" id="ZDu-kx-I0B"/>
+                                </constraints>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kDE-6u-U7f" userLabel="Container Stack View">
                                 <rect key="frame" x="0.0" y="404.33333333333326" width="375" height="324.66666666666674"/>
                                 <subviews>
@@ -159,12 +166,6 @@
                                     <constraint firstItem="SRJ-t1-thA" firstAttribute="height" secondItem="kDE-6u-U7f" secondAttribute="height" multiplier="0.2" id="fJK-Jr-NrH"/>
                                 </constraints>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumb_skin_2" translatesAutoresizingMaskIntoConstraints="NO" id="aqu-Mu-v2u" userLabel="PreView Image View">
-                                <rect key="frame" x="52.333333333333343" y="44" width="270.33333333333326" height="360.33333333333331"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="aqu-Mu-v2u" secondAttribute="height" multiplier="3:4" id="ayJ-fZ-f14"/>
-                                </constraints>
-                            </imageView>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JdK-C9-rsT">
                                 <rect key="frame" x="0.0" y="44" width="240" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -176,12 +177,12 @@
                         <viewLayoutGuide key="safeArea" id="Y0t-gu-9BP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="aqu-Mu-v2u" firstAttribute="centerX" secondItem="Y0t-gu-9BP" secondAttribute="centerX" id="2WI-IE-BBY"/>
-                            <constraint firstItem="kDE-6u-U7f" firstAttribute="top" secondItem="aqu-Mu-v2u" secondAttribute="bottom" id="5We-39-oYE"/>
+                            <constraint firstItem="kDE-6u-U7f" firstAttribute="top" secondItem="1lZ-Ip-0rH" secondAttribute="bottom" id="3IG-XE-SYF"/>
                             <constraint firstItem="kDE-6u-U7f" firstAttribute="height" secondItem="Z8d-ty-sDV" secondAttribute="height" multiplier="0.4" id="HEJ-Gp-wIy"/>
+                            <constraint firstItem="1lZ-Ip-0rH" firstAttribute="top" secondItem="Y0t-gu-9BP" secondAttribute="top" id="M4k-CK-agF"/>
                             <constraint firstItem="Y0t-gu-9BP" firstAttribute="trailing" secondItem="kDE-6u-U7f" secondAttribute="trailing" id="PEG-bj-2uU"/>
                             <constraint firstItem="Y0t-gu-9BP" firstAttribute="bottom" secondItem="kDE-6u-U7f" secondAttribute="bottom" id="Zgb-QA-d9b"/>
-                            <constraint firstItem="aqu-Mu-v2u" firstAttribute="top" secondItem="Y0t-gu-9BP" secondAttribute="top" id="hVO-qW-IOs"/>
+                            <constraint firstItem="1lZ-Ip-0rH" firstAttribute="centerX" secondItem="Y0t-gu-9BP" secondAttribute="centerX" id="pa5-dR-hd6"/>
                             <constraint firstItem="kDE-6u-U7f" firstAttribute="leading" secondItem="Y0t-gu-9BP" secondAttribute="leading" id="wi1-wa-s71"/>
                         </constraints>
                     </view>
@@ -191,6 +192,7 @@
                         <outlet property="colorSelectView" destination="JdK-C9-rsT" id="1h9-zZ-h3L"/>
                         <outlet property="componentScrollView" destination="JUz-cU-jmh" id="38g-d3-0pR"/>
                         <outlet property="componentsStackView" destination="Zc7-k9-Gr9" id="b9R-Mr-Cuy"/>
+                        <outlet property="thumbnailView" destination="1lZ-Ip-0rH" id="e5X-r1-aZX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jBE-hf-gNy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -310,7 +312,6 @@
     </designables>
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>
-        <image name="thumb_skin_2" width="300" height="400"/>
         <namedColor name="DivisionColor">
             <color red="0.90600001811981201" green="0.90600001811981201" blue="0.90600001811981201" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
