@@ -18,6 +18,7 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet private weak var colorSelectView: UIView!
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
+    private var thumbnailImageView: [UIImageView] = [UIImageView]()
     private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     
@@ -37,7 +38,9 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func setComponentCollectionViews() {
-        for _ in 0..<categoryCollectionViewDataSource.modelCount {
+        guard let count = categoryComponentManager.categoryCount else { return }
+        
+        for _ in 0..<count {
             let dataSource = ComponentCollectionViewDataSource()
             componentCollectionViewDataSources.append(dataSource)
             let collectionView = ComponentCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -46,6 +49,21 @@ final class CustomizeViewController: UIViewController {
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
             collectionView.dataSource = dataSource
             collectionView.backgroundColor = .systemBackground
+        }
+    }
+    
+    private func addThumbnailImageViews() {
+        guard let count = categoryComponentManager.categoryCount else { return }
+        
+        for _ in 0..<count {
+            let imageView = UIImageView()
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            thumbnailView.addSubview(imageView)
+            imageView.centerYAnchor.constraint(equalTo: thumbnailView.centerYAnchor).isActive = true
+            imageView.centerXAnchor.constraint(equalTo: thumbnailView.centerXAnchor).isActive = true
+            imageView.widthAnchor.constraint(equalTo: thumbnailView.widthAnchor).isActive = true
+            imageView.heightAnchor.constraint(equalTo: thumbnailView.heightAnchor).isActive = true
+            thumbnailImageView.append(imageView)
         }
     }
     
@@ -91,6 +109,7 @@ final class CustomizeViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.setCategoryCollectionView()
             self?.setComponentCollectionViews()
+            self?.addThumbnailImageViews()
         }
         setComponentsUseCase(categoryComponentManager.category(of: 0)?.id)
     }
