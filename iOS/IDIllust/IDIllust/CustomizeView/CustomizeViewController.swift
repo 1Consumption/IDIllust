@@ -19,6 +19,7 @@ final class CustomizeViewController: UIViewController {
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
     private var thumbnailImageView: [UIImageView] = [UIImageView]()
+    private var componentCollectionViewDelegate: ComponentCollectionViewDelegate? = ComponentCollectionViewDelegate()
     private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     
@@ -28,6 +29,11 @@ final class CustomizeViewController: UIViewController {
         addObserves()
         setCategoriesUseCase()
         componentScrollView.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        componentCollectionViewDelegate = nil
     }
     
     // MARK: - Methods
@@ -49,6 +55,7 @@ final class CustomizeViewController: UIViewController {
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
             collectionView.dataSource = dataSource
             collectionView.backgroundColor = .systemBackground
+            collectionView.delegate = componentCollectionViewDelegate
         }
     }
     
@@ -79,6 +86,10 @@ final class CustomizeViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(componentCollectionViewEventHandler(_:)),
                                                name: ComponentCollectionViewEvent.LongPressGestureStateChanged,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(componentCollectionViewEventHandler(_:)),
+                                               name: ComponentCollectionViewEvent.DidSelect,
                                                object: nil)
     }
     
@@ -186,6 +197,7 @@ final class CustomizeViewController: UIViewController {
         switch object {
         case .longPressBegan(let origin, _): showColorSelectView(origin)
         case .longPressEnded: hideColorSelectView()
+        case .didSelect(let indexPath): print(indexPath)
         default: break
         }
     }
