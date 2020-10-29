@@ -55,17 +55,3 @@ final class ComponentCollectionView: UICollectionView {
         }
     }
 }
-
-enum ComponentCollectionViewEvent {
-    
-    case longPressBegan(CGPoint, IndexPath)
-    case longPressEnded
-    case longPressChanged(CGFloat)
-    
-    static let LongPressGestureStateChanged = Notification.Name("longPressGestureStateChanged")
-    
-    func post() {
-        NotificationCenter.default.post(name: ComponentCollectionViewEvent.LongPressGestureStateChanged,
-                                        object: self)
-    }
-}
