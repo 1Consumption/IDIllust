@@ -6,7 +6,6 @@
 //  Copyright © 2020 신한섭. All rights reserved.
 //
 
-import Kingfisher
 import UIKit
 
 final class ComponentCollectionViewDataSource: NSObject, UICollectionViewDataSource {
