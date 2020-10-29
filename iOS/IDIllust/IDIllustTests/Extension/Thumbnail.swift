@@ -7,7 +7,6 @@
 //
 
 @testable import IDIllust
-import Foundation
 
 extension Thumbnail: Equatable, Encodable {
     public static func == (lhs: Thumbnail, rhs: Thumbnail) -> Bool {

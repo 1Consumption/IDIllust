@@ -12,6 +12,8 @@
 		A506C99A254272D100E6BCE6 /* RetrieveModelFromServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */; };
 		A506C9A12542758200E6BCE6 /* RetrieveModelFromServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */; };
 		A50BA707254B374D00985306 /* SelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BA706254B374D00985306 /* SelectionManager.swift */; };
+		A50BA70D254B44F200985306 /* SelectionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BA70C254B44F200985306 /* SelectionManagerTests.swift */; };
+		A50BA711254B45D800985306 /* CurrentSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BA710254B45D800985306 /* CurrentSelection.swift */; };
 		A50E3A9B254960750004DEA7 /* ComponentColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E3A9A254960750004DEA7 /* ComponentColor.swift */; };
 		A50E3AA2254962700004DEA7 /* ComponentColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E3AA1254962700004DEA7 /* ComponentColors.swift */; };
 		A50E3AA82549660A0004DEA7 /* ModelManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E3AA72549660A0004DEA7 /* ModelManageable.swift */; };
@@ -83,6 +85,8 @@
 		A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveModelFromServer.swift; sourceTree = "<group>"; };
 		A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveModelFromServerTests.swift; sourceTree = "<group>"; };
 		A50BA706254B374D00985306 /* SelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionManager.swift; sourceTree = "<group>"; };
+		A50BA70C254B44F200985306 /* SelectionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionManagerTests.swift; sourceTree = "<group>"; };
+		A50BA710254B45D800985306 /* CurrentSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSelection.swift; sourceTree = "<group>"; };
 		A50E3A9A254960750004DEA7 /* ComponentColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentColor.swift; sourceTree = "<group>"; };
 		A50E3AA1254962700004DEA7 /* ComponentColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentColors.swift; sourceTree = "<group>"; };
 		A50E3AA72549660A0004DEA7 /* ModelManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManageable.swift; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				A521F020254557BB0002031A /* Categories.swift */,
 				A50E3AA1254962700004DEA7 /* ComponentColors.swift */,
 				A5B67F6F254B1E72005F098C /* Thumbnail.swift */,
+				A50BA710254B45D800985306 /* CurrentSelection.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -379,6 +384,7 @@
 				A521F0072543DD8B0002031A /* MockNetworkManagers.swift */,
 				A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */,
 				A5844A9B253D67B600A24256 /* EndPointTests.swift */,
+				A50BA70C254B44F200985306 /* SelectionManagerTests.swift */,
 			);
 			path = IDIllustTests;
 			sourceTree = "<group>";
@@ -630,12 +636,14 @@
 				A5C8D8EF253D5B94002ADD9E /* NetworkTests.swift in Sources */,
 				A521F0142543FEA00002031A /* ComponentsUseCaseTests.swift in Sources */,
 				A53241E8253D9B3D004FEF3C /* EntryImageUseCaseTests.swift in Sources */,
+				A50BA70D254B44F200985306 /* SelectionManagerTests.swift in Sources */,
 				A50E3AA2254962700004DEA7 /* ComponentColors.swift in Sources */,
 				A534809B25481E53001C039E /* CategoryComponentManagerTests.swift in Sources */,
 				A5844A9C253D67B600A24256 /* EndPointTests.swift in Sources */,
 				A5B67F70254B1E72005F098C /* Thumbnail.swift in Sources */,
 				A50E3AAC254972AD0004DEA7 /* ModelManageableTests.swift in Sources */,
 				A5EEC119253F64620048A13D /* CategoryUseCaseTests.swift in Sources */,
+				A50BA711254B45D800985306 /* CurrentSelection.swift in Sources */,
 				A521F0082543DD8B0002031A /* MockNetworkManagers.swift in Sources */,
 				A506C9A12542758200E6BCE6 /* RetrieveModelFromServerTests.swift in Sources */,
 				A5AEDF56253FF3670083F3D2 /* Components.swift in Sources */,
