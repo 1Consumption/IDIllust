@@ -10,14 +10,20 @@
 
 extension Component: Equatable, Encodable {
     public static func == (lhs: Component, rhs: Component) -> Bool {
-        return lhs.id == rhs.id && lhs.name == rhs.name && lhs.url == rhs.url
+        return lhs.id == rhs.id && lhs.name == rhs.name && lhs.thumbUrl == rhs.thumbUrl
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
-        try container.encode(url, forKey: .url)
+        try container.encode(thumbUrl, forKey: .thumbUrl)
+    }
+    
+    enum CodingKeys : String, CodingKey{
+        case id
+        case name
+        case thumbUrl
     }
 }
 

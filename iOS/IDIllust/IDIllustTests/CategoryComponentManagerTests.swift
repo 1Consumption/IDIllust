@@ -21,7 +21,7 @@ final class CategoryComponentManagerTests: XCTestCase {
         categoryComponentManager = CategoryComponentManager()
         category = IDIllust.Category(id: 1, name: "category", url: "url")
         categories = Categories(models: [category])
-        component = Component(id: 1, name: "component", url: "url")
+        component = Component(id: 1, name: "component", thumbUrl: "url")
         components = Components(models: [component])
     }
     
