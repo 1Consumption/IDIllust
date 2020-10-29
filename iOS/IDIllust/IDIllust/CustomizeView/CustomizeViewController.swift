@@ -103,9 +103,9 @@ final class CustomizeViewController: UIViewController {
         }
     }
     
-    private func setColorSelectViewSize() {
+    private func setColorSelectViewFrame(origin: CGPoint) {
         guard let colorSelectVC = children.first as? ColorSelectViewController else { return }
-        colorSelectView.frame.size = colorSelectVC.colorSelectCollectionView.contentSize
+        colorSelectView.frame = CGRect(origin: origin, size: colorSelectVC.colorSelectCollectionView.contentSize)
     }
     
     private func correct(point: inout CGPoint) {
@@ -120,10 +120,9 @@ final class CustomizeViewController: UIViewController {
         guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
         var convertedPoint = point.convert(to: [componentCollectionViews[selected], componentsStackView, view])
         
-        setColorSelectViewSize()
         correct(point: &convertedPoint)
         
-        colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
+        setColorSelectViewFrame(origin: convertedPoint)
         
         colorSelectView.isHidden = false
         UIDevice.vibrate(style: .light)
