@@ -20,13 +20,6 @@ public class ColorController {
         return colorService.readAll(categoryId, componentId);
     }
 
-    @PostMapping("/{colorId}")
-    public ColorApiResponse addSomething(@PathVariable Long categoryId,
-                                         @PathVariable Long componentId,
-                                         @PathVariable Long colorId) {
-        return ColorApiResponse.builder().build();
-    }
-
     @GetMapping("/{colorId}")
     public ChoiceApiResponse getChooseComponentURL(@PathVariable Long categoryId,
                                                    @PathVariable Long componentId,
