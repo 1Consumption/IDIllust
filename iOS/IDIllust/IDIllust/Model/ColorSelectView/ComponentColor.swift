@@ -12,9 +12,9 @@ struct ComponentColors: Decodable, ModelManageable {
     
     typealias Model = ComponentColor
     
-    let models: [ComponentColor]
+    let models: [Model]
     
-    enum CodigKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case models = "colors"
     }
 }

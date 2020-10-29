@@ -18,7 +18,7 @@ protocol ModelManageable {
     func isExceed(index: Int) -> Bool
 }
 
-extension ModelManageable where Model: Decodable {
+extension ModelManageable {
     var count: Int {
         return models.count
     }

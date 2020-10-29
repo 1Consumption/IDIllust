@@ -12,7 +12,7 @@ struct Components: Decodable, ModelManageable {
     
     typealias Model = Component
     
-    let models: [Component]
+    let models: [Model]
     
     enum CodingKeys: String, CodingKey {
         case models = "components"
