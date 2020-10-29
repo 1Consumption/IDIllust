@@ -23,11 +23,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     private func changeBackgroundColor() {
-        if isSelected {
-            backgroundColor = UIColor(named: "SelectedColor")
-        } else {
-            backgroundColor = .clear
-        }
+        backgroundColor = isSelected ? UIColor(named: "SelectedColor") : .clear
     }
     
     private func sendNotification(_ oldValue: Bool) {

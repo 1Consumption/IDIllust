@@ -27,7 +27,7 @@ final class CategoryComponentManager {
     }
     
     func category(of index: Int) -> Category? {
-        categories?.model(of: index)
+        return categories?.model(of: index)
     }
     
     func components(of categroyId: Int) -> Components? {

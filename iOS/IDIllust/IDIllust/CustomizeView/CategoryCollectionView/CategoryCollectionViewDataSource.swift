@@ -6,7 +6,6 @@
 //  Copyright © 2020 신한섭. All rights reserved.
 //
 
-import Kingfisher
 import UIKit
 
 final class CategoryCollectionViewDataSource: NSObject, UICollectionViewDataSource {
@@ -15,7 +14,7 @@ final class CategoryCollectionViewDataSource: NSObject, UICollectionViewDataSour
     var modelCount: Int { return categories?.count ?? 0 }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories?.count ?? 0
+        return modelCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -55,6 +55,7 @@
 		A5F8934B2500A8C8002258EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F8934A2500A8C8002258EA /* Assets.xcassets */; };
 		A5F8934E2500A8C8002258EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F8934C2500A8C8002258EA /* LaunchScreen.storyboard */; };
 		A5F9DC862501C7A200DAF991 /* BorderPaddingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F9DC852501C7A200DAF991 /* BorderPaddingButton.swift */; };
+		A5FB9608254ADD9B00FF4C51 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FB9607254ADD9B00FF4C51 /* CGPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		A5F893542500A8C8002258EA /* IDIllustTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IDIllustTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F8935A2500A8C8002258EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5F9DC852501C7A200DAF991 /* BorderPaddingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderPaddingButton.swift; sourceTree = "<group>"; };
+		A5FB9607254ADD9B00FF4C51 /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 			children = (
 				A5511443253B2E880068A4D2 /* UIDevice.swift */,
 				A5AEDF43253F69700083F3D2 /* UICollectionView.swift */,
+				A5FB9607254ADD9B00FF4C51 /* CGPoint.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				A5511436253B22040068A4D2 /* ColorSelectViewController.swift in Sources */,
 				A5511444253B2E880068A4D2 /* UIDevice.swift in Sources */,
 				A551143E253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift in Sources */,
+				A5FB9608254ADD9B00FF4C51 /* CGPoint.swift in Sources */,
 				A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */,
 				A52D7056253D51280071613B /* HTTPMethod.swift in Sources */,
 				A52D704E253D50FE0071613B /* NetworkManager.swift in Sources */,
