@@ -169,6 +169,14 @@ final class CustomizeViewController: UIViewController {
     
     private func retrieveThumbnail(current: CurrentSelection) {
         ThumbnailUseCase().retrieveThumbnail(current.categoryId, current.componentId, networkManager: NetworkManager(), successHandler: { model in
+            DispatchQueue.main.async { [weak self] in
+                guard var categoryIndex = current.categoryIndex else { return }
+                if categoryIndex + 1 >= 9 {
+                    categoryIndex = 0
+                }
+
+                self?.thumbnailImageViews[categoryIndex].kf.setImage(with: URL(string: model.thumbUrl), options: [.keepCurrentImageWhileLoading])
+            }
         })
     }
     
