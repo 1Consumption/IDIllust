@@ -18,7 +18,7 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet private weak var colorSelectView: UIView!
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
-    private var thumbnailImageView: [UIImageView] = [UIImageView]()
+    private var thumbnailImageViews: [UIImageView] = [UIImageView]()
     private var componentCollectionViewDelegate: ComponentCollectionViewDelegate? = ComponentCollectionViewDelegate()
     private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
@@ -71,7 +71,7 @@ final class CustomizeViewController: UIViewController {
             imageView.centerXAnchor.constraint(equalTo: thumbnailView.centerXAnchor).isActive = true
             imageView.widthAnchor.constraint(equalTo: thumbnailView.widthAnchor).isActive = true
             imageView.heightAnchor.constraint(equalTo: thumbnailView.heightAnchor).isActive = true
-            thumbnailImageView.append(imageView)
+            thumbnailImageViews.append(imageView)
         }
     }
     
@@ -167,6 +167,11 @@ final class CustomizeViewController: UIViewController {
         colorSelectView.isHidden = true
     }
     
+    private func retrieveThumbnail(current: CurrentSelection) {
+        ThumbnailUseCase().retrieveThumbnail(current.categoryId, current.componentId, networkManager: NetworkManager(), successHandler: { model in
+        })
+    }
+    
     // MARK: @objc
     @objc func scrollComponentScrollView() {
         guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first else { return }
@@ -209,6 +214,7 @@ final class CustomizeViewController: UIViewController {
             guard let componentId = categoryComponentManager.component(categoryId, indexPath.item)?.id else { return }
             guard selectionManager.current.componentId != componentId else { return }
             selectionManager.setCurrent(componentId: componentId)
+            retrieveThumbnail(current: selectionManager.current)
             
         default: break
         }

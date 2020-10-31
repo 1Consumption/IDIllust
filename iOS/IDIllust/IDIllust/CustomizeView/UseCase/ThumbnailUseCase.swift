@@ -13,7 +13,13 @@ struct ThumbnailUseCase: RetrieveModelFromServer {
     typealias Model = Thumbnail
     
     @discardableResult
-    func retrieveThumbnail(with categoryId: Int, _ componentId: Int, networkManager: NetworkManageable, failurehandler: @escaping (UseCaseError) -> Void = { _ in }, successHandler: @escaping (Model) -> Void) -> URLSessionDataTask? {
+    func retrieveThumbnail(_ categoryId: Int?, _ componentId: Int?, networkManager: NetworkManageable, failurehandler: @escaping (UseCaseError) -> Void = { _ in }, successHandler: @escaping (Model) -> Void) -> URLSessionDataTask? {
+        
+        guard let categoryId = categoryId, let componentId = componentId else {
+            failurehandler(.networkError(.requestError))
+            return nil
+        }
+        
         let endPoint = EndPoint(path: .thumbnail(categoryId, componentId))
         
         return retrieveModel(from: endPoint, networkManager: networkManager, failurehandler: failurehandler, successHandler: successHandler)

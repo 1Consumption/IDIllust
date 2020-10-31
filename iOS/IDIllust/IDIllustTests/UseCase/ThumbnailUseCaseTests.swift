@@ -21,7 +21,7 @@ class ThumbnailUseCaseTests: XCTestCase {
     func testSuccess() {
         mockNetworkManager = MockSuccessNetworkManager(model: model)
         
-        ThumbnailUseCase().retrieveThumbnail(with: 0, 0,
+        ThumbnailUseCase().retrieveThumbnail(0, 0,
                                              networkManager: mockNetworkManager,
                                              successHandler: { model in
                                                 XCTAssertEqual(model, self.model)
