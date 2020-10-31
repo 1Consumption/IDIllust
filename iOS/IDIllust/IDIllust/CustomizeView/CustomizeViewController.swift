@@ -22,6 +22,7 @@ final class CustomizeViewController: UIViewController {
     private var componentCollectionViewDelegate: ComponentCollectionViewDelegate? = ComponentCollectionViewDelegate()
     private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
+    private let selectionManager: SelectionManager = SelectionManager()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -122,7 +123,10 @@ final class CustomizeViewController: UIViewController {
             self?.setComponentCollectionViews()
             self?.addThumbnailImageViews()
         }
-        setComponentsUseCase(categoryComponentManager.category(of: 0)?.id)
+        
+        let categoryId = categoryComponentManager.category(of: 0)?.id
+        setComponentsUseCase(categoryId)
+        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: 0)
     }
     
     private func reloadComponentsCollectionView() {
@@ -177,6 +181,8 @@ final class CustomizeViewController: UIViewController {
         componentScrollView.setContentOffset(CGPoint(x: willX, y: 0), animated: true)
         
         guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
+        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: index)
+        
         guard categoryComponentManager.isExistComponents(with: categoryId) else {
             setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
             return
@@ -197,7 +203,13 @@ final class CustomizeViewController: UIViewController {
         switch object {
         case .longPressBegan(let origin, _): showColorSelectView(origin)
         case .longPressEnded: hideColorSelectView()
-        case .didSelect(let indexPath): print(indexPath)
+        
+        case .didSelect(let indexPath):
+            guard let categoryId = selectionManager.current.categoryId else { return }
+            guard let componentId = categoryComponentManager.component(categoryId, indexPath.item)?.id else { return }
+            guard selectionManager.current.componentId != componentId else { return }
+            selectionManager.setCurrent(componentId: componentId)
+            
         default: break
         }
     }
@@ -218,6 +230,7 @@ extension CustomizeViewController: UIScrollViewDelegate {
         categoryCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         
         guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
+        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: index)
         
         guard categoryComponentManager.isExistComponents(with: categoryId) else {
             setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
