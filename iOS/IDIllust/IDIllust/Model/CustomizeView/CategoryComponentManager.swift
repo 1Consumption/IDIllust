@@ -30,8 +30,12 @@ final class CategoryComponentManager {
         return categories?.model(of: index)
     }
     
-    func components(of categroyId: Int) -> Components? {
-        return componentsOfCategoryId[categroyId]
+    func components(of categoryId: Int) -> Components? {
+        return componentsOfCategoryId[categoryId]
+    }
+    
+    func component(_ categoryId: Int, _ componentIndex: Int) -> Component? {
+        return componentsOfCategoryId[categoryId]?.model(of: componentIndex)
     }
     
     func componentsCount(of categoryId: Int) -> Int? {

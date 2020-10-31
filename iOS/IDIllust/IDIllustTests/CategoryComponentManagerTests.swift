@@ -57,6 +57,13 @@ final class CategoryComponentManagerTests: XCTestCase {
         XCTAssertEqual(categoryComponentManager.componentsCount(of: category.id), 1)
     }
     
+    func testGetComponent() {
+        XCTAssertNil(categoryComponentManager.component(category.id, 0))
+        categoryComponentManager.insert(categories: categories)
+        categoryComponentManager.insert(components: components, by: category.id)
+        XCTAssertEqual(categoryComponentManager.component(category.id, 0), component)
+    }
+    
     func testIsExistComponents() {
         categoryComponentManager.insert(categories: categories)
         categoryComponentManager.insert(components: components, by: category.id)
