@@ -29,6 +29,17 @@ class SelectionManager {
         return selection[categoryId] == componentId
     }
     
+    @discardableResult
+    func removeCurrentComponent() -> Int? {
+        guard let categoryId = current.categoryId else { return nil }
+        
+        let componentId = selection[categoryId]
+        selection[categoryId] = nil
+        current.componentId = nil
+        
+        return componentId
+    }
+    
     private func setSelection(current: CurrentSelection) {
         guard let categoryId = current.categoryId, let componetnId = current.componentId else { return }
         selection[categoryId] = componetnId
