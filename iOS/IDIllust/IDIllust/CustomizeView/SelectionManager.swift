@@ -25,6 +25,10 @@ class SelectionManager {
         setSelection(current: current)
     }
     
+    func isSelectedComponent(categoryId: Int, componentId: Int) -> Bool {
+        return selection[categoryId] == componentId
+    }
+    
     private func setSelection(current: CurrentSelection) {
         guard let categoryId = current.categoryId, let componetnId = current.componentId else { return }
         selection[categoryId] = componetnId
