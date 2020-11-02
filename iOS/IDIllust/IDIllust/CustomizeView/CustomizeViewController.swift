@@ -171,13 +171,18 @@ final class CustomizeViewController: UIViewController {
         ThumbnailUseCase().retrieveThumbnail(current.categoryId, current.componentId, networkManager: NetworkManager(), successHandler: { model in
             DispatchQueue.main.async { [weak self] in
                 guard var categoryIndex = current.categoryIndex else { return }
-                if categoryIndex + 1 >= 9 {
-                    categoryIndex = 0
-                }
-
+                
+                self?.correct(categoryIndex: &categoryIndex)
                 self?.thumbnailImageViews[categoryIndex].kf.setImage(with: URL(string: model.thumbUrl), options: [.keepCurrentImageWhileLoading])
             }
         })
+    }
+    
+    private func correct(categoryIndex: inout Int) {
+        categoryIndex += 1
+        if categoryIndex >= 9 {
+            categoryIndex = 0
+        }
     }
     
     // MARK: @objc
