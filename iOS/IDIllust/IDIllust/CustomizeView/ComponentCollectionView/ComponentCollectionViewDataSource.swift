@@ -18,7 +18,7 @@ final class ComponentCollectionViewDataSource: NSObject, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ComponentCollectionViewCell.identifier, for: indexPath) as? ComponentCollectionViewCell else { return UICollectionViewCell() }
-        guard let url = components?.model(of: indexPath.item)?.url else { return cell }
+        guard let url = components?.model(of: indexPath.item)?.thumbUrl else { return cell }
         
         cell.imageView.kf.indicatorType = .activity
         cell.imageView.kf.setImage(with: URL(string: url))

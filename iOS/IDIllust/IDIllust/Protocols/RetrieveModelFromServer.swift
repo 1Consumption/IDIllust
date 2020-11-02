@@ -26,7 +26,9 @@ extension RetrieveModelFromServer where Model: Decodable {
                                     switch result {
                                     case .success(let data):
                                         do {
-                                            let model = try JSONDecoder().decode(Model.self, from: data)
+                                            let decoder = JSONDecoder()
+                                            decoder.keyDecodingStrategy = .convertFromSnakeCase
+                                            let model = try decoder.decode(Model.self, from: data)
                                             successHandler(model)
                                         } catch {
                                             failurehandler(.decodeError)

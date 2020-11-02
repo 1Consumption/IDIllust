@@ -11,14 +11,18 @@ import UIKit
 final class CustomizeViewController: UIViewController {
     
     // MARK: - Properties
+    @IBOutlet private weak var thumbnailView: UIView!
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
     @IBOutlet private weak var componentsStackView: UIStackView!
     @IBOutlet private weak var componentScrollView: UIScrollView!
     @IBOutlet private weak var colorSelectView: UIView!
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
+    private var thumbnailImageViews: [UIImageView] = [UIImageView]()
+    private var componentCollectionViewDelegate: ComponentCollectionViewDelegate? = ComponentCollectionViewDelegate()
     private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
+    private let selectionManager: SelectionManager = SelectionManager()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -26,6 +30,11 @@ final class CustomizeViewController: UIViewController {
         addObserves()
         setCategoriesUseCase()
         componentScrollView.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        componentCollectionViewDelegate = nil
     }
     
     // MARK: - Methods
@@ -36,7 +45,9 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func setComponentCollectionViews() {
-        for _ in 0..<categoryCollectionViewDataSource.modelCount {
+        guard let count = categoryComponentManager.categoryCount else { return }
+        
+        for _ in 0..<count {
             let dataSource = ComponentCollectionViewDataSource()
             componentCollectionViewDataSources.append(dataSource)
             let collectionView = ComponentCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -45,6 +56,22 @@ final class CustomizeViewController: UIViewController {
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
             collectionView.dataSource = dataSource
             collectionView.backgroundColor = .systemBackground
+            collectionView.delegate = componentCollectionViewDelegate
+        }
+    }
+    
+    private func addThumbnailImageViews() {
+        guard let count = categoryComponentManager.categoryCount else { return }
+        
+        for _ in 0..<count {
+            let imageView = UIImageView()
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            thumbnailView.addSubview(imageView)
+            imageView.centerYAnchor.constraint(equalTo: thumbnailView.centerYAnchor).isActive = true
+            imageView.centerXAnchor.constraint(equalTo: thumbnailView.centerXAnchor).isActive = true
+            imageView.widthAnchor.constraint(equalTo: thumbnailView.widthAnchor).isActive = true
+            imageView.heightAnchor.constraint(equalTo: thumbnailView.heightAnchor).isActive = true
+            thumbnailImageViews.append(imageView)
         }
     }
     
@@ -60,6 +87,10 @@ final class CustomizeViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(componentCollectionViewEventHandler(_:)),
                                                name: ComponentCollectionViewEvent.LongPressGestureStateChanged,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(componentCollectionViewEventHandler(_:)),
+                                               name: ComponentCollectionViewEvent.DidSelect,
                                                object: nil)
     }
     
@@ -90,8 +121,12 @@ final class CustomizeViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.setCategoryCollectionView()
             self?.setComponentCollectionViews()
+            self?.addThumbnailImageViews()
         }
-        setComponentsUseCase(categoryComponentManager.category(of: 0)?.id)
+        
+        let categoryId = categoryComponentManager.category(of: 0)?.id
+        setComponentsUseCase(categoryId)
+        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: 0)
     }
     
     private func reloadComponentsCollectionView() {
@@ -132,6 +167,38 @@ final class CustomizeViewController: UIViewController {
         colorSelectView.isHidden = true
     }
     
+    private func retrieveThumbnail(current: CurrentSelection) {
+        ThumbnailUseCase().retrieveThumbnail(current.categoryId, current.componentId, networkManager: NetworkManager(), successHandler: { model in
+            DispatchQueue.main.async { [weak self] in
+                guard var categoryIndex = current.categoryIndex else { return }
+                
+                self?.correct(categoryIndex: &categoryIndex)
+                self?.thumbnailImageViews[categoryIndex].kf.setImage(with: URL(string: model.thumbUrl), options: [.keepCurrentImageWhileLoading])
+            }
+        })
+    }
+    
+    private func correct(categoryIndex: inout Int) {
+        categoryIndex += 1
+        if categoryIndex >= 9 {
+            categoryIndex = 0
+        }
+    }
+    
+    private func changeComponentSelection(_ categoryId: Int, _ componentId: Int) {
+        if selectionManager.isSelectedComponent(categoryId: categoryId, componentId: componentId) {
+            selectionManager.removeCurrentComponent()
+            guard var categoryIndex = selectionManager.current.categoryIndex else { return }
+            componentCollectionViews[categoryIndex].selectItem(at: nil, animated: false, scrollPosition: .bottom)
+            
+            correct(categoryIndex: &categoryIndex)
+            thumbnailImageViews[categoryIndex].image = nil
+        } else {
+            selectionManager.setCurrent(componentId: componentId)
+            retrieveThumbnail(current: selectionManager.current)
+        }
+    }
+    
     // MARK: @objc
     @objc func scrollComponentScrollView() {
         guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first else { return }
@@ -146,6 +213,8 @@ final class CustomizeViewController: UIViewController {
         componentScrollView.setContentOffset(CGPoint(x: willX, y: 0), animated: true)
         
         guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
+        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: index)
+        
         guard categoryComponentManager.isExistComponents(with: categoryId) else {
             setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
             return
@@ -166,6 +235,13 @@ final class CustomizeViewController: UIViewController {
         switch object {
         case .longPressBegan(let origin, _): showColorSelectView(origin)
         case .longPressEnded: hideColorSelectView()
+        
+        case .didSelect(let indexPath):
+            guard let categoryId = selectionManager.current.categoryId else { return }
+            guard let componentId = categoryComponentManager.component(categoryId, indexPath.item)?.id else { return }
+            
+            changeComponentSelection(categoryId, componentId)
+        
         default: break
         }
     }
@@ -186,6 +262,7 @@ extension CustomizeViewController: UIScrollViewDelegate {
         categoryCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         
         guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
+        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: index)
         
         guard categoryComponentManager.isExistComponents(with: categoryId) else {
             setComponentsUseCase(categoryComponentManager.category(of: index)?.id)

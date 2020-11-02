@@ -31,6 +31,7 @@ struct EndPoint {
         case entry
         case categories
         case components(Int)
+        case thumbnail(Int, Int)
         
         var description: String {
             switch self {
@@ -40,6 +41,8 @@ struct EndPoint {
                 return "/api/categories"
             case .components(let categoryId):
                 return "/api/categories/\(categoryId)/components"
+            case .thumbnail(let categoryId, let componentId):
+                return "/api/categories/\(categoryId)/components/\(componentId)"
             }
         }
     }

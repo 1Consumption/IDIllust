@@ -4,6 +4,7 @@ disabled_rules:
 - trailing_whitespace
 - closure_end_indentation
 - multiline_arguments_brackets
+- empty_enum_arguments
 
 opt_in_rules:
 - closure_spacing

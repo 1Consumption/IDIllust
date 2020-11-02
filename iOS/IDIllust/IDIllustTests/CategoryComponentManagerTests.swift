@@ -21,7 +21,7 @@ final class CategoryComponentManagerTests: XCTestCase {
         categoryComponentManager = CategoryComponentManager()
         category = IDIllust.Category(id: 1, name: "category", url: "url")
         categories = Categories(models: [category])
-        component = Component(id: 1, name: "component", url: "url")
+        component = Component(id: 1, name: "component", thumbUrl: "url")
         components = Components(models: [component])
     }
     
@@ -55,6 +55,13 @@ final class CategoryComponentManagerTests: XCTestCase {
         categoryComponentManager.insert(categories: categories)
         categoryComponentManager.insert(components: components, by: category.id)
         XCTAssertEqual(categoryComponentManager.componentsCount(of: category.id), 1)
+    }
+    
+    func testGetComponent() {
+        XCTAssertNil(categoryComponentManager.component(category.id, 0))
+        categoryComponentManager.insert(categories: categories)
+        categoryComponentManager.insert(components: components, by: category.id)
+        XCTAssertEqual(categoryComponentManager.component(category.id, 0), component)
     }
     
     func testIsExistComponents() {
