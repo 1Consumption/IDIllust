@@ -185,6 +185,20 @@ final class CustomizeViewController: UIViewController {
         }
     }
     
+    private func changeComponentSelection(_ categoryId: Int, _ componentId: Int) {
+        if selectionManager.isSelectedComponent(categoryId: categoryId, componentId: componentId) {
+            selectionManager.removeCurrentComponent()
+            guard var categoryIndex = selectionManager.current.categoryIndex else { return }
+            componentCollectionViews[categoryIndex].selectItem(at: nil, animated: false, scrollPosition: .bottom)
+            
+            correct(categoryIndex: &categoryIndex)
+            thumbnailImageViews[categoryIndex].image = nil
+        } else {
+            selectionManager.setCurrent(componentId: componentId)
+            retrieveThumbnail(current: selectionManager.current)
+        }
+    }
+    
     // MARK: @objc
     @objc func scrollComponentScrollView() {
         guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first else { return }
@@ -225,10 +239,9 @@ final class CustomizeViewController: UIViewController {
         case .didSelect(let indexPath):
             guard let categoryId = selectionManager.current.categoryId else { return }
             guard let componentId = categoryComponentManager.component(categoryId, indexPath.item)?.id else { return }
-            guard selectionManager.current.componentId != componentId else { return }
-            selectionManager.setCurrent(componentId: componentId)
-            retrieveThumbnail(current: selectionManager.current)
             
+            changeComponentSelection(categoryId, componentId)
+        
         default: break
         }
     }
