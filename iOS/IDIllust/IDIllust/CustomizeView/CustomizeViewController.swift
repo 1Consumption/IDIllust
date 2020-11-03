@@ -19,7 +19,6 @@ final class CustomizeViewController: UIViewController {
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
     private var thumbnailImageViews: [UIImageView] = [UIImageView]()
-    private var componentCollectionViewDelegate: ComponentCollectionViewDelegate? = ComponentCollectionViewDelegate()
     private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     private let selectionManager: SelectionManager = SelectionManager()
@@ -30,11 +29,6 @@ final class CustomizeViewController: UIViewController {
         addObserves()
         setCategoriesUseCase()
         componentScrollView.delegate = self
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        componentCollectionViewDelegate = nil
     }
     
     // MARK: - Methods
@@ -56,7 +50,7 @@ final class CustomizeViewController: UIViewController {
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
             collectionView.dataSource = dataSource
             collectionView.backgroundColor = .systemBackground
-            collectionView.delegate = componentCollectionViewDelegate
+            collectionView.delegate = self
         }
     }
     
@@ -247,8 +241,17 @@ final class CustomizeViewController: UIViewController {
     }
 }
 
+extension CustomizeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        ComponentCollectionViewEvent.didSelect(indexPath).post()
+    }
+}
+
 extension CustomizeViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        guard !(scrollView is UICollectionView) else { return }
+        
         let curX = scrollView.contentOffset.x
         let width = view.frame.width
         let index = Int(curX / width)
