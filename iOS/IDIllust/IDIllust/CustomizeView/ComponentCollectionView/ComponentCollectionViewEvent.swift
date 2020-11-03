@@ -10,10 +10,10 @@ import UIKit
 
 enum ComponentCollectionViewEvent {
     
-    case longPressBegan(CGPoint, IndexPath)
+    case longPressBegan(currentPoint: CGPoint, selectedIndexPath: IndexPath)
     case longPressEnded
-    case longPressChanged(CGFloat)
-    case didSelect(IndexPath)
+    case longPressChanged(currentXPoint: CGFloat)
+    case didSelect(selectedIndexPath: IndexPath)
     
     static let LongPressGestureStateChanged = Notification.Name("longPressGestureStateChanged")
     static let DidSelect = Notification.Name("didSelect")

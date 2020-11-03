@@ -241,7 +241,7 @@ final class CustomizeViewController: UIViewController {
 
 extension CustomizeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        ComponentCollectionViewEvent.didSelect(indexPath).post()
+        ComponentCollectionViewEvent.didSelect(selectedIndexPath: indexPath).post()
     }
 }
 

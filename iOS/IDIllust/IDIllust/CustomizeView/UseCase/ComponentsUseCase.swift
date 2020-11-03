@@ -14,7 +14,7 @@ struct ComponentsUseCase: RetrieveModelFromServer {
     
     @discardableResult
     func retrieveComponents(networkManager: NetworkManageable, categoryId: Int, failurehandler: @escaping (UseCaseError) -> Void = { _ in }, successHandler: @escaping (Model) -> Void) -> URLSessionDataTask? {
-        let endPoint = EndPoint(path: .components(categoryId))
+        let endPoint = EndPoint(path: .components(categoryId: categoryId))
         
         return retrieveModel(from: endPoint, networkManager: networkManager, failurehandler: failurehandler, successHandler: successHandler)
     }

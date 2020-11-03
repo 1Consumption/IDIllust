@@ -46,10 +46,10 @@ final class ComponentCollectionView: UICollectionView {
         case .began:
             guard let indexPath = indexPathForItem(at: point) else { return }
             guard let origin = cellForItem(at: indexPath)?.frame.origin else { return }
-            ComponentCollectionViewEvent.longPressBegan(origin, indexPath).post()
+            ComponentCollectionViewEvent.longPressBegan(currentPoint: origin, selectedIndexPath: indexPath).post()
             
         case .changed:
-            ComponentCollectionViewEvent.longPressChanged(point.x).post()
+            ComponentCollectionViewEvent.longPressChanged(currentXPoint: point.x).post()
             
         default: break
         }
