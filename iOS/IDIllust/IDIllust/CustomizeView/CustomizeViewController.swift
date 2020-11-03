@@ -38,9 +38,7 @@ final class CustomizeViewController: UIViewController {
         categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)
     }
     
-    private func setComponentCollectionViews() {
-        guard let count = categoryComponentManager.categoryCount else { return }
-        
+    private func setComponentCollectionViews(_ count: Int) {
         for _ in 0..<count {
             let dataSource = ComponentCollectionViewDataSource()
             componentCollectionViewDataSources.append(dataSource)
@@ -54,9 +52,7 @@ final class CustomizeViewController: UIViewController {
         }
     }
     
-    private func addThumbnailImageViews() {
-        guard let count = categoryComponentManager.categoryCount else { return }
-        
+    private func addThumbnailImageViews(_ count: Int) {
         for _ in 0..<count {
             let imageView = UIImageView()
             imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -112,10 +108,12 @@ final class CustomizeViewController: UIViewController {
     
     private func tasksForCategoryChanged() {
         categoryCollectionViewDataSource.categories = categoryComponentManager.categories
+        guard let count = categoryComponentManager.categoryCount else { return }
+        
         DispatchQueue.main.async { [weak self] in
             self?.setCategoryCollectionView()
-            self?.setComponentCollectionViews()
-            self?.addThumbnailImageViews()
+            self?.setComponentCollectionViews(count)
+            self?.addThumbnailImageViews(count)
         }
         
         let categoryId = categoryComponentManager.category(of: 0)?.id
