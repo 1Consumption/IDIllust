@@ -30,8 +30,8 @@ struct EndPoint {
     enum Path {
         case entry
         case categories
-        case components(Int)
-        case thumbnail(Int, Int)
+        case components(categoryId: Int)
+        case thumbnail(categoryId: Int, componentId: Int)
         
         var description: String {
             switch self {

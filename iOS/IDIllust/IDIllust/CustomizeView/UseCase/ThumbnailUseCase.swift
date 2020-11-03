@@ -20,7 +20,7 @@ struct ThumbnailUseCase: RetrieveModelFromServer {
             return nil
         }
         
-        let endPoint = EndPoint(path: .thumbnail(categoryId, componentId))
+        let endPoint = EndPoint(path: .thumbnail(categoryId: categoryId, componentId: componentId))
         
         return retrieveModel(from: endPoint, networkManager: networkManager, failurehandler: failurehandler, successHandler: successHandler)
     }

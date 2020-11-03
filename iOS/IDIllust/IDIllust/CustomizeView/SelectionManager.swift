@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SelectionManager {
+final class SelectionManager {
     
     // categoryId: ComponentId
     private(set) var selection: [Int: Int] = [Int: Int]()
@@ -41,12 +41,12 @@ class SelectionManager {
     }
     
     private func setSelection(current: CurrentSelection) {
-        guard let categoryId = current.categoryId, let componetnId = current.componentId else { return }
-        selection[categoryId] = componetnId
+        guard let categoryId = current.categoryId, let componentId = current.componentId else { return }
+        selection[categoryId] = componentId
     }
 }
 
-class CurrentSelection {
+final class CurrentSelection {
     var categoryIndex: Int?
     var categoryId: Int?
     var componentId: Int?

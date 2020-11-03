@@ -19,7 +19,6 @@ final class CustomizeViewController: UIViewController {
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
     private var thumbnailImageViews: [UIImageView] = [UIImageView]()
-    private var componentCollectionViewDelegate: ComponentCollectionViewDelegate? = ComponentCollectionViewDelegate()
     private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     private let selectionManager: SelectionManager = SelectionManager()
@@ -32,11 +31,6 @@ final class CustomizeViewController: UIViewController {
         componentScrollView.delegate = self
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        componentCollectionViewDelegate = nil
-    }
-    
     // MARK: - Methods
     private func setCategoryCollectionView() {
         categoryCollectionView.setSquarCell(factor: categoryCollectionView.frame.height)
@@ -44,9 +38,7 @@ final class CustomizeViewController: UIViewController {
         categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)
     }
     
-    private func setComponentCollectionViews() {
-        guard let count = categoryComponentManager.categoryCount else { return }
-        
+    private func setComponentCollectionViews(_ count: Int) {
         for _ in 0..<count {
             let dataSource = ComponentCollectionViewDataSource()
             componentCollectionViewDataSources.append(dataSource)
@@ -56,13 +48,11 @@ final class CustomizeViewController: UIViewController {
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
             collectionView.dataSource = dataSource
             collectionView.backgroundColor = .systemBackground
-            collectionView.delegate = componentCollectionViewDelegate
+            collectionView.delegate = self
         }
     }
     
-    private func addThumbnailImageViews() {
-        guard let count = categoryComponentManager.categoryCount else { return }
-        
+    private func addThumbnailImageViews(_ count: Int) {
         for _ in 0..<count {
             let imageView = UIImageView()
             imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -118,10 +108,12 @@ final class CustomizeViewController: UIViewController {
     
     private func tasksForCategoryChanged() {
         categoryCollectionViewDataSource.categories = categoryComponentManager.categories
+        guard let count = categoryComponentManager.categoryCount else { return }
+        
         DispatchQueue.main.async { [weak self] in
             self?.setCategoryCollectionView()
-            self?.setComponentCollectionViews()
-            self?.addThumbnailImageViews()
+            self?.setComponentCollectionViews(count)
+            self?.addThumbnailImageViews(count)
         }
         
         let categoryId = categoryComponentManager.category(of: 0)?.id
@@ -247,8 +239,17 @@ final class CustomizeViewController: UIViewController {
     }
 }
 
+extension CustomizeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        ComponentCollectionViewEvent.didSelect(selectedIndexPath: indexPath).post()
+    }
+}
+
 extension CustomizeViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        guard !(scrollView is UICollectionView) else { return }
+        
         let curX = scrollView.contentOffset.x
         let width = view.frame.width
         let index = Int(curX / width)
