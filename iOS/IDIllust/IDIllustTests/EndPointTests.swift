@@ -22,12 +22,12 @@ final class EndPointTests: XCTestCase {
     }
     
     func testComponentsEndPointValid() {
-        let components = EndPoint(path: .components(1))
+        let components = EndPoint(path: .components(categoryId: 1))
         XCTAssertEqual(components.url, URL(string: "http://3.34.77.7/api/categories/1/components"))
     }
     
     func testThumbnailEndPointValid() {
-        let thumbnail = EndPoint(path: .thumbnail(1, 1))
+        let thumbnail = EndPoint(path: .thumbnail(categoryId: 1, componentId: 1))
         XCTAssertEqual(thumbnail.url, URL(string: "http://3.34.77.7/api/categories/1/components/1"))
     }
 }
