@@ -22,7 +22,6 @@ public class Component {
 
     private String thumbUrl;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "component")
     private List<Color> colors;
 
