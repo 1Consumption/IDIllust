@@ -22,6 +22,8 @@ public class Category {
 
     private String url;
 
+    private String highlightingUrl;
+
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<Component> componentList;
