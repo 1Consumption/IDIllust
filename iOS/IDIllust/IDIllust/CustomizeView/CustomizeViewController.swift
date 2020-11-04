@@ -171,10 +171,12 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func correct(categoryIndex: inout Int) {
+        guard let numOfCategories = categoryComponentManager.categoryCount else { return }
+        
         categoryIndex += 1
-        if categoryIndex >= 9 {
+        
+        guard categoryIndex >= numOfCategories else { return }
             categoryIndex = 0
-        }
     }
     
     private func changeComponentSelection(_ categoryId: Int, _ componentId: Int) {
