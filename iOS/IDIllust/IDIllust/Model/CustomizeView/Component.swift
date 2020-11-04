@@ -24,4 +24,12 @@ struct Component: Decodable {
     let id: Int
     let name: String
     let thumbUrl: String
+    let colors: [Color]
+}
+
+struct Color: Decodable {
+    
+    let id: Int
+    let name: String
+    let url: String
 }

@@ -16,12 +16,14 @@ final class CategoryComponentManagerTests: XCTestCase {
     private var categories: Categories!
     private var component: Component!
     private var components: Components!
+    private var colors: [Color]!
 
     override func setUpWithError() throws {
         categoryComponentManager = CategoryComponentManager()
         category = IDIllust.Category(id: 1, name: "category", url: "url")
         categories = Categories(models: [category])
-        component = Component(id: 1, name: "component", thumbUrl: "url")
+        colors = [Color(id: 1, name: "color", url: "url")]
+        component = Component(id: 1, name: "component", thumbUrl: "url", colors: colors)
         components = Components(models: [component])
     }
     
