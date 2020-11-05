@@ -12,6 +12,7 @@ final class ColorSelectViewController: UIViewController {
     
     // MARK: properties
     @IBOutlet weak var colorSelectCollectionView: UICollectionView!
+    var colors: [Color]?
     
     // MARK: LifeCycles
     override func viewDidLoad() {
@@ -60,11 +61,14 @@ final class ColorSelectViewController: UIViewController {
 
 extension ColorSelectViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return colors?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorSelectCollectionViewCell.identifier, for: indexPath) as? ColorSelectCollectionViewCell else { return UICollectionViewCell() }
+        guard let url = colors?[indexPath.item].url else { return cell }
+        cell.colorImageView.kf.indicatorType = .activity
+        cell.colorImageView.kf.setImage(with: URL(string: url))
         return cell
     }
 }

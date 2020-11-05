@@ -143,16 +143,16 @@ final class CustomizeViewController: UIViewController {
         point.x = view.frame.width - colorSelectView.frame.width
     }
     
-    private func showColorSelectView(_ point: CGPoint) {
-        guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
-        var convertedPoint = point.convert(to: [componentCollectionViews[selected], componentsStackView, view])
+    private func setColorSelectView(_ point: CGPoint, _ componentIndexPath: IndexPath) {
+        guard let selected = selectionManager.current.categoryIndex else { return }
+        guard let categoryId = selectionManager.current.categoryId else { return }
+        let convertedPoint = point.convert(to: [componentCollectionViews[selected], componentsStackView, view])
+        colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
         
-        correct(point: &convertedPoint)
+        guard let colorSelectViewController = children.first as? ColorSelectViewController else { return }
         
-        setColorSelectViewFrame(origin: convertedPoint)
-        
-        colorSelectView.isHidden = false
-        UIDevice.vibrate(style: .light)
+        let colors = categoryComponentManager.component(categoryId, componentIndexPath.item)?.colors
+        colorSelectViewController.colors = colors
     }
     
     private func hideColorSelectView() {
@@ -176,7 +176,7 @@ final class CustomizeViewController: UIViewController {
         categoryIndex += 1
         
         guard categoryIndex >= numOfCategories else { return }
-            categoryIndex = 0
+        categoryIndex = 0
     }
     
     private func changeComponentSelection(_ categoryId: Int, _ componentId: Int) {
@@ -227,15 +227,15 @@ final class CustomizeViewController: UIViewController {
         guard let object = notification.object as? ComponentCollectionViewEvent else { return }
         
         switch object {
-        case .longPressBegan(let origin, _): showColorSelectView(origin)
+        case .longPressBegan(let origin, let indexPath): setColorSelectView(origin, indexPath)
         case .longPressEnded: hideColorSelectView()
-        
+            
         case .didSelect(let indexPath):
             guard let categoryId = selectionManager.current.categoryId else { return }
             guard let componentId = categoryComponentManager.component(categoryId, indexPath.item)?.id else { return }
             
             changeComponentSelection(categoryId, componentId)
-        
+            
         default: break
         }
     }
