@@ -152,6 +152,7 @@ final class CustomizeViewController: UIViewController {
         guard let colorSelectViewController = children.first as? ColorSelectViewController else { return }
         
         let colors = categoryComponentManager.component(categoryId, componentIndexPath.item)?.colors
+        colorSelectViewController.colorChangedDelegate = self
         colorSelectViewController.colors = colors
     }
     
@@ -271,5 +272,10 @@ extension CustomizeViewController: UIScrollViewDelegate {
             setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
             return
         }
+    }
+}
+
+extension CustomizeViewController: ColorChangedDelegate {
+    func completionHandler(_ colorSelectCollectionView: UICollectionView?) {
     }
 }

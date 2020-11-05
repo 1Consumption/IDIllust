@@ -8,11 +8,29 @@
 
 import UIKit
 
+protocol ColorChangedDelegate: AnyObject {
+    func completionHandler(_ colorSelectCollectionView: UICollectionView?)
+}
+
 final class ColorSelectViewController: UIViewController {
     
     // MARK: properties
     @IBOutlet weak var colorSelectCollectionView: UICollectionView!
-    var colors: [Color]?
+    private let reloadQueue = DispatchQueue(label: "reloadQueue")
+    weak var colorChangedDelegate: ColorChangedDelegate?
+    var colors: [Color]? {
+        didSet {
+            reloadQueue.async {
+                DispatchQueue.main.sync { [weak self] in
+                    self?.colorSelectCollectionView.reloadData()
+                }
+            }
+            
+            reloadQueue.async { [weak self] in
+                self?.colorChangedDelegate?.completionHandler(self?.colorSelectCollectionView)
+            }
+        }
+    }
     
     // MARK: LifeCycles
     override func viewDidLoad() {
