@@ -130,17 +130,21 @@ final class CustomizeViewController: UIViewController {
         }
     }
     
-    private func setColorSelectViewFrame(origin: CGPoint) {
-        guard let colorSelectVC = children.first as? ColorSelectViewController else { return }
-        colorSelectView.frame = CGRect(origin: origin, size: colorSelectVC.colorSelectCollectionView.contentSize)
+    private func setColorSelectViewFrame(size: CGSize?) {
+        guard let size = size else { return }
+        colorSelectView.frame = CGRect(origin: colorSelectView.frame.origin, size: size)
     }
     
-    private func correct(point: inout CGPoint) {
-        point.y -= colorSelectView.frame.height / 1.5
+    private func correctColorSelectViewOrigin() {
+        var mutablePoint = colorSelectView.frame.origin
         
-        guard point.x + colorSelectView.frame.width >= view.frame.width else { return }
+        mutablePoint.y -= colorSelectView.frame.height / 1.5
         
-        point.x = view.frame.width - colorSelectView.frame.width
+        if colorSelectView.frame.maxX >= view.frame.width {
+            mutablePoint.x = view.frame.width - colorSelectView.frame.width
+        }
+        
+        colorSelectView.frame = CGRect(origin: mutablePoint, size: colorSelectView.frame.size)
     }
     
     private func setColorSelectView(_ point: CGPoint, _ componentIndexPath: IndexPath) {
@@ -277,5 +281,12 @@ extension CustomizeViewController: UIScrollViewDelegate {
 
 extension CustomizeViewController: ColorChangedDelegate {
     func completionHandler(_ colorSelectCollectionView: UICollectionView?) {
+        DispatchQueue.main.async { [weak self] in
+            self?.setColorSelectViewFrame(size: colorSelectCollectionView?.contentSize)
+            self?.correctColorSelectViewOrigin()
+            self?.colorSelectView.isHidden = false
+        }
+        
+        UIDevice.vibrate(style: .light)
     }
 }
