@@ -156,12 +156,8 @@ final class CustomizeViewController: UIViewController {
         guard let colorSelectViewController = children.first as? ColorSelectViewController else { return }
         
         let colors = categoryComponentManager.component(categoryId, componentIndexPath.item)?.colors
-        colorSelectViewController.colorChangedDelegate = self
+        colorSelectViewController.delegate = self
         colorSelectViewController.colors = colors
-    }
-    
-    private func hideColorSelectView() {
-        colorSelectView.isHidden = true
     }
     
     private func retrieveThumbnail(current: CurrentSelection) {
@@ -278,8 +274,8 @@ extension CustomizeViewController: UIScrollViewDelegate {
     }
 }
 
-extension CustomizeViewController: ColorChangedDelegate {
-    func completionHandler(_ colorSelectCollectionView: UICollectionView?) {
+extension CustomizeViewController: ColorSelectViewControllerDelegate {
+    func colorSelectCollectionViewReloaded(_ colorSelectCollectionView: UICollectionView?) {
         DispatchQueue.main.async { [weak self] in
             self?.setColorSelectViewFrame(size: colorSelectCollectionView?.contentSize)
             self?.correctColorSelectViewOrigin()
@@ -287,5 +283,11 @@ extension CustomizeViewController: ColorChangedDelegate {
         }
         
         UIDevice.vibrate(style: .light)
+    }
+    
+    func colorSelected(_ colorId: Int?) {
+        DispatchQueue.main.async { [weak self] in
+            self?.colorSelectView.isHidden = true
+        }
     }
 }

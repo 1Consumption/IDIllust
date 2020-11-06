@@ -8,8 +8,9 @@
 
 import UIKit
 
-protocol ColorChangedDelegate: AnyObject {
-    func completionHandler(_ colorSelectCollectionView: UICollectionView?)
+protocol ColorSelectViewControllerDelegate: AnyObject {
+    func colorSelectCollectionViewReloaded(_ colorSelectCollectionView: UICollectionView?)
+    func colorSelected(_ colorId: Int?)
 }
 
 final class ColorSelectViewController: UIViewController {
@@ -17,7 +18,7 @@ final class ColorSelectViewController: UIViewController {
     // MARK: properties
     @IBOutlet weak var colorSelectCollectionView: UICollectionView!
     private let reloadQueue = DispatchQueue(label: "reloadQueue")
-    weak var colorChangedDelegate: ColorChangedDelegate?
+    weak var delegate: ColorSelectViewControllerDelegate?
     var colors: [Color]? {
         didSet {
             reloadQueue.async {
@@ -27,7 +28,7 @@ final class ColorSelectViewController: UIViewController {
             }
             
             reloadQueue.async { [weak self] in
-                self?.colorChangedDelegate?.completionHandler(self?.colorSelectCollectionView)
+                self?.delegate?.colorSelectCollectionViewReloaded(self?.colorSelectCollectionView)
             }
         }
     }
@@ -73,6 +74,13 @@ final class ColorSelectViewController: UIViewController {
             UIDevice.vibrate(style: .light)
             
         case .longPressEnded:
+            guard let selected = colorSelectCollectionView.indexPathsForSelectedItems?.first?.item else {
+                delegate?.colorSelected(nil)
+                return
+            }
+
+            delegate?.colorSelected(colors?[selected].id)
+            
         default: break
         }
     }
