@@ -286,6 +286,7 @@ extension CustomizeViewController: ColorSelectViewControllerDelegate {
     }
     
     func colorSelected(_ colorId: Int?) {
+        selectionManager.setCurrent(colorId: colorId)
         DispatchQueue.main.async { [weak self] in
             self?.colorSelectView.isHidden = true
         }
