@@ -10,8 +10,8 @@ import Foundation
 
 final class SelectionManager {
     
-    // categoryId: ComponentId
-    private(set) var selection: [Int: Int] = [Int: Int]()
+    // categoryId: ComponentInfo(componentId, colorId)
+    private(set) var selection: [Int: ComponentInfo] = [Int: ComponentInfo]()
     private(set) var current: CurrentSelection = CurrentSelection()
     
     func setCurrent(categoryId: Int?, categoryIndex: Int?) {
@@ -20,34 +20,47 @@ final class SelectionManager {
     }
     
     func setCurrent(componentId: Int?) {
-        current.componentId = componentId
+        current.componentInfo = ComponentInfo()
+        current.componentInfo?.componentId = componentId
+        
+        setSelection(current: current)
+    }
+    
+    func setCurrent(colorId: Int?) {
+        current.componentInfo?.corlorId = colorId
         
         setSelection(current: current)
     }
     
     func isSelectedComponent(categoryId: Int, componentId: Int) -> Bool {
-        return selection[categoryId] == componentId
+        return selection[categoryId]?.componentId == componentId
     }
     
     @discardableResult
-    func removeCurrentComponent() -> Int? {
+    func removeCurrentComponent() -> ComponentInfo? {
         guard let categoryId = current.categoryId else { return nil }
         
-        let componentId = selection[categoryId]
-        selection[categoryId] = nil
-        current.componentId = nil
+        let componentInfo = selection[categoryId]
         
-        return componentId
+        selection[categoryId] = nil
+        current.componentInfo = nil
+        
+        return componentInfo
     }
     
     private func setSelection(current: CurrentSelection) {
-        guard let categoryId = current.categoryId, let componentId = current.componentId else { return }
-        selection[categoryId] = componentId
+        guard let categoryId = current.categoryId, let componentInfo = current.componentInfo else { return }
+        selection[categoryId] = componentInfo
     }
 }
 
-final class CurrentSelection {
+struct CurrentSelection {
     var categoryIndex: Int?
     var categoryId: Int?
+    var componentInfo: ComponentInfo?
+}
+
+struct ComponentInfo {
     var componentId: Int?
+    var corlorId: Int?
 }
