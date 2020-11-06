@@ -165,7 +165,7 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func retrieveThumbnail(current: CurrentSelection) {
-        ThumbnailUseCase().retrieveThumbnail(current.categoryId, current.componentInfo?.componentId, networkManager: NetworkManager(), successHandler: { model in
+        ThumbnailUseCase().retrieveThumbnail(selectionManager.current, networkManager: NetworkManager(), successHandler: { model in
             DispatchQueue.main.async { [weak self] in
                 guard var categoryIndex = current.categoryIndex else { return }
                 
