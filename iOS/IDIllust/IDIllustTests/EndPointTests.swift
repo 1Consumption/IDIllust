@@ -29,5 +29,8 @@ final class EndPointTests: XCTestCase {
     func testThumbnailEndPointValid() {
         let thumbnail = EndPoint(path: .thumbnail(categoryId: 1, componentId: 1))
         XCTAssertEqual(thumbnail.url, URL(string: "http://3.34.77.7/api/categories/1/components/1"))
+        
+        let thumbnailWithColorId = EndPoint(path: .thumbnail(categoryId: 1, componentId: 1, colorId: 2))
+        XCTAssertEqual(thumbnailWithColorId.url, URL(string: "http://3.34.77.7/api/categories/1/components/1/colors/2"))
     }
 }
