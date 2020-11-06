@@ -295,8 +295,10 @@ extension CustomizeViewController: ColorSelectViewControllerDelegate {
         let componentIndexPath = selectionManager.current.componentInfo?.componentIndexPath
 
         DispatchQueue.main.async { [weak self] in
-            self?.componentCollectionViews[categoryIndex].selectItem(at: componentIndexPath, animated: false, scrollPosition: .bottom)
+            self?.componentCollectionViews[categoryIndex].selectItem(at: componentIndexPath, animated: false, scrollPosition: .right)
             self?.colorSelectView.isHidden = true
         }
+        
+        retrieveThumbnail(current: selectionManager.current)
     }
 }
