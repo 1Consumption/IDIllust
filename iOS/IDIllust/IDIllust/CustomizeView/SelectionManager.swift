@@ -19,9 +19,10 @@ final class SelectionManager {
         current.categoryIndex = categoryIndex
     }
     
-    func setCurrent(componentId: Int?) {
+    func setCurrent(componentId: Int?, componentIndexPath: IndexPath? = nil) {
         current.componentInfo = ComponentInfo()
         current.componentInfo?.componentId = componentId
+        current.componentInfo?.componentIndexPath = componentIndexPath
         
         setSelection(current: current)
     }
@@ -62,5 +63,6 @@ struct CurrentSelection {
 
 struct ComponentInfo {
     var componentId: Int?
+    var componentIndexPath: IndexPath?
     var corlorId: Int?
 }

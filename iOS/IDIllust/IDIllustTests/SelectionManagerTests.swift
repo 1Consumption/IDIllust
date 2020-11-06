@@ -16,6 +16,7 @@ class SelectionManagerTests: XCTestCase {
     private let categoryId = 0
     private var componentInfo = ComponentInfo()
     private let componentId = 1
+    private let componentIndexPath = IndexPath(item: 0, section: 0)
     private let colorId = 2
     
     override func setUpWithError() throws {
@@ -35,6 +36,15 @@ class SelectionManagerTests: XCTestCase {
         componentInfo.componentId = componentId
         currentSelection.componentInfo = componentInfo
         selectionManager.setCurrent(componentId: componentInfo.componentId)
+        
+        XCTAssertEqual(selectionManager.current, currentSelection)
+        
+        selectionManager.removeCurrentComponent()
+        
+        componentInfo.componentId = componentId
+        componentInfo.componentIndexPath = componentIndexPath
+        currentSelection.componentInfo = componentInfo
+        selectionManager.setCurrent(componentId: componentId, componentIndexPath: componentIndexPath)
         
         XCTAssertEqual(selectionManager.current, currentSelection)
     }

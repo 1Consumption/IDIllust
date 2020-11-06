@@ -16,6 +16,6 @@ extension CurrentSelection: Equatable {
 
 extension ComponentInfo: Equatable {
     public static func == (lhs: ComponentInfo, rhs: ComponentInfo) -> Bool {
-        return lhs.componentId == rhs.componentId && lhs.corlorId == rhs.corlorId
+        return lhs.componentId == rhs.componentId && lhs.componentIndexPath == rhs.componentIndexPath && lhs.corlorId == rhs.corlorId
     }
 }

@@ -155,9 +155,13 @@ final class CustomizeViewController: UIViewController {
         
         guard let colorSelectViewController = children.first as? ColorSelectViewController else { return }
         
-        let colors = categoryComponentManager.component(categoryId, componentIndexPath.item)?.colors
+        let component = categoryComponentManager.component(categoryId, componentIndexPath.item)
+        let colors = component?.colors
+        
         colorSelectViewController.delegate = self
         colorSelectViewController.colors = colors
+        
+        selectionManager.setCurrent(componentId: component?.id, componentIndexPath: componentIndexPath)
     }
     
     private func retrieveThumbnail(current: CurrentSelection) {
@@ -287,7 +291,11 @@ extension CustomizeViewController: ColorSelectViewControllerDelegate {
     
     func colorSelected(_ colorId: Int?) {
         selectionManager.setCurrent(colorId: colorId)
+        guard let categoryIndex = selectionManager.current.categoryIndex else { return }
+        let componentIndexPath = selectionManager.current.componentInfo?.componentIndexPath
+
         DispatchQueue.main.async { [weak self] in
+            self?.componentCollectionViews[categoryIndex].selectItem(at: componentIndexPath, animated: false, scrollPosition: .bottom)
             self?.colorSelectView.isHidden = true
         }
     }
