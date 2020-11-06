@@ -233,7 +233,6 @@ final class CustomizeViewController: UIViewController {
         
         switch object {
         case .longPressBegan(let origin, let indexPath): setColorSelectView(origin, indexPath)
-        case .longPressEnded: hideColorSelectView()
             
         case .didSelect(let indexPath):
             guard let categoryId = selectionManager.current.categoryId else { return }

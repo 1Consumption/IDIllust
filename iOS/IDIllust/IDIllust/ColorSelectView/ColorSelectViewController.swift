@@ -72,6 +72,7 @@ final class ColorSelectViewController: UIViewController {
             colorSelectCollectionView.selectItem(at: currentIndexPath, animated: false, scrollPosition: .left)
             UIDevice.vibrate(style: .light)
             
+        case .longPressEnded:
         default: break
         }
     }
