@@ -15,7 +15,7 @@ class ComponentsUseCaseTests: XCTestCase {
     private var model: Components!
 
     override func setUpWithError() throws {
-        let component = IDIllust.Component(id: 1, name: "test", thumbUrl: "url")
+        let component = IDIllust.Component(id: 1, name: "test", thumbUrl: "url", colors: [Color(id: 1, name: "test", url: "url")])
         model = Components(models: [component])
     }
     

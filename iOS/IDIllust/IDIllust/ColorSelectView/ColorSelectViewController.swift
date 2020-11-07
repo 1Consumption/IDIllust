@@ -8,10 +8,40 @@
 
 import UIKit
 
+protocol ColorSelectViewControllerDelegate: AnyObject {
+    func colorSelectCollectionViewReloaded(_ colorSelectCollectionView: UICollectionView?)
+    func colorSelected(_ colorId: Int?)
+}
+
 final class ColorSelectViewController: UIViewController {
     
     // MARK: properties
     @IBOutlet weak var colorSelectCollectionView: UICollectionView!
+    private let reloadQueue = DispatchQueue(label: "reloadQueue")
+    weak var delegate: ColorSelectViewControllerDelegate?
+    var colors: [Color]? {
+        didSet {
+            reloadQueue.async {
+                DispatchQueue.main.sync { [weak self] in
+                    self?.colorSelectCollectionView.reloadData()
+                }
+            }
+            
+            reloadQueue.async { [weak self] in
+                guard let id = self?.selectedId else { return }
+                guard let selectedIndex = self?.colorIndex(of: id) else { return }
+                
+                DispatchQueue.main.async {
+                    self?.colorSelectCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: false, scrollPosition: .top)
+                }
+            }
+            
+            reloadQueue.async { [weak self] in
+                self?.delegate?.colorSelectCollectionViewReloaded(self?.colorSelectCollectionView)
+            }
+        }
+    }
+    var selectedId: Int?
     
     // MARK: LifeCycles
     override func viewDidLoad() {
@@ -36,6 +66,14 @@ final class ColorSelectViewController: UIViewController {
                                                object: nil)
     }
     
+    private func colorIndex(of colorId: Int) -> Int? {
+        for index in 0..<(colors?.count ?? 0) where colors?[index].id == colorId {
+            return index
+        }
+        
+        return nil
+    }
+    
     // MARK: @objc
     @objc func selectCell(_ notification: Notification) {
         guard let object = notification.object as? ComponentCollectionViewEvent else { return }
@@ -49,9 +87,17 @@ final class ColorSelectViewController: UIViewController {
             let selectedIndexPath = colorSelectCollectionView.indexPathsForSelectedItems?.first
             
             guard selectedIndexPath != currentIndexPath else { return }
-                
+            
             colorSelectCollectionView.selectItem(at: currentIndexPath, animated: false, scrollPosition: .left)
             UIDevice.vibrate(style: .light)
+            
+        case .longPressEnded:
+            guard let selected = colorSelectCollectionView.indexPathsForSelectedItems?.first?.item else {
+                delegate?.colorSelected(nil)
+                return
+            }
+            
+            delegate?.colorSelected(colors?[selected].id)
             
         default: break
         }
@@ -60,11 +106,14 @@ final class ColorSelectViewController: UIViewController {
 
 extension ColorSelectViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return colors?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorSelectCollectionViewCell.identifier, for: indexPath) as? ColorSelectCollectionViewCell else { return UICollectionViewCell() }
+        guard let url = colors?[indexPath.item].url else { return cell }
+        cell.colorImageView.kf.indicatorType = .activity
+        cell.colorImageView.kf.setImage(with: URL(string: url))
         return cell
     }
 }

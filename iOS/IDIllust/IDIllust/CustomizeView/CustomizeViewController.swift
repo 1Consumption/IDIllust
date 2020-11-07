@@ -130,37 +130,43 @@ final class CustomizeViewController: UIViewController {
         }
     }
     
-    private func setColorSelectViewFrame(origin: CGPoint) {
-        guard let colorSelectVC = children.first as? ColorSelectViewController else { return }
-        colorSelectView.frame = CGRect(origin: origin, size: colorSelectVC.colorSelectCollectionView.contentSize)
+    private func setColorSelectViewFrame(size: CGSize?) {
+        guard let size = size else { return }
+        colorSelectView.frame = CGRect(origin: colorSelectView.frame.origin, size: size)
     }
     
-    private func correct(point: inout CGPoint) {
-        point.y -= colorSelectView.frame.height / 1.5
+    private func correctColorSelectViewOrigin() {
+        var mutablePoint = colorSelectView.frame.origin
         
-        guard point.x + colorSelectView.frame.width >= view.frame.width else { return }
+        mutablePoint.y -= colorSelectView.frame.height / 1.5
         
-        point.x = view.frame.width - colorSelectView.frame.width
+        if colorSelectView.frame.maxX >= view.frame.width {
+            mutablePoint.x = view.frame.width - colorSelectView.frame.width
+        }
+        
+        colorSelectView.frame = CGRect(origin: mutablePoint, size: colorSelectView.frame.size)
     }
     
-    private func showColorSelectView(_ point: CGPoint) {
-        guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
-        var convertedPoint = point.convert(to: [componentCollectionViews[selected], componentsStackView, view])
+    private func setColorSelectView(_ point: CGPoint, _ componentIndexPath: IndexPath) {
+        guard let selected = selectionManager.current.categoryIndex else { return }
+        guard let categoryId = selectionManager.current.categoryId else { return }
+        let convertedPoint = point.convert(to: [componentCollectionViews[selected], componentsStackView, view])
+        colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
         
-        correct(point: &convertedPoint)
+        guard let colorSelectViewController = children.first as? ColorSelectViewController else { return }
         
-        setColorSelectViewFrame(origin: convertedPoint)
+        let component = categoryComponentManager.component(categoryId, componentIndexPath.item)
+        let colors = component?.colors
         
-        colorSelectView.isHidden = false
-        UIDevice.vibrate(style: .light)
-    }
-    
-    private func hideColorSelectView() {
-        colorSelectView.isHidden = true
+        colorSelectViewController.delegate = self
+        colorSelectViewController.selectedId = selectionManager.colorSelectionForEachComponent[component?.id] ?? colors?.first?.id
+        colorSelectViewController.colors = colors
+        
+        selectionManager.setCurrent(componentId: component?.id, componentIndexPath: componentIndexPath)
     }
     
     private func retrieveThumbnail(current: CurrentSelection) {
-        ThumbnailUseCase().retrieveThumbnail(current.categoryId, current.componentId, networkManager: NetworkManager(), successHandler: { model in
+        ThumbnailUseCase().retrieveThumbnail(selectionManager.current, networkManager: NetworkManager(), successHandler: { model in
             DispatchQueue.main.async { [weak self] in
                 guard var categoryIndex = current.categoryIndex else { return }
                 
@@ -171,10 +177,12 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func correct(categoryIndex: inout Int) {
+        guard let numOfCategories = categoryComponentManager.categoryCount else { return }
+        
         categoryIndex += 1
-        if categoryIndex >= 9 {
-            categoryIndex = 0
-        }
+        
+        guard categoryIndex >= numOfCategories else { return }
+        categoryIndex = 0
     }
     
     private func changeComponentSelection(_ categoryId: Int, _ componentId: Int) {
@@ -225,15 +233,14 @@ final class CustomizeViewController: UIViewController {
         guard let object = notification.object as? ComponentCollectionViewEvent else { return }
         
         switch object {
-        case .longPressBegan(let origin, _): showColorSelectView(origin)
-        case .longPressEnded: hideColorSelectView()
-        
+        case .longPressBegan(let origin, let indexPath): setColorSelectView(origin, indexPath)
+            
         case .didSelect(let indexPath):
             guard let categoryId = selectionManager.current.categoryId else { return }
             guard let componentId = categoryComponentManager.component(categoryId, indexPath.item)?.id else { return }
             
             changeComponentSelection(categoryId, componentId)
-        
+            
         default: break
         }
     }
@@ -269,5 +276,30 @@ extension CustomizeViewController: UIScrollViewDelegate {
             setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
             return
         }
+    }
+}
+
+extension CustomizeViewController: ColorSelectViewControllerDelegate {
+    func colorSelectCollectionViewReloaded(_ colorSelectCollectionView: UICollectionView?) {
+        DispatchQueue.main.async { [weak self] in
+            self?.setColorSelectViewFrame(size: colorSelectCollectionView?.contentSize)
+            self?.correctColorSelectViewOrigin()
+            self?.colorSelectView.isHidden = false
+        }
+        
+        UIDevice.vibrate(style: .light)
+    }
+    
+    func colorSelected(_ colorId: Int?) {
+        selectionManager.setCurrent(colorId: colorId)
+        guard let categoryIndex = selectionManager.current.categoryIndex else { return }
+        let componentIndexPath = selectionManager.current.componentInfo?.componentIndexPath
+
+        DispatchQueue.main.async { [weak self] in
+            self?.componentCollectionViews[categoryIndex].selectItem(at: componentIndexPath, animated: false, scrollPosition: .right)
+            self?.colorSelectView.isHidden = true
+        }
+        
+        retrieveThumbnail(current: selectionManager.current)
     }
 }

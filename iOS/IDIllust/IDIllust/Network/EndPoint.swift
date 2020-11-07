@@ -31,7 +31,7 @@ struct EndPoint {
         case entry
         case categories
         case components(categoryId: Int)
-        case thumbnail(categoryId: Int, componentId: Int)
+        case thumbnail(categoryId: Int, componentId: Int, colorId: Int? = nil)
         
         var description: String {
             switch self {
@@ -41,8 +41,10 @@ struct EndPoint {
                 return "/api/categories"
             case .components(let categoryId):
                 return "/api/categories/\(categoryId)/components"
-            case .thumbnail(let categoryId, let componentId):
-                return "/api/categories/\(categoryId)/components/\(componentId)"
+            case .thumbnail(let categoryId, let componentId, let colorId):
+                guard let colorId = colorId else { return "/api/categories/\(categoryId)/components/\(componentId)" }
+                
+                return "/api/categories/\(categoryId)/components/\(componentId)/colors/\(colorId)"
             }
         }
     }
