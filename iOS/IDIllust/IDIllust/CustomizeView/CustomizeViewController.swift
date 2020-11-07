@@ -159,6 +159,7 @@ final class CustomizeViewController: UIViewController {
         let colors = component?.colors
         
         colorSelectViewController.delegate = self
+        colorSelectViewController.selectedId = selectionManager.colorSelectionForEachComponent[component?.id] ?? colors?.first?.id
         colorSelectViewController.colors = colors
         
         selectionManager.setCurrent(componentId: component?.id, componentIndexPath: componentIndexPath)

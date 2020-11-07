@@ -22,24 +22,28 @@ class SelectionManagerTests: XCTestCase {
     override func setUpWithError() throws {
         selectionManager = SelectionManager()
         currentSelection = CurrentSelection()
+        
+        componentInfo.componentId = componentId
+        componentInfo.colorId = colorId
+        
+        currentSelection.categoryId = categoryId
+        currentSelection.categoryIndex = 0
+        currentSelection.componentInfo = componentInfo
+        
+        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: 0)
+        selectionManager.setCurrent(componentId: componentInfo.componentId)
+        selectionManager.setCurrent(colorId: componentInfo.colorId)
     }
     
     func testSetCurrentCategoryIdCategoryIndex() {
-        currentSelection.categoryId = categoryId
-        currentSelection.categoryIndex = 0
-        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: 0)
-        
         XCTAssertEqual(selectionManager.current, currentSelection)
     }
     
     func testSetCurrentComponentId() {
-        componentInfo.componentId = componentId
-        currentSelection.componentInfo = componentInfo
-        selectionManager.setCurrent(componentId: componentInfo.componentId)
-        
         XCTAssertEqual(selectionManager.current, currentSelection)
         
         selectionManager.removeCurrentComponent()
+        componentInfo.colorId = nil
         
         componentInfo.componentId = componentId
         componentInfo.componentIndexPath = componentIndexPath
@@ -50,46 +54,33 @@ class SelectionManagerTests: XCTestCase {
     }
     
     func testSetCurrentColorId() {
-        componentInfo.componentId = componentId
-        componentInfo.corlorId = colorId
-        
-        selectionManager.setCurrent(componentId: componentId)
-        selectionManager.setCurrent(colorId: colorId)
-        
+        XCTAssertEqual(selectionManager.colorSelectionForEachComponent[componentId], colorId)
         XCTAssertEqual(selectionManager.current.componentInfo, componentInfo)
         
-        componentInfo.corlorId = 3
+        componentInfo.colorId = 3
         selectionManager.setCurrent(colorId: 3)
         
         XCTAssertEqual(selectionManager.current.componentInfo, componentInfo)
     }
     
     func testSelectionValid() {
-        componentInfo.componentId = componentId
-        
-        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: 0)
-        selectionManager.setCurrent(componentId: componentId)
-        
         XCTAssertEqual(selectionManager.selection, [categoryId: componentInfo])
     }
     
     func testIsSelectedComponent() {
-        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: 0)
-        selectionManager.setCurrent(componentId: componentId)
-        
         XCTAssertTrue(selectionManager.isSelectedComponent(categoryId: categoryId, componentId: componentId))
         XCTAssertFalse(selectionManager.isSelectedComponent(categoryId: categoryId, componentId: 9))
     }
     
     func testRemoveCurrentComponent() {
-        XCTAssertNil(selectionManager.removeCurrentComponent())
+        XCTAssertEqual(selectionManager.removeCurrentComponent(), componentInfo)
         
         selectionManager.setCurrent(categoryId: categoryId, categoryIndex: 0)
         selectionManager.setCurrent(componentId: componentId)
         selectionManager.setCurrent(colorId: colorId)
         
         componentInfo.componentId = componentId
-        componentInfo.corlorId = colorId
+        componentInfo.colorId = colorId
         
         XCTAssertEqual(selectionManager.removeCurrentComponent(), componentInfo)
         

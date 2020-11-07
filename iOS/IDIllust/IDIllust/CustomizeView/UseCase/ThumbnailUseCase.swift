@@ -20,7 +20,7 @@ struct ThumbnailUseCase: RetrieveModelFromServer {
             return nil
         }
         
-        let colorId = currentSelection.componentInfo?.corlorId
+        let colorId = currentSelection.componentInfo?.colorId
         
         let endPoint = EndPoint(path: .thumbnail(categoryId: categoryId, componentId: componentId, colorId: colorId))
         

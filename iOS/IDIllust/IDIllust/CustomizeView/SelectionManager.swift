@@ -12,6 +12,8 @@ final class SelectionManager {
     
     // categoryId: ComponentInfo(componentId, colorId)
     private(set) var selection: [Int: ComponentInfo] = [Int: ComponentInfo]()
+    // componentId: colorId
+    private(set) var colorSelectionForEachComponent: [Int?: Int?] = [Int?: Int?]()
     private(set) var current: CurrentSelection = CurrentSelection()
     
     func setCurrent(categoryId: Int?, categoryIndex: Int?) {
@@ -28,7 +30,7 @@ final class SelectionManager {
     }
     
     func setCurrent(colorId: Int?) {
-        current.componentInfo?.corlorId = colorId
+        current.componentInfo?.colorId = colorId
         
         setSelection(current: current)
     }
@@ -52,6 +54,7 @@ final class SelectionManager {
     private func setSelection(current: CurrentSelection) {
         guard let categoryId = current.categoryId, let componentInfo = current.componentInfo else { return }
         selection[categoryId] = componentInfo
+        colorSelectionForEachComponent[componentInfo.componentId] = componentInfo.colorId
     }
 }
 
@@ -64,5 +67,5 @@ struct CurrentSelection {
 struct ComponentInfo {
     var componentId: Int?
     var componentIndexPath: IndexPath?
-    var corlorId: Int?
+    var colorId: Int?
 }

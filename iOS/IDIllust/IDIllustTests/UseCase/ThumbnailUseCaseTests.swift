@@ -20,7 +20,7 @@ class ThumbnailUseCaseTests: XCTestCase {
     
     func testSuccess() {
         mockNetworkManager = MockSuccessNetworkManager(model: model)
-        let componentInfo = ComponentInfo(componentId: 0, componentIndexPath: IndexPath(item: 0, section: 0), corlorId: 3)
+        let componentInfo = ComponentInfo(componentId: 0, componentIndexPath: IndexPath(item: 0, section: 0), colorId: 3)
         let currentSelection = CurrentSelection(categoryIndex: 1, categoryId: 2, componentInfo: componentInfo)
         ThumbnailUseCase().retrieveThumbnail(currentSelection, 
                                              networkManager: mockNetworkManager,
