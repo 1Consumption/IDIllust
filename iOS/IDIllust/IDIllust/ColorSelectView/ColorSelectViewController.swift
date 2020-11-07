@@ -28,10 +28,20 @@ final class ColorSelectViewController: UIViewController {
             }
             
             reloadQueue.async { [weak self] in
+                guard let id = self?.selectedId else { return }
+                guard let selectedIndex = self?.colorIndex(of: id) else { return }
+                
+                DispatchQueue.main.async {
+                    self?.colorSelectCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: false, scrollPosition: .top)
+                }
+            }
+            
+            reloadQueue.async { [weak self] in
                 self?.delegate?.colorSelectCollectionViewReloaded(self?.colorSelectCollectionView)
             }
         }
     }
+    var selectedId: Int?
     
     // MARK: LifeCycles
     override func viewDidLoad() {
@@ -56,6 +66,14 @@ final class ColorSelectViewController: UIViewController {
                                                object: nil)
     }
     
+    private func colorIndex(of colorId: Int) -> Int? {
+        for index in 0..<(colors?.count ?? 0) where colors?[index].id == colorId {
+            return index
+        }
+        
+        return nil
+    }
+    
     // MARK: @objc
     @objc func selectCell(_ notification: Notification) {
         guard let object = notification.object as? ComponentCollectionViewEvent else { return }
@@ -69,7 +87,7 @@ final class ColorSelectViewController: UIViewController {
             let selectedIndexPath = colorSelectCollectionView.indexPathsForSelectedItems?.first
             
             guard selectedIndexPath != currentIndexPath else { return }
-                
+            
             colorSelectCollectionView.selectItem(at: currentIndexPath, animated: false, scrollPosition: .left)
             UIDevice.vibrate(style: .light)
             
@@ -78,7 +96,7 @@ final class ColorSelectViewController: UIViewController {
                 delegate?.colorSelected(nil)
                 return
             }
-
+            
             delegate?.colorSelected(colors?[selected].id)
             
         default: break
