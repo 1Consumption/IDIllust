@@ -8,12 +8,14 @@
 
 import Foundation
 
+typealias CategoryId = Int
+typealias ComponentId = Int
+typealias ColorId = Int
+
 final class SelectionManager {
     
-    // categoryId: ComponentInfo(componentId, colorId)
-    private(set) var selection: [Int: ComponentInfo] = [Int: ComponentInfo]()
-    // componentId: colorId
-    private(set) var colorSelectionForEachComponent: [Int?: Int?] = [Int?: Int?]()
+    private(set) var selection: [CategoryId: ComponentInfo] = [CategoryId: ComponentInfo]()
+    private(set) var colorSelectionForEachComponent: [ComponentId?: ColorId?] = [ComponentId?: ColorId?]()
     private(set) var current: CurrentSelection = CurrentSelection()
     
     func setCurrentCategory(with categoryId: Int?, for categoryIndex: Int?) {

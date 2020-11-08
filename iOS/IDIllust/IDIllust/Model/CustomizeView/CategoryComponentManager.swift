@@ -10,7 +10,7 @@ import Foundation
 
 final class CategoryComponentManager {
     
-    private var componentsOfCategoryId: [Int: Components] = [Int: Components]()
+    private var componentsOfCategoryId: [CategoryId: Components] = [Int: Components]()
     private(set) var categories: Categories?
     var categoryCount: Int? {
         return categories?.count
