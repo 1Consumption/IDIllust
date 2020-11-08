@@ -150,7 +150,9 @@ final class CustomizeViewController: UIViewController {
     private func setColorSelectView(_ point: CGPoint, _ componentIndexPath: IndexPath) {
         guard let selected = selectionManager.current.categoryIndex else { return }
         guard let categoryId = selectionManager.current.categoryId else { return }
-        let convertedPoint = point.convert(to: [componentCollectionViews[selected], componentsStackView, view])
+
+        let convertedPoint = componentCollectionViews[selected].convert(point, to: view)
+        
         colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
         
         guard let colorSelectViewController = children.first as? ColorSelectViewController else { return }
