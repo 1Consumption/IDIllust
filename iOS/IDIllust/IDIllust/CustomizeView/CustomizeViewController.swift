@@ -90,7 +90,7 @@ final class CustomizeViewController: UIViewController {
                                                 // Todo: UseCaseError에 따른 예외 처리
                                                },
                                                successHandler: { [weak self] in
-                                                self?.categoryComponentManager.insert(categories: $0)
+                                                self?.categoryComponentManager.insert($0)
                                                })
     }
     
@@ -102,7 +102,7 @@ final class CustomizeViewController: UIViewController {
                                                 // Todo: UseCaseError에 따른 예외 처리
                                                },
                                                successHandler: { [weak self] in
-                                                self?.categoryComponentManager.insert(components: $0, by: categoryId)
+                                                self?.categoryComponentManager.insert($0, by: categoryId)
                                                })
     }
     
@@ -118,7 +118,7 @@ final class CustomizeViewController: UIViewController {
         
         let categoryId = categoryComponentManager.category(of: 0)?.id
         setComponentsUseCase(categoryId)
-        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: 0)
+        selectionManager.setCurrentCategory(with: categoryId, for: 0)
     }
     
     private func reloadComponentsCollectionView() {
@@ -155,14 +155,14 @@ final class CustomizeViewController: UIViewController {
         
         guard let colorSelectViewController = children.first as? ColorSelectViewController else { return }
         
-        let component = categoryComponentManager.component(categoryId, componentIndexPath.item)
+        let component = categoryComponentManager.component(with: categoryId, for: componentIndexPath.item)
         let colors = component?.colors
         
         colorSelectViewController.delegate = self
         colorSelectViewController.selectedId = selectionManager.colorSelectionForEachComponent[component?.id] ?? colors?.first?.id
         colorSelectViewController.colors = colors
         
-        selectionManager.setCurrent(componentId: component?.id, componentIndexPath: componentIndexPath)
+        selectionManager.setCurrentComponentInfo(with: component?.id, for: componentIndexPath)
     }
     
     private func retrieveThumbnail(current: CurrentSelection) {
@@ -186,7 +186,7 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func changeComponentSelection(_ categoryId: Int, _ componentId: Int) {
-        if selectionManager.isSelectedComponent(categoryId: categoryId, componentId: componentId) {
+        if selectionManager.isSelectedComponent(with: categoryId, and: componentId) {
             selectionManager.removeCurrentComponent()
             guard var categoryIndex = selectionManager.current.categoryIndex else { return }
             componentCollectionViews[categoryIndex].selectItem(at: nil, animated: false, scrollPosition: .bottom)
@@ -194,7 +194,7 @@ final class CustomizeViewController: UIViewController {
             correct(categoryIndex: &categoryIndex)
             thumbnailImageViews[categoryIndex].image = nil
         } else {
-            selectionManager.setCurrent(componentId: componentId)
+            selectionManager.setCurrentComponentInfo(with: componentId)
             retrieveThumbnail(current: selectionManager.current)
         }
     }
@@ -213,7 +213,7 @@ final class CustomizeViewController: UIViewController {
         componentScrollView.setContentOffset(CGPoint(x: willX, y: 0), animated: true)
         
         guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
-        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: index)
+        selectionManager.setCurrentCategory(with: categoryId, for: index)
         
         guard categoryComponentManager.isExistComponents(with: categoryId) else {
             setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
@@ -237,7 +237,7 @@ final class CustomizeViewController: UIViewController {
             
         case .didSelect(let indexPath):
             guard let categoryId = selectionManager.current.categoryId else { return }
-            guard let componentId = categoryComponentManager.component(categoryId, indexPath.item)?.id else { return }
+            guard let componentId = categoryComponentManager.component(with: categoryId, for: indexPath.item)?.id else { return }
             
             changeComponentSelection(categoryId, componentId)
             
@@ -270,7 +270,7 @@ extension CustomizeViewController: UIScrollViewDelegate {
         categoryCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         
         guard let categoryId = categoryComponentManager.category(of: index)?.id else { return }
-        selectionManager.setCurrent(categoryId: categoryId, categoryIndex: index)
+        selectionManager.setCurrentCategory(with: categoryId, for: index)
         
         guard categoryComponentManager.isExistComponents(with: categoryId) else {
             setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
@@ -291,7 +291,7 @@ extension CustomizeViewController: ColorSelectViewControllerDelegate {
     }
     
     func colorSelected(_ colorId: Int?) {
-        selectionManager.setCurrent(colorId: colorId)
+        selectionManager.setCurrentColor(with: colorId)
         guard let categoryIndex = selectionManager.current.categoryIndex else { return }
         let componentIndexPath = selectionManager.current.componentInfo?.componentIndexPath
 

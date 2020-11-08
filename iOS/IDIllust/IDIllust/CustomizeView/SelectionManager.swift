@@ -16,26 +16,26 @@ final class SelectionManager {
     private(set) var colorSelectionForEachComponent: [Int?: Int?] = [Int?: Int?]()
     private(set) var current: CurrentSelection = CurrentSelection()
     
-    func setCurrent(categoryId: Int?, categoryIndex: Int?) {
+    func setCurrentCategory(with categoryId: Int?, for categoryIndex: Int?) {
         current.categoryId = categoryId
         current.categoryIndex = categoryIndex
     }
     
-    func setCurrent(componentId: Int?, componentIndexPath: IndexPath? = nil) {
+    func setCurrentComponentInfo(with componentId: Int?, for componentIndexPath: IndexPath? = nil) {
         current.componentInfo = ComponentInfo()
         current.componentInfo?.componentId = componentId
         current.componentInfo?.componentIndexPath = componentIndexPath
         
-        setSelection(current: current)
+        setSelection(with: current)
     }
     
-    func setCurrent(colorId: Int?) {
+    func setCurrentColor(with colorId: Int?) {
         current.componentInfo?.colorId = colorId
         
-        setSelection(current: current)
+        setSelection(with: current)
     }
     
-    func isSelectedComponent(categoryId: Int, componentId: Int) -> Bool {
+    func isSelectedComponent(with categoryId: Int, and componentId: Int) -> Bool {
         return selection[categoryId]?.componentId == componentId
     }
     
@@ -51,7 +51,7 @@ final class SelectionManager {
         return componentInfo
     }
     
-    private func setSelection(current: CurrentSelection) {
+    private func setSelection(with current: CurrentSelection) {
         guard let categoryId = current.categoryId, let componentInfo = current.componentInfo else { return }
         selection[categoryId] = componentInfo
         colorSelectionForEachComponent[componentInfo.componentId] = componentInfo.colorId

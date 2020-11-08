@@ -26,8 +26,8 @@ final class CategoryComponentManagerTests: XCTestCase {
         component = Component(id: 1, name: "component", thumbUrl: "url", colors: colors)
         components = Components(models: [component])
         
-        categoryComponentManager.insert(categories: categories)
-        categoryComponentManager.insert(components: components, by: category.id)
+        categoryComponentManager.insert(categories)
+        categoryComponentManager.insert(components, by: category.id)
     }
     
     func testInsertCategories() {
@@ -54,7 +54,7 @@ final class CategoryComponentManagerTests: XCTestCase {
     }
     
     func testGetComponent() {
-        XCTAssertEqual(categoryComponentManager.component(category.id, 0), component)
+        XCTAssertEqual(categoryComponentManager.component(with: category.id, for: 0), component)
     }
     
     func testIsExistComponents() {
