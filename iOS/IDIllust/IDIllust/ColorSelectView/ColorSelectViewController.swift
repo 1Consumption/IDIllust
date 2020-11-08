@@ -21,19 +21,12 @@ final class ColorSelectViewController: UIViewController {
     weak var delegate: ColorSelectViewControllerDelegate?
     var colors: [Color]? {
         didSet {
-            reloadQueue.async {
-                DispatchQueue.main.sync { [weak self] in
-                    self?.colorSelectCollectionView.reloadData()
-                }
+            reloadQueue.async { [weak self] in
+                self?.reloadColorSelectCollectionViewSynchronous()
             }
             
             reloadQueue.async { [weak self] in
-                guard let id = self?.selectedId else { return }
-                guard let selectedIndex = self?.colorIndex(of: id) else { return }
-                
-                DispatchQueue.main.async {
-                    self?.colorSelectCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: false, scrollPosition: .top)
-                }
+                self?.selectItemIfSelectedIdExist()
             }
             
             reloadQueue.async { [weak self] in
@@ -66,12 +59,27 @@ final class ColorSelectViewController: UIViewController {
                                                object: nil)
     }
     
+    private func reloadColorSelectCollectionViewSynchronous() {
+        DispatchQueue.main.sync {
+            colorSelectCollectionView.reloadData()
+        }
+    }
+    
     private func colorIndex(of colorId: Int) -> Int? {
         for index in 0..<(colors?.count ?? 0) where colors?[index].id == colorId {
             return index
         }
         
         return nil
+    }
+    
+    private func selectItemIfSelectedIdExist() {
+        guard let id = selectedId else { return }
+        guard let selectedIndex = colorIndex(of: id) else { return }
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.colorSelectCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: false, scrollPosition: .top)
+        }
     }
     
     // MARK: @objc
