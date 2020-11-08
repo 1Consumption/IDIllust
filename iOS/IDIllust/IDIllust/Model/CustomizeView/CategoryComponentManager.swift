@@ -10,18 +10,18 @@ import Foundation
 
 final class CategoryComponentManager {
     
-    private var componentsOfCategoryId: [Int: Components] = [Int: Components]()
+    private var componentsOfCategoryId: [CategoryId: Components] = [Int: Components]()
     private(set) var categories: Categories?
     var categoryCount: Int? {
         return categories?.count
     }
     
-    func insert(categories: Categories) {
+    func insert(_ categories: Categories) {
         self.categories = categories
         CategoryComponentManagerEvent.categoryChanged.post()
     }
     
-    func insert(components: Components, by categoryId: Int) {
+    func insert(_ components: Components, by categoryId: Int) {
         componentsOfCategoryId[categoryId] = components
         CategoryComponentManagerEvent.componentsAppended.post()
     }
@@ -34,7 +34,7 @@ final class CategoryComponentManager {
         return componentsOfCategoryId[categoryId]
     }
     
-    func component(_ categoryId: Int, _ componentIndex: Int) -> Component? {
+    func component(with categoryId: Int, for componentIndex: Int) -> Component? {
         return componentsOfCategoryId[categoryId]?.model(of: componentIndex)
     }
     

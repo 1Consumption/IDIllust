@@ -26,18 +26,31 @@ final class CategoryComponentManagerTests: XCTestCase {
         component = Component(id: 1, name: "component", thumbUrl: "url", colors: colors)
         components = Components(models: [component])
         
-        categoryComponentManager.insert(categories: categories)
-        categoryComponentManager.insert(components: components, by: category.id)
+        categoryComponentManager.insert(categories)
+        categoryComponentManager.insert(components, by: category.id)
     }
     
     func testInsertCategories() {
         let inserted = categoryComponentManager.categories
         XCTAssertEqual(categories, inserted)
+        
+        let anotherCategory = IDIllust.Category(id: 2, name: "2", url: "test")
+        let anotherCategories = Categories(models: [anotherCategory])
+        categoryComponentManager.insert(anotherCategories)
+        
+        XCTAssertEqual(categoryComponentManager.categories, anotherCategories)
     }
     
     func testInsertComponents() {
         let inserted = categoryComponentManager.components(of: category.id)
         XCTAssertEqual(components, inserted)
+        
+        let anotherCategoryId = 2
+        let anotherComponent = Component(id: 2, name: "2", thumbUrl: "test", colors: [Color(id: 3, name: "test", url: "test")])
+        let anotherComponents = Components(models: [anotherComponent])
+        categoryComponentManager.insert(anotherComponents, by: anotherCategoryId)
+        
+        XCTAssertEqual(categoryComponentManager.components(of: anotherCategoryId), anotherComponents)
     }
     
     func testCategory() {
@@ -54,7 +67,7 @@ final class CategoryComponentManagerTests: XCTestCase {
     }
     
     func testGetComponent() {
-        XCTAssertEqual(categoryComponentManager.component(category.id, 0), component)
+        XCTAssertEqual(categoryComponentManager.component(with: category.id, for: 0), component)
     }
     
     func testIsExistComponents() {
