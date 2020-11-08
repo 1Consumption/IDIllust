@@ -65,17 +65,9 @@ final class ColorSelectViewController: UIViewController {
         }
     }
     
-    private func colorIndex(of colorId: Int) -> Int? {
-        for index in 0..<(colors?.count ?? 0) where colors?[index].id == colorId {
-            return index
-        }
-        
-        return nil
-    }
-    
     private func selectItemIfSelectedIdExist() {
         guard let id = selectedId else { return }
-        guard let selectedIndex = colorIndex(of: id) else { return }
+        guard let selectedIndex = (colors?.firstIndex { $0.id == id }) else { return }
         
         DispatchQueue.main.async { [weak self] in
             self?.colorSelectCollectionView.selectItem(at: IndexPath(item: selectedIndex, section: 0), animated: false, scrollPosition: .top)
