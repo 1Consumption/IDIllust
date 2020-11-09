@@ -328,20 +328,36 @@
             </objects>
             <point key="canvasLocation" x="2432" y="-183"/>
         </scene>
-        <!--View Controller-->
+        <!--Store View Controller-->
         <scene sceneID="D1G-Zq-O0V">
             <objects>
-                <viewController storyboardIdentifier="StoreViewController" id="efz-N7-xH5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoreViewController" id="efz-N7-xH5" customClass="StoreViewController" customModule="IDIllust" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bo0-c3-L3l">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIw-1N-DWi">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6ue-Jr-6Js">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="FeQ-Lw-Bdv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cIw-1N-DWi" firstAttribute="leading" secondItem="FeQ-Lw-Bdv" secondAttribute="leading" id="3MK-vi-krs"/>
+                            <constraint firstItem="cIw-1N-DWi" firstAttribute="top" secondItem="Bo0-c3-L3l" secondAttribute="top" id="Hdb-4j-Yfd"/>
+                            <constraint firstItem="cIw-1N-DWi" firstAttribute="trailing" secondItem="FeQ-Lw-Bdv" secondAttribute="trailing" id="bdS-8n-5yJ"/>
+                            <constraint firstAttribute="bottom" secondItem="cIw-1N-DWi" secondAttribute="bottom" id="rJM-ft-r0L"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5e-yI-pRW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3035" y="95"/>
+            <point key="canvasLocation" x="3033.8461538461538" y="94.549763033175353"/>
         </scene>
     </scenes>
     <designables>

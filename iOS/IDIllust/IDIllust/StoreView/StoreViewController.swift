@@ -12,5 +12,6 @@ final class StoreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.systemBackground.withAlphaComponent(0)
     }
 }
