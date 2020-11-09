@@ -16,6 +16,12 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet private weak var componentsStackView: UIStackView!
     @IBOutlet private weak var componentScrollView: UIScrollView!
     @IBOutlet private weak var colorSelectView: UIView!
+    @IBAction func doneButtonPushed(_ sender: Any) {
+        guard let storeViewController = storyboard?.instantiateViewController(withIdentifier: "StoreViewController") as? StoreViewController else { return }
+        storeViewController.modalPresentationStyle = .overCurrentContext
+        show(storeViewController, sender: self)
+    }
+    
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
     private var thumbnailImageViews: [UIImageView] = [UIImageView]()
