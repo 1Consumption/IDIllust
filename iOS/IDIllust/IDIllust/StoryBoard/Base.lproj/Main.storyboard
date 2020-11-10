@@ -357,6 +357,9 @@
                                                     <state key="normal" title="취소">
                                                         <color key="titleColor" systemColor="labelColor"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="cancelButtonPushed:" destination="efz-N7-xH5" eventType="touchUpInside" id="UA5-cB-mqz"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uag-Pc-HgC">
                                                     <rect key="frame" x="136.33333333333337" y="0.0" width="136.66666666666663" height="42"/>

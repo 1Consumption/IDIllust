@@ -10,6 +10,9 @@ import UIKit
 
 final class StoreViewController: UIViewController {
 
+    @IBAction func cancelButtonPushed(_ sender: Any) {
+        dismiss(animated: true)
+    }
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var currentLimitLabel: UILabel!
     @IBOutlet weak var titleLimitLabel: UILabel!
