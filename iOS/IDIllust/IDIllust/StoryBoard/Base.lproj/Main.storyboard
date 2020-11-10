@@ -431,6 +431,9 @@
                             <constraint firstAttribute="bottom" secondItem="cIw-1N-DWi" secondAttribute="bottom" id="rJM-ft-r0L"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="titleTextField" destination="CcA-b7-87p" id="kDu-gt-f39"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5e-yI-pRW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
