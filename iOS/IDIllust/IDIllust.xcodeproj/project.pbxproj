@@ -51,6 +51,7 @@
 		A5C8D8EF253D5B94002ADD9E /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */; };
 		A5DD996725598BBF00D92F82 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD996625598BBF00D92F82 /* StoreViewController.swift */; };
 		A5E13316255AB58000C1F43A /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E13315255AB58000C1F43A /* Dynamic.swift */; };
+		A5E1331F255ABE0400C1F43A /* TextLengthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1331E255ABE0400C1F43A /* TextLengthViewModelTests.swift */; };
 		A5EDB6142531B90B00E6078B /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */; };
 		A5EDB61925321E9C00E6078B /* CategoryCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */; };
 		A5EDB61E2532220C00E6078B /* ComponentCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB61D2532220C00E6078B /* ComponentCollectionViewDataSource.swift */; };
@@ -124,6 +125,7 @@
 		A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		A5DD996625598BBF00D92F82 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		A5E13315255AB58000C1F43A /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
+		A5E1331E255ABE0400C1F43A /* TextLengthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLengthViewModelTests.swift; sourceTree = "<group>"; };
 		A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		A5EDB61D2532220C00E6078B /* ComponentCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			children = (
 				A534809A25481E53001C039E /* CategoryComponentManagerTests.swift */,
 				A50BA70C254B44F200985306 /* SelectionManagerTests.swift */,
+				A5E1331E255ABE0400C1F43A /* TextLengthViewModelTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				A534809B25481E53001C039E /* CategoryComponentManagerTests.swift in Sources */,
 				A5844A9C253D67B600A24256 /* EndPointTests.swift in Sources */,
 				A5B67F70254B1E72005F098C /* Thumbnail.swift in Sources */,
+				A5E1331F255ABE0400C1F43A /* TextLengthViewModelTests.swift in Sources */,
 				A50E3AAC254972AD0004DEA7 /* ModelManageableTests.swift in Sources */,
 				A5EEC119253F64620048A13D /* CategoryUseCaseTests.swift in Sources */,
 				A50BA711254B45D800985306 /* CurrentSelection.swift in Sources */,
