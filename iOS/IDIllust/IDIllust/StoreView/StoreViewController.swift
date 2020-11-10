@@ -27,6 +27,11 @@ final class StoreViewController: UIViewController {
         titleTextField.delegate = self
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
     private func setUpBackgroundColor() {
         view.backgroundColor = UIColor.systemBackground.withAlphaComponent(0)
     }
@@ -53,6 +58,11 @@ extension StoreViewController: UITextFieldDelegate {
         
         textLengthViewModel.value = length
         
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
 }

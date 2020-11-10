@@ -376,7 +376,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목을 입력하세요." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CcA-b7-87p" userLabel="Title Text Field">
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="43.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 </textField>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="W9g-es-eLd">
                                                     <rect key="frame" x="0.0" y="43.666666666666657" width="390" height="20.333333333333329"/>
