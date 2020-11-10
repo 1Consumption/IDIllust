@@ -287,6 +287,25 @@
 			path = StoreView;
 			sourceTree = "<group>";
 		};
+		A5E1331C255ABDD100C1F43A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A534809A25481E53001C039E /* CategoryComponentManagerTests.swift */,
+				A50BA70C254B44F200985306 /* SelectionManagerTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5E1331D255ABDDC00C1F43A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A521F0072543DD8B0002031A /* MockNetworkManagers.swift */,
+				A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */,
+				A5844A9B253D67B600A24256 /* EndPointTests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		A5EDB6222532225A00E6078B /* CategoryCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,14 +404,11 @@
 			isa = PBXGroup;
 			children = (
 				A50E3AA0254962550004DEA7 /* Extension */,
+				A5E1331C255ABDD100C1F43A /* Model */,
+				A5E1331D255ABDDC00C1F43A /* Network */,
 				A506C99F2542756900E6BCE6 /* Protocol */,
 				A5EEC11C253F64640048A13D /* UseCase */,
 				A5F8935A2500A8C8002258EA /* Info.plist */,
-				A534809A25481E53001C039E /* CategoryComponentManagerTests.swift */,
-				A521F0072543DD8B0002031A /* MockNetworkManagers.swift */,
-				A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */,
-				A5844A9B253D67B600A24256 /* EndPointTests.swift */,
-				A50BA70C254B44F200985306 /* SelectionManagerTests.swift */,
 			);
 			path = IDIllustTests;
 			sourceTree = "<group>";
