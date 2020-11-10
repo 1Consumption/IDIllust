@@ -432,6 +432,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentLimitLabel" destination="eV5-ta-9uG" id="myJ-pM-SbK"/>
+                        <outlet property="titleLimitLabel" destination="Lay-Ud-3JA" id="Pon-vT-UKt"/>
                         <outlet property="titleTextField" destination="CcA-b7-87p" id="kDu-gt-f39"/>
                     </connections>
                 </viewController>

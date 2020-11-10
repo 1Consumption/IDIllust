@@ -11,20 +11,45 @@ import UIKit
 final class StoreViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var currentLimitLabel: UILabel!
+    @IBOutlet weak var titleLimitLabel: UILabel!
+    private var textLengthViewModel: Dynamic<Int> = Dynamic<Int>()
     private let limit: Int = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.systemBackground.withAlphaComponent(0)
+        setUpBackgroundColor()
+        setTitleLimitLabel()
+        setUpTextLengthViewModel()
         titleTextField.delegate = self
     }
+    
+    private func setUpBackgroundColor() {
+        view.backgroundColor = UIColor.systemBackground.withAlphaComponent(0)
+    }
+    
+    private func setTitleLimitLabel() {
+        titleLimitLabel.text = String(limit)
+    }
+    
+    private func setUpTextLengthViewModel() {
+        textLengthViewModel.bind { [weak self] in
+            self?.currentLimitLabel.text = String($0 ?? 0)
+        }
+        textLengthViewModel.fire()
+    }
 }
+
 extension StoreViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let textLength = textField.text?.count else { return true }
         let length = textLength + string.count - range.length
         
-        return length <= limit
+        guard length <= limit else { return false }
+        
+        textLengthViewModel.value = length
+        
+        return true
     }
 }
