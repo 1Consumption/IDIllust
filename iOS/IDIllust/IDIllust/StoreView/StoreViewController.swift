@@ -17,6 +17,7 @@ final class StoreViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var currentLimitLabel: UILabel!
     @IBOutlet weak var titleLimitLabel: UILabel!
+    @IBOutlet weak var resultImageView: UIImageView!
     private var textLengthViewModel: Dynamic<Int> = Dynamic<Int>()
     private var images: [UIImage?] = [UIImage?]()
     private let limit: Int = 10
@@ -33,6 +34,7 @@ final class StoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         retrieveImages()
+        overlayImages()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -70,6 +72,22 @@ final class StoreViewController: UIViewController {
                                                 }
                                              })
         }
+    }
+    
+    private func overlayImages() {
+        guard let size = images.first??.size else { return }
+        
+        UIGraphicsBeginImageContext(size)
+        defer { UIGraphicsEndImageContext() }
+        
+        let box = CGRect(origin: .zero, size: size)
+        
+        images.forEach {
+            $0?.draw(in: box)
+        }
+        
+        let overlayedimage = UIGraphicsGetImageFromCurrentImageContext()
+        resultImageView.image = overlayedimage
     }
 }
 
