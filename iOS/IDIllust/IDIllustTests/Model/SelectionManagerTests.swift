@@ -87,4 +87,10 @@ class SelectionManagerTests: XCTestCase {
         XCTAssertNil(selectionManager.current.componentInfo)
         XCTAssertNil(selectionManager.selection[categoryId])
     }
+    
+    func testSetSelectionForCategortyIdWithURL() {
+        selectionManager.setSelection(with: categoryId, for: "url")
+        
+        XCTAssertEqual(selectionManager.selection[categoryId]?.thumbnailUrl, "url")
+    }
 }

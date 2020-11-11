@@ -11,6 +11,7 @@
 		A506C98C25426CD100E6BCE6 /* ComponentsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C98B25426CD100E6BCE6 /* ComponentsUseCase.swift */; };
 		A506C99A254272D100E6BCE6 /* RetrieveModelFromServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */; };
 		A506C9A12542758200E6BCE6 /* RetrieveModelFromServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */; };
+		A5082706255BCCAC00908698 /* CategoriesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5082705255BCCAC00908698 /* CategoriesTest.swift */; };
 		A50BA707254B374D00985306 /* SelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BA706254B374D00985306 /* SelectionManager.swift */; };
 		A50BA70D254B44F200985306 /* SelectionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BA70C254B44F200985306 /* SelectionManagerTests.swift */; };
 		A50BA711254B45D800985306 /* CurrentSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BA710254B45D800985306 /* CurrentSelection.swift */; };
@@ -85,6 +86,7 @@
 		A506C98B25426CD100E6BCE6 /* ComponentsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsUseCase.swift; sourceTree = "<group>"; };
 		A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveModelFromServer.swift; sourceTree = "<group>"; };
 		A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveModelFromServerTests.swift; sourceTree = "<group>"; };
+		A5082705255BCCAC00908698 /* CategoriesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTest.swift; sourceTree = "<group>"; };
 		A50BA706254B374D00985306 /* SelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionManager.swift; sourceTree = "<group>"; };
 		A50BA70C254B44F200985306 /* SelectionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionManagerTests.swift; sourceTree = "<group>"; };
 		A50BA710254B45D800985306 /* CurrentSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSelection.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				A534809A25481E53001C039E /* CategoryComponentManagerTests.swift */,
 				A50BA70C254B44F200985306 /* SelectionManagerTests.swift */,
 				A5E1331E255ABE0400C1F43A /* TextLengthViewModelTests.swift */,
+				A5082705255BCCAC00908698 /* CategoriesTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				A5EEC119253F64620048A13D /* CategoryUseCaseTests.swift in Sources */,
 				A50BA711254B45D800985306 /* CurrentSelection.swift in Sources */,
 				A521F0082543DD8B0002031A /* MockNetworkManagers.swift in Sources */,
+				A5082706255BCCAC00908698 /* CategoriesTest.swift in Sources */,
 				A506C9A12542758200E6BCE6 /* RetrieveModelFromServerTests.swift in Sources */,
 				A5AEDF56253FF3670083F3D2 /* Components.swift in Sources */,
 				A521F021254557BB0002031A /* Categories.swift in Sources */,

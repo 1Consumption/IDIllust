@@ -37,6 +37,12 @@ final class SelectionManager {
         setSelection(with: current)
     }
     
+    func setSelection(with categoryId: Int, for url: String) {
+        var componetInfo = selection[categoryId]
+        componetInfo?.thumbnailUrl = url
+        selection[categoryId] = componetInfo
+    }
+    
     func isSelectedComponent(with categoryId: Int, and componentId: Int) -> Bool {
         return selection[categoryId]?.componentId == componentId
     }
@@ -70,4 +76,5 @@ struct ComponentInfo {
     var componentId: Int?
     var componentIndexPath: IndexPath?
     var colorId: Int?
+    var thumbnailUrl: String?
 }

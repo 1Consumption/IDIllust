@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias LayerOrder = Int
+
 final class CustomizeViewController: UIViewController {
     
     // MARK: - Properties
@@ -176,9 +178,11 @@ final class CustomizeViewController: UIViewController {
     private func retrieveThumbnail(current: CurrentSelection) {
         ThumbnailUseCase().retrieveThumbnail(selectionManager.current, networkManager: NetworkManager(), successHandler: { model in
             DispatchQueue.main.async { [weak self] in
+                guard let categoryId = current.categoryId else { return }
                 guard var categoryIndex = current.categoryIndex else { return }
                 
                 self?.correct(categoryIndex: &categoryIndex)
+                self?.selectionManager.setSelection(with: categoryId, for: model.thumbUrl)
                 self?.thumbnailImageViews[categoryIndex].kf.setImage(with: URL(string: model.thumbUrl), options: [.keepCurrentImageWhileLoading])
             }
         })
