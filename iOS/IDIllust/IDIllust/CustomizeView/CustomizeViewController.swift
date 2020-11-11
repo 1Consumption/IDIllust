@@ -21,6 +21,7 @@ final class CustomizeViewController: UIViewController {
     @IBAction func doneButtonPushed(_ sender: Any) {
         guard let storeViewController = storyboard?.instantiateViewController(withIdentifier: "StoreViewController") as? StoreViewController else { return }
         storeViewController.modalPresentationStyle = .overCurrentContext
+        storeViewController.layerInfo = resultBySelection()
         show(storeViewController, sender: self)
     }
     

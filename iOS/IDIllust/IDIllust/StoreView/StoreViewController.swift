@@ -18,6 +18,7 @@ final class StoreViewController: UIViewController {
     @IBOutlet weak var titleLimitLabel: UILabel!
     private var textLengthViewModel: Dynamic<Int> = Dynamic<Int>()
     private let limit: Int = 10
+    var layerInfo: [LayerOrder: String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
