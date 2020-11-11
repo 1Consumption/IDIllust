@@ -211,6 +211,19 @@ final class CustomizeViewController: UIViewController {
         }
     }
     
+    private func resultBySelection() -> [LayerOrder: String] {
+        var result = [LayerOrder: String]()
+        
+        selectionManager.selection.forEach {
+            guard var layerOrder = categoryComponentManager.firstIndex(of: $0.key) else { return }
+            correct(categoryIndex: &layerOrder)
+            
+            result[layerOrder] = $0.value.thumbnailUrl
+        }
+        
+        return result
+    }
+    
     // MARK: @objc
     @objc func scrollComponentScrollView() {
         guard let selected = categoryCollectionView.indexPathsForSelectedItems?.first else { return }
