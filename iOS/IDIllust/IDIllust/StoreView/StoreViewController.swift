@@ -6,10 +6,11 @@
 //  Copyright © 2020 신한섭. All rights reserved.
 //
 
+import Kingfisher
 import UIKit
 
 final class StoreViewController: UIViewController {
-
+    
     @IBAction func cancelButtonPushed(_ sender: Any) {
         dismiss(animated: true)
     }
@@ -17,6 +18,7 @@ final class StoreViewController: UIViewController {
     @IBOutlet weak var currentLimitLabel: UILabel!
     @IBOutlet weak var titleLimitLabel: UILabel!
     private var textLengthViewModel: Dynamic<Int> = Dynamic<Int>()
+    private var images: [UIImage?] = [UIImage?]()
     private let limit: Int = 10
     var layerInfo: [LayerOrder: String]?
     
@@ -26,6 +28,11 @@ final class StoreViewController: UIViewController {
         setTitleLimitLabel()
         setUpTextLengthViewModel()
         titleTextField.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        retrieveImages()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -46,6 +53,23 @@ final class StoreViewController: UIViewController {
             self?.currentLimitLabel.text = String($0 ?? 0)
         }
         textLengthViewModel.fire()
+    }
+    
+    private func retrieveImages() {
+        layerInfo?.sorted { $0.key < $1.key }.forEach { layers in
+            guard let cacheKey = URL(string: layers.value)?.cacheKey else { return }
+            ImageCache.default.retrieveImage(forKey: cacheKey,
+                                             options: [.loadDiskFileSynchronously],
+                                             completionHandler: { [weak self] in
+                                                switch $0 {
+                                                case .success(let sequence):
+                                                    self?.images.append(sequence.image)
+                                                    
+                                                case .failure(_): break
+                                                // Todo: Error Alert 띄워주기
+                                                }
+                                             })
+        }
     }
 }
 
