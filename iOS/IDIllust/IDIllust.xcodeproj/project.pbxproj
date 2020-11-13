@@ -11,6 +11,7 @@
 		A506C98C25426CD100E6BCE6 /* ComponentsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C98B25426CD100E6BCE6 /* ComponentsUseCase.swift */; };
 		A506C99A254272D100E6BCE6 /* RetrieveModelFromServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */; };
 		A506C9A12542758200E6BCE6 /* RetrieveModelFromServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */; };
+		A5082706255BCCAC00908698 /* CategoriesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5082705255BCCAC00908698 /* CategoriesTest.swift */; };
 		A50BA707254B374D00985306 /* SelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BA706254B374D00985306 /* SelectionManager.swift */; };
 		A50BA70D254B44F200985306 /* SelectionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BA70C254B44F200985306 /* SelectionManagerTests.swift */; };
 		A50BA711254B45D800985306 /* CurrentSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BA710254B45D800985306 /* CurrentSelection.swift */; };
@@ -48,7 +49,11 @@
 		A5B67F6C254B1E32005F098C /* ThumbnailUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B67F6B254B1E32005F098C /* ThumbnailUseCaseTests.swift */; };
 		A5B67F70254B1E72005F098C /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B67F6F254B1E72005F098C /* Thumbnail.swift */; };
 		A5B67F7D254B2F8F005F098C /* ComponentCollectionViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B67F7C254B2F8F005F098C /* ComponentCollectionViewEvent.swift */; };
+		A5B76016255E93B400C92500 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B76015255E93B400C92500 /* UIAlertController.swift */; };
 		A5C8D8EF253D5B94002ADD9E /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */; };
+		A5DD996725598BBF00D92F82 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD996625598BBF00D92F82 /* StoreViewController.swift */; };
+		A5E13316255AB58000C1F43A /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E13315255AB58000C1F43A /* Dynamic.swift */; };
+		A5E1331F255ABE0400C1F43A /* TextLengthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1331E255ABE0400C1F43A /* TextLengthViewModelTests.swift */; };
 		A5EDB6142531B90B00E6078B /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */; };
 		A5EDB61925321E9C00E6078B /* CategoryCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */; };
 		A5EDB61E2532220C00E6078B /* ComponentCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDB61D2532220C00E6078B /* ComponentCollectionViewDataSource.swift */; };
@@ -82,6 +87,7 @@
 		A506C98B25426CD100E6BCE6 /* ComponentsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsUseCase.swift; sourceTree = "<group>"; };
 		A506C999254272D100E6BCE6 /* RetrieveModelFromServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveModelFromServer.swift; sourceTree = "<group>"; };
 		A506C9A02542758200E6BCE6 /* RetrieveModelFromServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveModelFromServerTests.swift; sourceTree = "<group>"; };
+		A5082705255BCCAC00908698 /* CategoriesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTest.swift; sourceTree = "<group>"; };
 		A50BA706254B374D00985306 /* SelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionManager.swift; sourceTree = "<group>"; };
 		A50BA70C254B44F200985306 /* SelectionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionManagerTests.swift; sourceTree = "<group>"; };
 		A50BA710254B45D800985306 /* CurrentSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSelection.swift; sourceTree = "<group>"; };
@@ -119,7 +125,11 @@
 		A5B67F6B254B1E32005F098C /* ThumbnailUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailUseCaseTests.swift; sourceTree = "<group>"; };
 		A5B67F6F254B1E72005F098C /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		A5B67F7C254B2F8F005F098C /* ComponentCollectionViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewEvent.swift; sourceTree = "<group>"; };
+		A5B76015255E93B400C92500 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
+		A5DD996625598BBF00D92F82 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		A5E13315255AB58000C1F43A /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
+		A5E1331E255ABE0400C1F43A /* TextLengthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLengthViewModelTests.swift; sourceTree = "<group>"; };
 		A5EDB6132531B90B00E6078B /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5EDB61825321E9C00E6078B /* CategoryCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		A5EDB61D2532220C00E6078B /* ComponentCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -252,6 +262,7 @@
 			children = (
 				A5511443253B2E880068A4D2 /* UIDevice.swift */,
 				A5AEDF43253F69700083F3D2 /* UICollectionView.swift */,
+				A5B76015255E93B400C92500 /* UIAlertController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -262,6 +273,7 @@
 				A50E3A992549606A0004DEA7 /* ColorSelectView */,
 				A5EEC107253F5F880048A13D /* CustomizeView */,
 				A5844AA2253D6A7800A24256 /* EntrtyView */,
+				A5E13315255AB58000C1F43A /* Dynamic.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,6 +284,35 @@
 				A5844AA3253D6A8600A24256 /* EntryImage.swift */,
 			);
 			path = EntrtyView;
+			sourceTree = "<group>";
+		};
+		A5DD996525598BB000D92F82 /* StoreView */ = {
+			isa = PBXGroup;
+			children = (
+				A5DD996625598BBF00D92F82 /* StoreViewController.swift */,
+			);
+			path = StoreView;
+			sourceTree = "<group>";
+		};
+		A5E1331C255ABDD100C1F43A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A534809A25481E53001C039E /* CategoryComponentManagerTests.swift */,
+				A50BA70C254B44F200985306 /* SelectionManagerTests.swift */,
+				A5E1331E255ABE0400C1F43A /* TextLengthViewModelTests.swift */,
+				A5082705255BCCAC00908698 /* CategoriesTest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5E1331D255ABDDC00C1F43A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A521F0072543DD8B0002031A /* MockNetworkManagers.swift */,
+				A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */,
+				A5844A9B253D67B600A24256 /* EndPointTests.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		A5EDB6222532225A00E6078B /* CategoryCollectionView */ = {
@@ -349,6 +390,7 @@
 		A5F893402500A8C7002258EA /* IDIllust */ = {
 			isa = PBXGroup;
 			children = (
+				A5DD996525598BB000D92F82 /* StoreView */,
 				A506C9982542729100E6BCE6 /* Protocols */,
 				A53241EF253DAF80004FEF3C /* Errors */,
 				A5844AA1253D6A7400A24256 /* Model */,
@@ -371,14 +413,11 @@
 			isa = PBXGroup;
 			children = (
 				A50E3AA0254962550004DEA7 /* Extension */,
+				A5E1331C255ABDD100C1F43A /* Model */,
+				A5E1331D255ABDDC00C1F43A /* Network */,
 				A506C99F2542756900E6BCE6 /* Protocol */,
 				A5EEC11C253F64640048A13D /* UseCase */,
 				A5F8935A2500A8C8002258EA /* Info.plist */,
-				A534809A25481E53001C039E /* CategoryComponentManagerTests.swift */,
-				A521F0072543DD8B0002031A /* MockNetworkManagers.swift */,
-				A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */,
-				A5844A9B253D67B600A24256 /* EndPointTests.swift */,
-				A50BA70C254B44F200985306 /* SelectionManagerTests.swift */,
 			);
 			path = IDIllustTests;
 			sourceTree = "<group>";
@@ -593,11 +632,13 @@
 				A5AEDF44253F69700083F3D2 /* UICollectionView.swift in Sources */,
 				A532D2D72505094A009361DC /* CustomizeViewController.swift in Sources */,
 				A53241F1253DAF8F004FEF3C /* UseCaseError.swift in Sources */,
+				A5E13316255AB58000C1F43A /* Dynamic.swift in Sources */,
 				A506C98C25426CD100E6BCE6 /* ComponentsUseCase.swift in Sources */,
 				A5434F0B2538238D00782F2C /* ComponentCollectionView.swift in Sources */,
 				A5AEDF4D253FCDA10083F3D2 /* Component.swift in Sources */,
 				A5511454253B5C540068A4D2 /* CornerRadiusView.swift in Sources */,
 				A5EDB6142531B90B00E6078B /* CategoryCollectionViewCell.swift in Sources */,
+				A5DD996725598BBF00D92F82 /* StoreViewController.swift in Sources */,
 				A5EDB61925321E9C00E6078B /* CategoryCollectionViewDataSource.swift in Sources */,
 				A5B67F63254B1C8B005F098C /* ThumbnailUseCase.swift in Sources */,
 				A52D705B253D51440071613B /* HTTPHeaders.swift in Sources */,
@@ -605,6 +646,7 @@
 				A5EEC115253F63200048A13D /* CategoriesUseCase.swift in Sources */,
 				A5511436253B22040068A4D2 /* ColorSelectViewController.swift in Sources */,
 				A5511444253B2E880068A4D2 /* UIDevice.swift in Sources */,
+				A5B76016255E93B400C92500 /* UIAlertController.swift in Sources */,
 				A551143E253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift in Sources */,
 				A50BA707254B374D00985306 /* SelectionManager.swift in Sources */,
 				A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */,
@@ -633,10 +675,12 @@
 				A534809B25481E53001C039E /* CategoryComponentManagerTests.swift in Sources */,
 				A5844A9C253D67B600A24256 /* EndPointTests.swift in Sources */,
 				A5B67F70254B1E72005F098C /* Thumbnail.swift in Sources */,
+				A5E1331F255ABE0400C1F43A /* TextLengthViewModelTests.swift in Sources */,
 				A50E3AAC254972AD0004DEA7 /* ModelManageableTests.swift in Sources */,
 				A5EEC119253F64620048A13D /* CategoryUseCaseTests.swift in Sources */,
 				A50BA711254B45D800985306 /* CurrentSelection.swift in Sources */,
 				A521F0082543DD8B0002031A /* MockNetworkManagers.swift in Sources */,
+				A5082706255BCCAC00908698 /* CategoriesTest.swift in Sources */,
 				A506C9A12542758200E6BCE6 /* RetrieveModelFromServerTests.swift in Sources */,
 				A5AEDF56253FF3670083F3D2 /* Components.swift in Sources */,
 				A521F021254557BB0002031A /* Categories.swift in Sources */,
@@ -796,13 +840,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				DEVELOPMENT_TEAM = 735P3R8MUU;
 				INFOPLIST_FILE = IDIllust/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hanseop.IDIllust;
+				PRODUCT_BUNDLE_IDENTIFIER = com.1Consumption.IDIllust;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -815,13 +859,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				DEVELOPMENT_TEAM = 735P3R8MUU;
 				INFOPLIST_FILE = IDIllust/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hanseop.IDIllust;
+				PRODUCT_BUNDLE_IDENTIFIER = com.1Consumption.IDIllust;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -834,7 +878,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				DEVELOPMENT_TEAM = 735P3R8MUU;
 				INFOPLIST_FILE = IDIllustTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -856,7 +900,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				DEVELOPMENT_TEAM = 735P3R8MUU;
 				INFOPLIST_FILE = IDIllustTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -17,6 +17,10 @@ struct Categories: Decodable, ModelManageable {
     enum CodingKeys: String, CodingKey {
         case models = "categories"
     }
+    
+    func firstIndex(where predicate: (Model) throws -> Bool) -> Int? {
+        return try? models.firstIndex(where: predicate)
+    }
 }
 
 struct Category: Decodable {

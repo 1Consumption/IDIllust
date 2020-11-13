@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias LayerOrder = Int
+
 final class CustomizeViewController: UIViewController {
     
     // MARK: - Properties
@@ -16,6 +18,13 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet private weak var componentsStackView: UIStackView!
     @IBOutlet private weak var componentScrollView: UIScrollView!
     @IBOutlet private weak var colorSelectView: UIView!
+    @IBAction func doneButtonPushed(_ sender: Any) {
+        guard let storeViewController = storyboard?.instantiateViewController(withIdentifier: "StoreViewController") as? StoreViewController else { return }
+        storeViewController.modalPresentationStyle = .overCurrentContext
+        storeViewController.layerInfo = resultBySelection()
+        show(storeViewController, sender: self)
+    }
+    
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
     private var thumbnailImageViews: [UIImageView] = [UIImageView]()
@@ -170,9 +179,11 @@ final class CustomizeViewController: UIViewController {
     private func retrieveThumbnail(current: CurrentSelection) {
         ThumbnailUseCase().retrieveThumbnail(selectionManager.current, networkManager: NetworkManager(), successHandler: { model in
             DispatchQueue.main.async { [weak self] in
+                guard let categoryId = current.categoryId else { return }
                 guard var categoryIndex = current.categoryIndex else { return }
                 
                 self?.correct(categoryIndex: &categoryIndex)
+                self?.selectionManager.setSelection(with: categoryId, for: model.thumbUrl)
                 self?.thumbnailImageViews[categoryIndex].kf.setImage(with: URL(string: model.thumbUrl), options: [.keepCurrentImageWhileLoading])
             }
         })
@@ -199,6 +210,19 @@ final class CustomizeViewController: UIViewController {
             selectionManager.setCurrentComponentInfo(with: componentId)
             retrieveThumbnail(current: selectionManager.current)
         }
+    }
+    
+    private func resultBySelection() -> [LayerOrder: String] {
+        var result = [LayerOrder: String]()
+        
+        selectionManager.selection.forEach {
+            guard var layerOrder = categoryComponentManager.firstIndex(of: $0.key) else { return }
+            correct(categoryIndex: &layerOrder)
+            
+            result[layerOrder] = $0.value.thumbnailUrl
+        }
+        
+        return result
     }
     
     // MARK: @objc

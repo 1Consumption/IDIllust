@@ -47,6 +47,10 @@ final class CategoryComponentManager {
         
         return true
     }
+    
+    func firstIndex(of id: CategoryId) -> Int? {
+        return categories?.firstIndex { $0.id == id }
+    }
 }
 
 enum CategoryComponentManagerEvent {

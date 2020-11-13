@@ -74,4 +74,9 @@ final class CategoryComponentManagerTests: XCTestCase {
         XCTAssertTrue(categoryComponentManager.isExistComponents(with: category.id))
         XCTAssertFalse(categoryComponentManager.isExistComponents(with: -1))
     }
+    
+    func testFirstIndex() {
+        XCTAssertEqual(categoryComponentManager.firstIndex(of: category.id), 0)
+        XCTAssertNil(categoryComponentManager.firstIndex(of: 9999))
+    }
 }
