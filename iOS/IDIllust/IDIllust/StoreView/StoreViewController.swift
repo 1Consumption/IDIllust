@@ -17,7 +17,7 @@ final class StoreViewController: UIViewController {
     }
     @IBAction func store(_ sender: Any) {
         guard let image = resultImageView.image else { return }
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(checkPermission(_:didFinishSavingWithError:contextInfo:)), nil)
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveResult(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var currentLimitLabel: UILabel!
@@ -95,13 +95,22 @@ final class StoreViewController: UIViewController {
         resultImageView.image = overlayedimage
     }
     
-    @objc func checkPermission(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    private func showConfirmAlert(title: String, message: String) {
+        let alert = UIAlertController().confirmAlert(title: title, message: message)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func saveResult(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        guard error == nil else {
+            showConfirmAlert(title: "저장 실패", message: "당신의 IDIllust를 저장하는 도중 문제가 발생했습니다.")
+            return
+        }
+        
         switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized, .limited:
-            print("authorized")
-            
         case .denied:
             print("denied")
+        case .authorized, .limited: showConfirmAlert(title: "저장 성공", message: "당신의 IDIllust가 PhotoLibrary에 성공적으로 저장되었습니다.")
         default: break
         }
     }

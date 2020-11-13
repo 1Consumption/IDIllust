@@ -49,6 +49,7 @@
 		A5B67F6C254B1E32005F098C /* ThumbnailUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B67F6B254B1E32005F098C /* ThumbnailUseCaseTests.swift */; };
 		A5B67F70254B1E72005F098C /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B67F6F254B1E72005F098C /* Thumbnail.swift */; };
 		A5B67F7D254B2F8F005F098C /* ComponentCollectionViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B67F7C254B2F8F005F098C /* ComponentCollectionViewEvent.swift */; };
+		A5B76016255E93B400C92500 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B76015255E93B400C92500 /* UIAlertController.swift */; };
 		A5C8D8EF253D5B94002ADD9E /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */; };
 		A5DD996725598BBF00D92F82 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD996625598BBF00D92F82 /* StoreViewController.swift */; };
 		A5E13316255AB58000C1F43A /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E13315255AB58000C1F43A /* Dynamic.swift */; };
@@ -124,6 +125,7 @@
 		A5B67F6B254B1E32005F098C /* ThumbnailUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailUseCaseTests.swift; sourceTree = "<group>"; };
 		A5B67F6F254B1E72005F098C /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		A5B67F7C254B2F8F005F098C /* ComponentCollectionViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewEvent.swift; sourceTree = "<group>"; };
+		A5B76015255E93B400C92500 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		A5C8D8EE253D5B94002ADD9E /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		A5DD996625598BBF00D92F82 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		A5E13315255AB58000C1F43A /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			children = (
 				A5511443253B2E880068A4D2 /* UIDevice.swift */,
 				A5AEDF43253F69700083F3D2 /* UICollectionView.swift */,
+				A5B76015255E93B400C92500 /* UIAlertController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				A5EEC115253F63200048A13D /* CategoriesUseCase.swift in Sources */,
 				A5511436253B22040068A4D2 /* ColorSelectViewController.swift in Sources */,
 				A5511444253B2E880068A4D2 /* UIDevice.swift in Sources */,
+				A5B76016255E93B400C92500 /* UIAlertController.swift in Sources */,
 				A551143E253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift in Sources */,
 				A50BA707254B374D00985306 /* SelectionManager.swift in Sources */,
 				A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */,
