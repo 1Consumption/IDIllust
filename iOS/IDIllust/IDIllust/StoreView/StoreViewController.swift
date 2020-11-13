@@ -101,6 +101,17 @@ final class StoreViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    private func showSaveFailureAlert() {
+        let failure = UIAlertController(title: "권한 요청", message: "당신의 IDIllust를 앨범에 저장하기 위해서는 Photo Library에 대한 권한이 필요합니다.", preferredStyle: .alert)
+        failure.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        failure.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+            guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
+            UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+        }))
+        
+        present(failure, animated: true, completion: nil)
+    }
+    
     @objc func saveResult(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         guard error == nil else {
             showConfirmAlert(title: "저장 실패", message: "당신의 IDIllust를 저장하는 도중 문제가 발생했습니다.")
@@ -108,9 +119,8 @@ final class StoreViewController: UIViewController {
         }
         
         switch PHPhotoLibrary.authorizationStatus() {
-        case .denied:
-            print("denied")
         case .authorized, .limited: showConfirmAlert(title: "저장 성공", message: "당신의 IDIllust가 PhotoLibrary에 성공적으로 저장되었습니다.")
+        case .denied: showSaveFailureAlert()
         default: break
         }
     }
