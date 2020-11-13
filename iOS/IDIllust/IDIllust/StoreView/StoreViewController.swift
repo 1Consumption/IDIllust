@@ -7,12 +7,17 @@
 //
 
 import Kingfisher
+import Photos
 import UIKit
 
 final class StoreViewController: UIViewController {
     
     @IBAction func cancelButtonPushed(_ sender: Any) {
         dismiss(animated: true)
+    }
+    @IBAction func store(_ sender: Any) {
+        guard let image = resultImageView.image else { return }
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(checkPermission(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var currentLimitLabel: UILabel!
@@ -88,6 +93,17 @@ final class StoreViewController: UIViewController {
         
         let overlayedimage = UIGraphicsGetImageFromCurrentImageContext()
         resultImageView.image = overlayedimage
+    }
+    
+    @objc func checkPermission(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .authorized, .limited:
+            print("authorized")
+            
+        case .denied:
+            print("denied")
+        default: break
+        }
     }
 }
 

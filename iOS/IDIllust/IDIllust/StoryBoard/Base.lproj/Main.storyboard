@@ -367,6 +367,9 @@
                                                     <state key="normal" title="저장">
                                                         <color key="titleColor" systemColor="labelColor"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="store:" destination="efz-N7-xH5" eventType="touchUpInside" id="yjJ-iN-34d"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
