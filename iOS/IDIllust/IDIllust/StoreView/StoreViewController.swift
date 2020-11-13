@@ -95,7 +95,9 @@ final class StoreViewController: UIViewController {
         resultImageView.image = overlayedimage
     }
     
-    private func showConfirmAlert(title: String, message: String) {
+    private func showConfirmAlert(_ isSuccess: Bool) {
+        let title = isSuccess ? "저장 성공" : "저장 실패"
+        let message = isSuccess ? "당신의 IDIllust가 PhotoLibrary에 성공적으로 저장되었습니다." : "당신의 IDIllust를 저장하는 도중 문제가 발생했습니다."
         let alert = UIAlertController().confirmAlert(title: title, message: message)
         
         present(alert, animated: true, completion: nil)
@@ -113,13 +115,8 @@ final class StoreViewController: UIViewController {
     }
     
     @objc func saveResult(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        guard error == nil else {
-            showConfirmAlert(title: "저장 실패", message: "당신의 IDIllust를 저장하는 도중 문제가 발생했습니다.")
-            return
-        }
-        
         switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized, .limited: showConfirmAlert(title: "저장 성공", message: "당신의 IDIllust가 PhotoLibrary에 성공적으로 저장되었습니다.")
+        case .authorized, .limited: showConfirmAlert(error == nil)
         case .denied: showSaveFailureAlert()
         default: break
         }
