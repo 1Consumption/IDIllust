@@ -116,7 +116,7 @@ final class StoreViewController: UIViewController {
     
     @objc func saveResult(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized, .limited: showConfirmAlert(error == nil)
+        case .authorized, .limited: showConfirmAlert(true)
         case .denied: showSaveFailureAlert()
         default: break
         }
