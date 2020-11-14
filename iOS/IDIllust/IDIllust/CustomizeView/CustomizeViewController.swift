@@ -190,6 +190,7 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func retrieveThumbnail(current: CurrentSelection) {
+        activityIndicator.startAnimating()
         ThumbnailUseCase().retrieveThumbnail(selectionManager.current, networkManager: NetworkManager(), successHandler: { model in
             DispatchQueue.main.async { [weak self] in
                 guard let categoryId = current.categoryId else { return }
@@ -242,9 +243,17 @@ final class CustomizeViewController: UIViewController {
         if index == 0 {
             let size = thumbnailImageViews[index].frame.size
             let downsize = DownsamplingImageProcessor(size: size)
-            thumbnailImageViews[index].kf.setImage(with: URL(string: path), options: [.keepCurrentImageWhileLoading, .processor(downsize), .cacheOriginalImage])
+            thumbnailImageViews[index].kf.setImage(with: URL(string: path),
+                                                   options: [.keepCurrentImageWhileLoading, .cacheOriginalImage, .processor(downsize)],
+                                                   completionHandler: { [weak self] _ in
+                                                    self?.activityIndicator.stopAnimating()
+                                                   })
         } else {
-            thumbnailImageViews[index].kf.setImage(with: URL(string: path), options: [.keepCurrentImageWhileLoading])
+            thumbnailImageViews[index].kf.setImage(with: URL(string: path),
+                                                   options: [.keepCurrentImageWhileLoading],
+                                                   completionHandler: { [weak self] _ in
+                                                    self?.activityIndicator.stopAnimating()
+                                                   })
         }
     }
     
