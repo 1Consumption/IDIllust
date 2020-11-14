@@ -6,6 +6,7 @@
 //  Copyright © 2020 신한섭. All rights reserved.
 //
 
+import Kingfisher
 import UIKit
 
 typealias LayerOrder = Int
@@ -162,7 +163,7 @@ final class CustomizeViewController: UIViewController {
     private func setColorSelectView(_ point: CGPoint, _ componentIndexPath: IndexPath) {
         guard let selected = selectionManager.current.categoryIndex else { return }
         guard let categoryId = selectionManager.current.categoryId else { return }
-
+        
         let convertedPoint = componentCollectionViews[selected].convert(point, to: view)
         
         colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
@@ -187,7 +188,7 @@ final class CustomizeViewController: UIViewController {
                 
                 self?.correct(categoryIndex: &categoryIndex)
                 self?.selectionManager.setSelection(with: categoryId, for: model.thumbUrl)
-                self?.thumbnailImageViews[categoryIndex].kf.setImage(with: URL(string: model.thumbUrl), options: [.keepCurrentImageWhileLoading])
+                self?.setThumbnailImageView(with: categoryIndex, path: model.thumbUrl)
             }
         })
     }
@@ -226,6 +227,16 @@ final class CustomizeViewController: UIViewController {
         }
         
         return result
+    }
+    
+    private func setThumbnailImageView(with index: Int, path: String) {
+        if index == 0 {
+            let size = thumbnailImageViews[index].frame.size
+            let downsize = DownsamplingImageProcessor(size: size)
+            thumbnailImageViews[index].kf.setImage(with: URL(string: path), options: [.keepCurrentImageWhileLoading, .processor(downsize), .cacheOriginalImage])
+        } else {
+            thumbnailImageViews[index].kf.setImage(with: URL(string: path), options: [.keepCurrentImageWhileLoading])
+        }
     }
     
     // MARK: @objc
@@ -323,7 +334,7 @@ extension CustomizeViewController: ColorSelectViewControllerDelegate {
         selectionManager.setCurrentColor(with: colorId)
         guard let categoryIndex = selectionManager.current.categoryIndex else { return }
         let componentIndexPath = selectionManager.current.componentInfo?.componentIndexPath
-
+        
         DispatchQueue.main.async { [weak self] in
             self?.componentCollectionViews[categoryIndex].selectItem(at: componentIndexPath, animated: false, scrollPosition: .right)
             self?.colorSelectView.isHidden = true
