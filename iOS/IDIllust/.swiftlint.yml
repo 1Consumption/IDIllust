@@ -43,3 +43,7 @@ identifier_name:
         - URL
 
 line_length: 250
+
+type_body_length:
+  - 300
+  - 400
