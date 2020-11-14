@@ -32,6 +32,7 @@ final class CustomizeViewController: UIViewController {
     private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     private let selectionManager: SelectionManager = SelectionManager()
+    private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .medium)
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -73,6 +74,13 @@ final class CustomizeViewController: UIViewController {
             imageView.heightAnchor.constraint(equalTo: thumbnailView.heightAnchor).isActive = true
             thumbnailImageViews.append(imageView)
         }
+    }
+    
+    private func addActivityIndicator() {
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        thumbnailView.addSubview(activityIndicator)
+        activityIndicator.centerYAnchor.constraint(equalTo: thumbnailView.centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: thumbnailView.centerXAnchor).isActive = true
     }
     
     private func addObserves() {
@@ -124,6 +132,7 @@ final class CustomizeViewController: UIViewController {
             self?.setCategoryCollectionView()
             self?.setComponentCollectionViews(count)
             self?.addThumbnailImageViews(count)
+            self?.addActivityIndicator()
         }
         
         let categoryId = categoryComponentManager.category(of: 0)?.id
