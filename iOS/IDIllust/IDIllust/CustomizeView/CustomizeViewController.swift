@@ -140,7 +140,10 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func setColorSelectViewFrame(size: CGSize?) {
-        guard let size = size else { return }
+        guard var size = size else { return }
+        if size.width >= view.frame.width {
+            size.width = view.frame.width
+        }
         colorSelectView.frame = CGRect(origin: colorSelectView.frame.origin, size: size)
     }
     
