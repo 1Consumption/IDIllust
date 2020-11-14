@@ -19,6 +19,7 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet private weak var componentsStackView: UIStackView!
     @IBOutlet private weak var componentScrollView: UIScrollView!
     @IBOutlet private weak var colorSelectView: UIView!
+    @IBOutlet weak var resetButton: BorderPaddingButton!
     @IBAction func doneButtonPushed(_ sender: Any) {
         guard let storeViewController = storyboard?.instantiateViewController(withIdentifier: "StoreViewController") as? StoreViewController else { return }
         storeViewController.modalPresentationStyle = .overCurrentContext
@@ -40,6 +41,7 @@ final class CustomizeViewController: UIViewController {
         addObserves()
         setCategoriesUseCase()
         componentScrollView.delegate = self
+        setResetButton()
     }
     
     // MARK: - Methods
@@ -81,6 +83,10 @@ final class CustomizeViewController: UIViewController {
         thumbnailView.addSubview(activityIndicator)
         activityIndicator.centerYAnchor.constraint(equalTo: thumbnailView.centerYAnchor).isActive = true
         activityIndicator.centerXAnchor.constraint(equalTo: thumbnailView.centerXAnchor).isActive = true
+    }
+    
+    private func setResetButton() {
+        resetButton.setImage(UIImage(systemName: "arrow.clockwise", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), for: .normal)
     }
     
     private func addObserves() {
