@@ -87,6 +87,7 @@ final class CustomizeViewController: UIViewController {
     
     private func setResetButton() {
         resetButton.setImage(UIImage(systemName: "arrow.clockwise", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), for: .normal)
+        resetButton.addTarget(self, action: #selector(resetSelection), for: .touchUpInside)
     }
     
     private func addObserves() {
@@ -306,6 +307,16 @@ final class CustomizeViewController: UIViewController {
             changeComponentSelection(categoryId, componentId)
             
         default: break
+        }
+    }
+    
+    @objc private func resetSelection() {
+        selectionManager.resetAll()
+        thumbnailImageViews.forEach {
+            $0.image = nil
+        }
+        componentCollectionViews.forEach {
+            $0.selectItem(at: nil, animated: false, scrollPosition: .left)
         }
     }
 }

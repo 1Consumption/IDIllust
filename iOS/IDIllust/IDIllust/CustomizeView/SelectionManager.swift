@@ -59,6 +59,12 @@ final class SelectionManager {
         return componentInfo
     }
     
+    func resetAll() {
+        selection = [:]
+        colorSelectionForEachComponent = [:]
+        current.componentInfo = nil
+    }
+    
     private func setSelection(with current: CurrentSelection) {
         guard let categoryId = current.categoryId, let componentInfo = current.componentInfo else { return }
         selection[categoryId] = componentInfo

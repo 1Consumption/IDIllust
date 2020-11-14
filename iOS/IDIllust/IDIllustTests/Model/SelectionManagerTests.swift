@@ -93,4 +93,12 @@ class SelectionManagerTests: XCTestCase {
         
         XCTAssertEqual(selectionManager.selection[categoryId]?.thumbnailUrl, "url")
     }
+    
+    func testResetAll() {
+        selectionManager.resetAll()
+        
+        XCTAssertEqual(selectionManager.selection, [:])
+        XCTAssertEqual(selectionManager.colorSelectionForEachComponent, [:])
+        XCTAssertNil(selectionManager.current.componentInfo)
+    }
 }
