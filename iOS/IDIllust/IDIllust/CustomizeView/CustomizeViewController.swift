@@ -25,6 +25,7 @@ final class CustomizeViewController: UIViewController {
         storeViewController.delegate = self
         storeViewController.modalPresentationStyle = .overCurrentContext
         storeViewController.layerInfo = resultBySelection()
+        selectionManager.saveCurrentSelection(to: UserDefaults.standard)
         show(storeViewController, sender: self)
     }
     
@@ -107,10 +108,6 @@ final class CustomizeViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(componentCollectionViewEventHandler(_:)),
                                                name: ComponentCollectionViewEvent.DidSelect,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(saveCurrentSelection),
-                                               name: UIApplication.willResignActiveNotification,
                                                object: nil)
     }
     
@@ -323,10 +320,6 @@ final class CustomizeViewController: UIViewController {
         componentCollectionViews.forEach {
             $0.selectItem(at: nil, animated: false, scrollPosition: .left)
         }
-    }
-    
-    @objc private func saveCurrentSelection() {
-        selectionManager.saveCurrentSelection(to: UserDefaults.standard)
     }
 }
 
