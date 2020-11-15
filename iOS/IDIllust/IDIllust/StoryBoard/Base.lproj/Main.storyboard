@@ -20,47 +20,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UTm-9v-Sr1">
-                                <rect key="frame" x="0.0" y="124" width="390" height="390"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ces-eT-hOc">
+                                <rect key="frame" x="0.0" y="44.000000000000028" width="390" height="459.66666666666674"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UTm-9v-Sr1">
+                                        <rect key="frame" x="0.0" y="69.666666666666686" width="390" height="390"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="UTm-9v-Sr1" secondAttribute="height" multiplier="1:1" id="Ncw-WW-vVQ"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="UTm-9v-Sr1" secondAttribute="height" multiplier="1:1" id="Ncw-WW-vVQ"/>
+                                    <constraint firstItem="UTm-9v-Sr1" firstAttribute="width" secondItem="ces-eT-hOc" secondAttribute="width" id="Ubw-ax-2PA"/>
+                                    <constraint firstAttribute="bottom" secondItem="UTm-9v-Sr1" secondAttribute="bottom" id="Ycp-aJ-YEy"/>
+                                    <constraint firstItem="UTm-9v-Sr1" firstAttribute="leading" secondItem="ces-eT-hOc" secondAttribute="leading" id="krS-Zn-hyx"/>
+                                    <constraint firstAttribute="trailing" secondItem="UTm-9v-Sr1" secondAttribute="trailing" id="qYr-2J-sNI"/>
                                 </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsc-00-5EK" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                <rect key="frame" x="39" y="614" width="312" height="39"/>
-                                <color key="backgroundColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Get your own IDIllust">
-                                    <color key="titleColor" name="TabBarColor"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="labelColor"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingHeight">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="glH-73-7GE" kind="presentation" modalPresentationStyle="fullScreen" id="bhE-Fa-emh"/>
-                                </connections>
-                            </button>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhC-ZG-CwX">
+                                <rect key="frame" x="0.0" y="580.33333333333337" width="390" height="229.66666666666663"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsc-00-5EK" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
+                                        <rect key="frame" x="39" y="0.0" width="312" height="44"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Get your own IDIllust">
+                                            <color key="titleColor" name="TabBarColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="labelColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingHeight">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="glH-73-7GE" kind="presentation" modalPresentationStyle="fullScreen" id="bhE-Fa-emh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="bsc-00-5EK" firstAttribute="top" secondItem="dhC-ZG-CwX" secondAttribute="top" id="8yG-C8-rpc"/>
+                                    <constraint firstItem="bsc-00-5EK" firstAttribute="centerX" secondItem="dhC-ZG-CwX" secondAttribute="centerX" id="JDf-j6-ov0"/>
+                                    <constraint firstItem="bsc-00-5EK" firstAttribute="width" secondItem="dhC-ZG-CwX" secondAttribute="width" multiplier="0.8" id="nzb-7R-uON"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="bsc-00-5EK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="74f-wV-fSs"/>
-                            <constraint firstItem="UTm-9v-Sr1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="DLH-cr-KXO"/>
-                            <constraint firstItem="bsc-00-5EK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="F6J-xb-QAJ"/>
-                            <constraint firstItem="UTm-9v-Sr1" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="LQY-2h-xZ4"/>
-                            <constraint firstItem="UTm-9v-Sr1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NbQ-WK-mEU"/>
-                            <constraint firstItem="bsc-00-5EK" firstAttribute="top" secondItem="UTm-9v-Sr1" secondAttribute="bottom" constant="100" id="YUy-mP-zwQ"/>
+                            <constraint firstItem="ces-eT-hOc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6nr-lp-KZB"/>
+                            <constraint firstItem="dhC-ZG-CwX" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.3" id="BrX-0W-nht"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dhC-ZG-CwX" secondAttribute="trailing" id="F5e-9M-l50"/>
+                            <constraint firstItem="ces-eT-hOc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Fxc-5V-HMu"/>
+                            <constraint firstItem="ces-eT-hOc" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.6" id="GYG-y9-lZH"/>
+                            <constraint firstItem="dhC-ZG-CwX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="VCw-8W-PjP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ces-eT-hOc" secondAttribute="trailing" id="iwe-Df-QcY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dhC-ZG-CwX" secondAttribute="bottom" id="rln-tY-wGG"/>
                         </constraints>
                     </view>
                     <connections>
