@@ -37,6 +37,7 @@ final class CustomizeViewController: UIViewController {
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     private let selectionManager: SelectionManager
     private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .medium)
+    private let applyPreviousSelectionQueue: DispatchQueue = DispatchQueue(label: "com.applyPreviousSelectionQueue")
     
     init?(coder: NSCoder, selectionManager: SelectionManager) {
         self.selectionManager = selectionManager
@@ -148,11 +149,23 @@ final class CustomizeViewController: UIViewController {
         categoryCollectionViewDataSource.categories = categoryComponentManager.categories
         guard let count = categoryComponentManager.categoryCount else { return }
         
-        DispatchQueue.main.async { [weak self] in
-            self?.setCategoryCollectionView()
-            self?.setComponentCollectionViews(count)
-            self?.addThumbnailImageViews(count)
-            self?.addActivityIndicator()
+        applyPreviousSelectionQueue.async {
+            DispatchQueue.main.async { [weak self] in
+                self?.setCategoryCollectionView()
+                self?.setComponentCollectionViews(count)
+                self?.addThumbnailImageViews(count)
+                self?.addActivityIndicator()
+            }
+        }
+        
+        applyPreviousSelectionQueue.async { [weak self] in
+            guard self?.selectionManager.selection.count != 0 else { return }
+            
+            self?.selectionManager.selection.forEach {
+                guard let categoryIndex = self?.categoryComponentManager.firstIndex(of: $0.key) else { return }
+                let current = CurrentSelection(categoryIndex: categoryIndex, categoryId: $0.key, componentInfo: $0.value)
+                self?.retrieveThumbnail(current: current)
+            }
         }
         
         let categoryId = categoryComponentManager.category(of: 0)?.id
@@ -161,11 +174,21 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func reloadComponentsCollectionView() {
-        DispatchQueue.main.async { [weak self] in
-            guard let selected = self?.categoryCollectionView.indexPathsForSelectedItems?.first?.item else { return }
-            guard let categoryId = self?.categoryComponentManager.category(of: selected)?.id else { return }
-            self?.componentCollectionViewDataSources[selected].components = self?.categoryComponentManager.components(of: categoryId)
-            self?.componentCollectionViews[selected].reloadData()
+        guard let selected = selectionManager.current.categoryIndex else { return }
+        guard let categoryId = categoryComponentManager.category(of: selected)?.id else { return }
+        
+        applyPreviousSelectionQueue.async {
+            DispatchQueue.main.sync { [weak self] in
+                self?.componentCollectionViewDataSources[selected].components = self?.categoryComponentManager.components(of: categoryId)
+                self?.componentCollectionViews[selected].reloadData()
+            }
+        }
+        
+        applyPreviousSelectionQueue.async { [weak self] in
+            DispatchQueue.main.async {
+                let previousSelected = self?.selectionManager.selection[categoryId]?.componentIndexPath
+                self?.componentCollectionViews[selected].selectItem(at: previousSelected, animated: false, scrollPosition: .bottom)
+            }
         }
     }
     
@@ -210,14 +233,20 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func retrieveThumbnail(current: CurrentSelection) {
-        activityIndicator.startAnimating()
-        ThumbnailUseCase().retrieveThumbnail(selectionManager.current, networkManager: NetworkManager(), successHandler: { model in
-            DispatchQueue.main.async { [weak self] in
+        DispatchQueue.main.async { [weak self] in
+            if self?.activityIndicator.isAnimating != true {
+                self?.activityIndicator.startAnimating()
+            }
+        }
+        
+        ThumbnailUseCase().retrieveThumbnail(current, networkManager: NetworkManager(), successHandler: { [weak self] model in
                 guard let categoryId = current.categoryId else { return }
                 guard var categoryIndex = current.categoryIndex else { return }
                 
                 self?.correct(categoryIndex: &categoryIndex)
                 self?.selectionManager.setSelection(with: categoryId, for: model.thumbUrl)
+            
+            DispatchQueue.main.async { [weak self] in
                 self?.setThumbnailImageView(with: categoryIndex, path: model.thumbUrl)
             }
         })
@@ -232,7 +261,10 @@ final class CustomizeViewController: UIViewController {
         categoryIndex = 0
     }
     
-    private func changeComponentSelection(_ categoryId: Int, _ componentId: Int) {
+    private func changeComponentSelection(for indexPath: IndexPath) {
+        guard let categoryId = selectionManager.current.categoryId else { return }
+        guard let componentId = categoryComponentManager.component(with: categoryId, for: indexPath.item)?.id else { return }
+        
         if selectionManager.isSelectedComponent(with: categoryId, and: componentId) {
             selectionManager.removeCurrentComponent()
             guard var categoryIndex = selectionManager.current.categoryIndex else { return }
@@ -241,7 +273,7 @@ final class CustomizeViewController: UIViewController {
             correct(categoryIndex: &categoryIndex)
             thumbnailImageViews[categoryIndex].image = nil
         } else {
-            selectionManager.setCurrentComponentInfo(with: componentId)
+            selectionManager.setCurrentComponentInfo(with: componentId, for: indexPath)
             retrieveThumbnail(current: selectionManager.current)
         }
     }
@@ -312,13 +344,7 @@ final class CustomizeViewController: UIViewController {
         
         switch object {
         case .longPressBegan(let origin, let indexPath): setColorSelectView(origin, indexPath)
-            
-        case .didSelect(let indexPath):
-            guard let categoryId = selectionManager.current.categoryId else { return }
-            guard let componentId = categoryComponentManager.component(with: categoryId, for: indexPath.item)?.id else { return }
-            
-            changeComponentSelection(categoryId, componentId)
-            
+        case .didSelect(let indexPath): changeComponentSelection(for: indexPath)
         default: break
         }
     }
