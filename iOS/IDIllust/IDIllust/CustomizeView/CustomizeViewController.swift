@@ -22,6 +22,7 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet weak var resetButton: BorderPaddingButton!
     @IBAction func doneButtonPushed(_ sender: Any) {
         guard let storeViewController = storyboard?.instantiateViewController(withIdentifier: "StoreViewController") as? StoreViewController else { return }
+        storeViewController.delegate = self
         storeViewController.modalPresentationStyle = .overCurrentContext
         storeViewController.layerInfo = resultBySelection()
         show(storeViewController, sender: self)
@@ -106,6 +107,10 @@ final class CustomizeViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(componentCollectionViewEventHandler(_:)),
                                                name: ComponentCollectionViewEvent.DidSelect,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(saveCurrentSelection),
+                                               name: UIApplication.willResignActiveNotification,
                                                object: nil)
     }
     
@@ -319,6 +324,10 @@ final class CustomizeViewController: UIViewController {
             $0.selectItem(at: nil, animated: false, scrollPosition: .left)
         }
     }
+    
+    @objc private func saveCurrentSelection() {
+        selectionManager.saveCurrentSelection(to: UserDefaults.standard)
+    }
 }
 
 extension CustomizeViewController: UICollectionViewDelegate {
@@ -376,5 +385,11 @@ extension CustomizeViewController: ColorSelectViewControllerDelegate {
         }
         
         retrieveThumbnail(current: selectionManager.current)
+    }
+}
+
+extension CustomizeViewController: StoreViewControllerDelegate {
+    func saveCompletion() {
+        selectionManager.removeCurrentSelection(from: UserDefaults.standard)
     }
 }

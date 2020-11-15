@@ -10,6 +10,10 @@ import Kingfisher
 import Photos
 import UIKit
 
+protocol StoreViewControllerDelegate: AnyObject {
+    func saveCompletion()
+}
+
 final class StoreViewController: UIViewController {
     
     @IBAction func cancelButtonPushed(_ sender: Any) {
@@ -27,6 +31,7 @@ final class StoreViewController: UIViewController {
     private var images: [UIImage?] = [UIImage?]()
     private let limit: Int = 10
     var layerInfo: [LayerOrder: String]?
+    weak var delegate: StoreViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +121,10 @@ final class StoreViewController: UIViewController {
     
     @objc func saveResult(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized, .limited: showConfirmAlert(true)
+        case .authorized, .limited:
+            showConfirmAlert(true)
+            delegate?.saveCompletion()
+            
         case .denied: showSaveFailureAlert()
         default: break
         }
