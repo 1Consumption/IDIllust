@@ -74,7 +74,7 @@
         <!--Item-->
         <scene sceneID="Ahp-f6-lrk">
             <objects>
-                <viewController id="g2x-8b-bhw" customClass="CustomizeViewController" customModule="IDIllust" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="customizeViewController" id="g2x-8b-bhw" customClass="CustomizeViewController" customModule="IDIllust" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z8d-ty-sDV">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

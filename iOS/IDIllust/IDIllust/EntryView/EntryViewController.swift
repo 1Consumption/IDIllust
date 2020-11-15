@@ -28,6 +28,11 @@ final class EntryViewController: UIViewController {
         entryImageUseCase()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadSelections()
+    }
+    
     // MARK: - Methods
     private func entryImageUseCase() {
         EntryImageUseCase()
@@ -45,5 +50,25 @@ final class EntryViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.entryImageView.kf.setImage(with: URL(string: imageURL))
         }
+    }
+    
+    private func loadSelections() {
+        guard let selectionManager = SelectionManager(userDefaults: UserDefaults.standard) else { return }
+        
+        let loadAlert = UIAlertController(title: nil, message: "이런... 미처 저장하지 못한\nIDIllust가 있으시군요.\n이전 선택사항을 불러오시겠어요?", preferredStyle: .alert)
+        loadAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        loadAlert.addAction(UIAlertAction(title: "확인", style: .default, handler: { [weak self] _ in
+            self?.presentCusomizeViewController(selectionManager: selectionManager)
+        }))
+        present(loadAlert, animated: true, completion: nil)
+    }
+    
+    private func presentCusomizeViewController(selectionManager: SelectionManager) {
+        guard let customizeViewController = storyboard?.instantiateViewController(identifier: CustomizeViewController.identifier, creator: { (coder) -> CustomizeViewController? in
+            CustomizeViewController.init(coder: coder, selectionManager: selectionManager)
+        }) else { return }
+        
+        customizeViewController.modalPresentationStyle = .fullScreen
+        present(customizeViewController, animated: true, completion: nil)
     }
 }

@@ -29,13 +29,24 @@ final class CustomizeViewController: UIViewController {
         show(storeViewController, sender: self)
     }
     
+    static let identifier: String = "customizeViewController"
     private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
     private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
     private var thumbnailImageViews: [UIImageView] = [UIImageView]()
     private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
-    private let selectionManager: SelectionManager = SelectionManager()
+    private let selectionManager: SelectionManager
     private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .medium)
+    
+    init?(coder: NSCoder, selectionManager: SelectionManager) {
+        self.selectionManager = selectionManager
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.selectionManager = SelectionManager()
+        super.init(coder: coder)
+    }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
