@@ -95,7 +95,7 @@ final class CustomizeViewController: UIViewController {
     private func addActivityIndicator() {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         thumbnailView.addSubview(activityIndicator)
-        activityIndicator.centerYAnchor.constraint(equalTo: thumbnailView.centerYAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: thumbnailView.centerYAnchor, constant: thumbnailView.frame.height / 3).isActive = true
         activityIndicator.centerXAnchor.constraint(equalTo: thumbnailView.centerXAnchor).isActive = true
     }
     
@@ -240,11 +240,11 @@ final class CustomizeViewController: UIViewController {
         }
         
         ThumbnailUseCase().retrieveThumbnail(current, networkManager: NetworkManager(), successHandler: { [weak self] model in
-                guard let categoryId = current.categoryId else { return }
-                guard var categoryIndex = current.categoryIndex else { return }
-                
-                self?.correct(categoryIndex: &categoryIndex)
-                self?.selectionManager.setSelection(with: categoryId, for: model.thumbUrl)
+            guard let categoryId = current.categoryId else { return }
+            guard var categoryIndex = current.categoryIndex else { return }
+            
+            self?.correct(categoryIndex: &categoryIndex)
+            self?.selectionManager.setSelection(with: categoryId, for: model.thumbUrl)
             
             DispatchQueue.main.async { [weak self] in
                 self?.setThumbnailImageView(with: categoryIndex, path: model.thumbUrl)
