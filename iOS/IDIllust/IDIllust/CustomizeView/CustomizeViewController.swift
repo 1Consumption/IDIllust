@@ -425,4 +425,8 @@ extension CustomizeViewController: SaveViewControllerDelegate {
     func saveCompletion() {
         selectionManager.removeCurrentSelection(from: UserDefaults.standard)
     }
+    
+    func createNewIDIllust() {
+        resetSelection()
+    }
 }

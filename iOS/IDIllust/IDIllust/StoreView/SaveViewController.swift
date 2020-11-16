@@ -12,6 +12,7 @@ import UIKit
 
 protocol SaveViewControllerDelegate: AnyObject {
     func saveCompletion()
+    func createNewIDIllust()
 }
 
 final class SaveViewController: UIViewController {
@@ -117,18 +118,24 @@ final class SaveViewController: UIViewController {
         resultImageView.image = overlayedimage
     }
     
-    private func showConfirmAlert(_ isSuccess: Bool) {
-        let title = isSuccess ? "저장 성공" : "저장 실패"
-        let message = isSuccess ? "당신의 IDIllust가 PhotoLibrary에 성공적으로 저장되었습니다." : "당신의 IDIllust를 저장하는 도중 문제가 발생했습니다."
-        let alert = UIAlertController().confirmAlert(title: title, message: message)
+    private func showSuccessAlert() {
+        let success = UIAlertController(title: "저장 성공", message: "당신의 IDIllust가 PhotoLibrary에 성공적으로 저장되었습니다.", preferredStyle: .alert)
+        success.addAction(UIAlertAction(title: "마저 수정하기", style: .default, handler: { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+        }))
+        success.addAction(UIAlertAction(title: "새로 만들기", style: .default, handler: { [weak self] _ in
+            self?.dismiss(animated: true, completion: {
+                self?.delegate?.createNewIDIllust()
+            })
+        }))
         
-        present(alert, animated: true, completion: nil)
+        present(success, animated: true, completion: nil)
     }
     
     private func showSaveFailureAlert() {
         let failure = UIAlertController(title: "권한 요청", message: "당신의 IDIllust를 앨범에 저장하기 위해서는 Photo Library에 대한 권한이 필요합니다.", preferredStyle: .alert)
         failure.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-        failure.addAction(UIAlertAction(title: "설정 하기", style: .default, handler: { _ in
+        failure.addAction(UIAlertAction(title: "설정하기", style: .default, handler: { _ in
             guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
             UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
         }))
@@ -139,7 +146,7 @@ final class SaveViewController: UIViewController {
     @objc func saveResult(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         switch PHPhotoLibrary.authorizationStatus() {
         case .authorized, .limited:
-            showConfirmAlert(true)
+            showSuccessAlert()
             delegate?.saveCompletion()
             
         case .denied: showSaveFailureAlert()
