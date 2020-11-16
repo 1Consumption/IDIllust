@@ -9,6 +9,9 @@
 import Foundation
 
 extension UserDefaults {
+    
+    static let beginnerKey: String = "beginner"
+    
     func saveSelection<T: Encodable>(_ encodable: T, forKey key: String) {
         let encoded = try? JSONEncoder().encode(encodable)
         setValue(encoded, forKey: key)

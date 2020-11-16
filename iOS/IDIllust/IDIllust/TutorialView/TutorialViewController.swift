@@ -23,6 +23,7 @@ final class TutorialViewController: UIViewController {
         tutorialScrollView.delegate = self
         pageControl.currentPageIndicatorTintColor = .black
         setTutorialViewModel()
+        skipButton.addTarget(self, action: #selector(skipButtonPushed), for: .touchUpInside)
     }
     
     private func setTutorialViewModel() {
@@ -38,6 +39,17 @@ final class TutorialViewController: UIViewController {
             }
         }
         tutorialViewModel.fireCurrentPage()
+    }
+    
+    @objc private func skipButtonPushed() {
+        guard let customizeViewController = storyboard?.instantiateViewController(identifier: CustomizeViewController.identifier, creator: { (coder) -> CustomizeViewController? in
+            CustomizeViewController.init(coder: coder)
+        }) else { return }
+        
+        customizeViewController.modalPresentationStyle = .fullScreen
+        present(customizeViewController, animated: true, completion: {
+            UserDefaults.standard.setValue(false, forKey: UserDefaults.beginnerKey)
+        })
     }
 }
 
