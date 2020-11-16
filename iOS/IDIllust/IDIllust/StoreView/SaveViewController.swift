@@ -1,5 +1,5 @@
 //
-//  StoreViewController.swift
+//  SaveViewController.swift
 //  IDIllust
 //
 //  Created by 신한섭 on 2020/11/09.
@@ -10,28 +10,41 @@ import Kingfisher
 import Photos
 import UIKit
 
-protocol StoreViewControllerDelegate: AnyObject {
+protocol SaveViewControllerDelegate: AnyObject {
     func saveCompletion()
 }
 
-final class StoreViewController: UIViewController {
+final class SaveViewController: UIViewController {
     
-    @IBAction func cancelButtonPushed(_ sender: Any) {
-        dismiss(animated: true)
-    }
-    @IBAction func store(_ sender: Any) {
-        guard let image = resultImageView.image else { return }
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveResult(_:didFinishSavingWithError:contextInfo:)), nil)
-    }
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var currentLimitLabel: UILabel!
     @IBOutlet weak var titleLimitLabel: UILabel!
     @IBOutlet weak var resultImageView: UIImageView!
+    @IBAction func cancelButtonPushed(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    @IBAction func save(_ sender: Any) {
+        guard let image = resultImageView.image else { return }
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveResult(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    static let identifier: String = "saveViewController"
     private var textLengthViewModel: Dynamic<Int> = Dynamic<Int>()
     private var images: [UIImage?] = [UIImage?]()
     private let limit: Int = 10
-    var layerInfo: [LayerOrder: String]?
-    weak var delegate: StoreViewControllerDelegate?
+    private let layerInfo: [LayerOrder: String]
+    weak var delegate: SaveViewControllerDelegate?
+    
+    init?(coder: NSCoder, layerInfo: [LayerOrder: String]?) {
+        guard let layerInfo = layerInfo else { return nil }
+        self.layerInfo = layerInfo
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        layerInfo = [:]
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +81,7 @@ final class StoreViewController: UIViewController {
     }
     
     private func retrieveImages() {
-        layerInfo?.sorted { $0.key < $1.key }.forEach { layers in
+        layerInfo.sorted { $0.key < $1.key }.forEach { layers in
             guard let cacheKey = URL(string: layers.value)?.cacheKey else { return }
             ImageCache.default.retrieveImage(forKey: cacheKey,
                                              options: [.loadDiskFileSynchronously],
@@ -85,7 +98,11 @@ final class StoreViewController: UIViewController {
     }
     
     private func overlayImages() {
-        guard let size = images.first??.size else { return }
+        guard let size = images.first??.size else {
+            let alert = UIAlertController().confirmAlert(title: "이미지 로딩 실패", message: "이미지를 불러오는데 실패 했습니다.")
+            present(alert, animated: true, completion: nil)
+            return
+        }
         
         UIGraphicsBeginImageContext(size)
         defer { UIGraphicsEndImageContext() }
@@ -111,7 +128,7 @@ final class StoreViewController: UIViewController {
     private func showSaveFailureAlert() {
         let failure = UIAlertController(title: "권한 요청", message: "당신의 IDIllust를 앨범에 저장하기 위해서는 Photo Library에 대한 권한이 필요합니다.", preferredStyle: .alert)
         failure.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-        failure.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+        failure.addAction(UIAlertAction(title: "설정 하기", style: .default, handler: { _ in
             guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
             UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
         }))
@@ -131,7 +148,7 @@ final class StoreViewController: UIViewController {
     }
 }
 
-extension StoreViewController: UITextFieldDelegate {
+extension SaveViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let textLength = textField.text?.count else { return true }

@@ -21,12 +21,15 @@ final class CustomizeViewController: UIViewController {
     @IBOutlet private weak var colorSelectView: UIView!
     @IBOutlet weak var resetButton: BorderPaddingButton!
     @IBAction func doneButtonPushed(_ sender: Any) {
-        guard let storeViewController = storyboard?.instantiateViewController(withIdentifier: "StoreViewController") as? StoreViewController else { return }
-        storeViewController.delegate = self
-        storeViewController.modalPresentationStyle = .overCurrentContext
-        storeViewController.layerInfo = resultBySelection()
+        guard let saveViewController = storyboard?.instantiateViewController(identifier: SaveViewController.identifier, creator: { [weak self] (coder) -> SaveViewController? in
+            SaveViewController(coder: coder, layerInfo: self?.resultBySelection())
+        }) else { return }
+        saveViewController.delegate = self
+        saveViewController.modalPresentationStyle = .overCurrentContext
+        
         selectionManager.saveCurrentSelection(to: UserDefaults.standard)
-        show(storeViewController, sender: self)
+        
+        show(saveViewController, sender: self)
     }
     
     static let identifier: String = "customizeViewController"
@@ -418,7 +421,7 @@ extension CustomizeViewController: ColorSelectViewControllerDelegate {
     }
 }
 
-extension CustomizeViewController: StoreViewControllerDelegate {
+extension CustomizeViewController: SaveViewControllerDelegate {
     func saveCompletion() {
         selectionManager.removeCurrentSelection(from: UserDefaults.standard)
     }

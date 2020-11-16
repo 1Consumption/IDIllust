@@ -378,10 +378,10 @@
             </objects>
             <point key="canvasLocation" x="2432" y="-183"/>
         </scene>
-        <!--Store View Controller-->
+        <!--Save View Controller-->
         <scene sceneID="D1G-Zq-O0V">
             <objects>
-                <viewController storyboardIdentifier="StoreViewController" id="efz-N7-xH5" customClass="StoreViewController" customModule="IDIllust" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="saveViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="efz-N7-xH5" customClass="SaveViewController" customModule="IDIllust" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bo0-c3-L3l">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -418,7 +418,7 @@
                                                         <color key="titleColor" systemColor="labelColor"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="store:" destination="efz-N7-xH5" eventType="touchUpInside" id="yjJ-iN-34d"/>
+                                                        <action selector="save:" destination="efz-N7-xH5" eventType="touchUpInside" id="zGq-W3-ONh"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -507,7 +507,7 @@
             <size key="intrinsicContentSize" width="21.666666666666668" height="25.333333333333332"/>
         </designable>
         <designable name="bsc-00-5EK">
-            <size key="intrinsicContentSize" width="196" height="39"/>
+            <size key="intrinsicContentSize" width="196" height="44"/>
         </designable>
     </designables>
     <resources>
