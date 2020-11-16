@@ -63,7 +63,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="glH-73-7GE" kind="presentation" modalPresentationStyle="fullScreen" id="bhE-Fa-emh"/>
+                                            <action selector="idIllustButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GYf-t2-T8I"/>
                                         </connections>
                                     </button>
                                 </subviews>

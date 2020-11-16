@@ -13,6 +13,9 @@ final class EntryViewController: UIViewController {
     
     // MARK: - @IBOutlet
     @IBOutlet private weak var entryImageView: UIImageView!
+    @IBAction func idIllustButtonPushed(_ sender: Any) {
+        presentNextScence()
+    }
     
     // MARK: Properties
     private var entryImage: EntryImage? {
@@ -50,6 +53,22 @@ final class EntryViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.entryImageView.kf.setImage(with: URL(string: imageURL))
         }
+    }
+    
+    private func presentNextScence() {
+        guard let isBeginner = UserDefaults.standard.value(forKey: UserDefaults.beginnerKey) as? Bool else {
+            presentTutorialViewController()
+            return
+        }
+        
+        isBeginner ? presentTutorialViewController() : presentCusomizeViewController(selectionManager: SelectionManager())
+    }
+    
+    private func presentTutorialViewController() {
+        guard let tutorialViewController = storyboard?.instantiateViewController(withIdentifier: TutorialViewController.identifier) else { return }
+        
+        tutorialViewController.modalPresentationStyle = .fullScreen
+        present(tutorialViewController, animated: true, completion: nil)
     }
     
     private func loadSelections() {

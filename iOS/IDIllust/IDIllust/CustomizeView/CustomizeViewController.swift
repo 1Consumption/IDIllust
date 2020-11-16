@@ -371,7 +371,6 @@ extension CustomizeViewController: UICollectionViewDelegate {
 
 extension CustomizeViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         guard !(scrollView is UICollectionView) else { return }
         
         let curX = scrollView.contentOffset.x
