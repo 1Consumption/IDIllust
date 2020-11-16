@@ -34,6 +34,7 @@
 		A534809B25481E53001C039E /* CategoryComponentManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534809A25481E53001C039E /* CategoryComponentManagerTests.swift */; };
 		A53774692562757900482BEF /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53774682562757900482BEF /* TutorialViewController.swift */; };
 		A537746F25627F4E00482BEF /* TutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537746E25627F4E00482BEF /* TutorialViewModel.swift */; };
+		A53774792562966300482BEF /* TutorialViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53774782562966300482BEF /* TutorialViewModelTest.swift */; };
 		A5434F0B2538238D00782F2C /* ComponentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5434F0A2538238D00782F2C /* ComponentCollectionView.swift */; };
 		A5511436253B22040068A4D2 /* ColorSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5511435253B22040068A4D2 /* ColorSelectViewController.swift */; };
 		A551143E253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A551143D253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift */; };
@@ -114,6 +115,7 @@
 		A534809A25481E53001C039E /* CategoryComponentManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryComponentManagerTests.swift; sourceTree = "<group>"; };
 		A53774682562757900482BEF /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		A537746E25627F4E00482BEF /* TutorialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewModel.swift; sourceTree = "<group>"; };
+		A53774782562966300482BEF /* TutorialViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewModelTest.swift; sourceTree = "<group>"; };
 		A5434F0A2538238D00782F2C /* ComponentCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionView.swift; sourceTree = "<group>"; };
 		A5511435253B22040068A4D2 /* ColorSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectViewController.swift; sourceTree = "<group>"; };
 		A551143D253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				A50BA70C254B44F200985306 /* SelectionManagerTests.swift */,
 				A5E1331E255ABE0400C1F43A /* TextLengthViewModelTests.swift */,
 				A5082705255BCCAC00908698 /* CategoriesTest.swift */,
+				A53774782562966300482BEF /* TutorialViewModelTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				A50BA70D254B44F200985306 /* SelectionManagerTests.swift in Sources */,
 				A50E3AA2254962700004DEA7 /* ComponentColors.swift in Sources */,
 				A534809B25481E53001C039E /* CategoryComponentManagerTests.swift in Sources */,
+				A53774792562966300482BEF /* TutorialViewModelTest.swift in Sources */,
 				A5844A9C253D67B600A24256 /* EndPointTests.swift in Sources */,
 				A5B67F70254B1E72005F098C /* Thumbnail.swift in Sources */,
 				A5E1331F255ABE0400C1F43A /* TextLengthViewModelTests.swift in Sources */,

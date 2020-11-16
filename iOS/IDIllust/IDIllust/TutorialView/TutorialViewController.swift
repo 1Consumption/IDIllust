@@ -20,5 +20,33 @@ final class TutorialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tutorialScrollView.delegate = self
+        pageControl.currentPageIndicatorTintColor = .black
+        setTutorialViewModel()
+    }
+    
+    private func setTutorialViewModel() {
+        tutorialViewModel.bindCurrentPage { [weak self] in
+            guard let page = $0 else { return }
+            guard let pageControl = self?.pageControl else { return }
+            pageControl.currentPage = page
+            
+            if pageControl.numberOfPages - 1 == page {
+                self?.skipButton.setTitle("Start", for: .normal)
+            } else {
+                self?.skipButton.setTitle("Skip", for: .normal)
+            }
+        }
+        tutorialViewModel.fireCurrentPage()
+    }
+}
+
+extension TutorialViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let curX = scrollView.contentOffset.x
+        let width = view.frame.width
+        let page = Int(round(curX / width))
+        
+        tutorialViewModel.setPage(page)
     }
 }
