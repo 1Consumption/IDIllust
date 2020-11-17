@@ -44,6 +44,7 @@
 		A5844A9C253D67B600A24256 /* EndPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5844A9B253D67B600A24256 /* EndPointTests.swift */; };
 		A5844AA4253D6A8600A24256 /* EntryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5844AA3253D6A8600A24256 /* EntryImage.swift */; };
 		A5844AA9253D6B0D00A24256 /* EntryImageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5844AA8253D6B0D00A24256 /* EntryImageUseCase.swift */; };
+		A5AC8EBE2563F7F600199129 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A5AC8EBD2563F7F600199129 /* Settings.bundle */; };
 		A5AEDF44253F69700083F3D2 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEDF43253F69700083F3D2 /* UICollectionView.swift */; };
 		A5AEDF4D253FCDA10083F3D2 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEDF4C253FCDA10083F3D2 /* Component.swift */; };
 		A5AEDF56253FF3670083F3D2 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEDF55253FF3660083F3D2 /* Components.swift */; };
@@ -125,6 +126,7 @@
 		A5844A9B253D67B600A24256 /* EndPointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointTests.swift; sourceTree = "<group>"; };
 		A5844AA3253D6A8600A24256 /* EntryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryImage.swift; sourceTree = "<group>"; };
 		A5844AA8253D6B0D00A24256 /* EntryImageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryImageUseCase.swift; sourceTree = "<group>"; };
+		A5AC8EBD2563F7F600199129 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A5AEDF43253F69700083F3D2 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		A5AEDF4C253FCDA10083F3D2 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		A5AEDF55253FF3660083F3D2 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 		A5F893352500A8C7002258EA = {
 			isa = PBXGroup;
 			children = (
+				A5AC8EBD2563F7F600199129 /* Settings.bundle */,
 				A5F893402500A8C7002258EA /* IDIllust */,
 				A5F893572500A8C8002258EA /* IDIllustTests */,
 				A5F8933F2500A8C7002258EA /* Products */,
@@ -565,6 +568,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5AC8EBE2563F7F600199129 /* Settings.bundle in Resources */,
 				A5F8934E2500A8C8002258EA /* LaunchScreen.storyboard in Resources */,
 				A5F8934B2500A8C8002258EA /* Assets.xcassets in Resources */,
 				A5F893492500A8C7002258EA /* Main.storyboard in Resources */,
