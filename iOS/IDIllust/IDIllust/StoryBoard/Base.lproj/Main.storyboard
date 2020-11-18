@@ -105,14 +105,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1lZ-Ip-0rH" userLabel="ThumbnailView">
-                                <rect key="frame" x="56" y="0.0" width="263" height="351"/>
+                                <rect key="frame" x="37.5" y="0.0" width="300" height="400"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="1lZ-Ip-0rH" secondAttribute="height" multiplier="3:4" id="ZDu-kx-I0B"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kDE-6u-U7f" userLabel="Container Stack View">
-                                <rect key="frame" x="0.0" y="351" width="375" height="267"/>
+                                <rect key="frame" x="0.0" y="400" width="375" height="267"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mrd-zo-ici">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
@@ -200,7 +200,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgB-c4-5xv" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                <rect key="frame" x="290" y="303.5" width="75" height="37.5"/>
+                                <rect key="frame" x="290" y="352.5" width="75" height="37.5"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DgB-c4-5xv" secondAttribute="height" multiplier="2:1" id="qBf-Z4-Cm9"/>
@@ -220,7 +220,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GkQ-I7-nr1" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                <rect key="frame" x="10" y="301" width="40" height="40"/>
+                                <rect key="frame" x="10" y="350" width="40" height="40"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="VCP-3d-sQg"/>
@@ -389,26 +389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fa6-ze-K9f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="880" y="-578.67298578199052"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="Z1H-He-8yk">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="glH-73-7GE" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="0fP-2J-Uc5"/>
-                    <tabBar key="tabBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7UW-65-EV4">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="g2x-8b-bhw" kind="relationship" relationship="viewControllers" id="OEc-4s-NZV"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CEr-Li-H0n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="892" y="94"/>
+            <point key="canvasLocation" x="892" y="87"/>
         </scene>
         <!--Color Select View Controller-->
         <scene sceneID="A6o-GN-AyF">
