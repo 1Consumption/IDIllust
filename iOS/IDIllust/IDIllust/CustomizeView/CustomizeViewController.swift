@@ -41,6 +41,7 @@ final class CustomizeViewController: UIViewController {
     private let selectionManager: SelectionManager
     private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .medium)
     private let applyPreviousSelectionQueue: DispatchQueue = DispatchQueue(label: "com.applyPreviousSelection.queue")
+    private let numOfItemsViewModel: NumOfItemsViewModel = NumOfItemsViewModel()
     
     init?(coder: NSCoder, selectionManager: SelectionManager) {
         self.selectionManager = selectionManager
@@ -60,6 +61,7 @@ final class CustomizeViewController: UIViewController {
         componentScrollView.delegate = self
         componentScrollView.delaysContentTouches = false
         setResetButton()
+        setNumOfItemsViewModel()
     }
     
     // MARK: - Methods
@@ -79,6 +81,18 @@ final class CustomizeViewController: UIViewController {
             componentView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
             componentView.dataSource = dataSource
             componentView.delegate = self
+            componentView.button.addTarget(self, action: #selector(fuck), for: .touchUpInside)
+        }
+    }
+    
+    @objc func fuck() {
+        guard let selected = selectionManager.current.categoryIndex else { return }
+        guard let categoryId = selectionManager.current.categoryId else { return }
+        componentCollectionViewDataSources[selected].components = categoryComponentManager.components(of: categoryId)
+        componentViews[selected].reloadData()
+        DispatchQueue.main.async { [weak self] in
+            let count = self?.componentViews[selected].collectionView.numberOfItems(inSection: 0)
+            self?.numOfItemsViewModel.setHasItems(count: count)
         }
     }
     
@@ -93,6 +107,15 @@ final class CustomizeViewController: UIViewController {
             imageView.heightAnchor.constraint(equalTo: thumbnailView.heightAnchor).isActive = true
             thumbnailImageViews.append(imageView)
         }
+    }
+    
+    private func setNumOfItemsViewModel() {
+        numOfItemsViewModel.bindHasItems { [weak self] hasItems in
+            guard let selected = self?.selectionManager.current.categoryIndex else { return }
+            guard let hasItems = hasItems else { return }
+            self?.componentViews[selected].button.isHidden = hasItems
+        }
+        numOfItemsViewModel.fireHasItems()
     }
     
     private func addActivityIndicator() {
@@ -178,7 +201,7 @@ final class CustomizeViewController: UIViewController {
     private func reloadComponentsCollectionView() {
         guard let selected = selectionManager.current.categoryIndex else { return }
         guard let categoryId = categoryComponentManager.category(of: selected)?.id else { return }
-        
+
         applyPreviousSelectionQueue.async {
             DispatchQueue.main.sync { [weak self] in
                 self?.componentCollectionViewDataSources[selected].components = self?.categoryComponentManager.components(of: categoryId)
@@ -330,6 +353,10 @@ final class CustomizeViewController: UIViewController {
         guard categoryComponentManager.isExistComponents(with: categoryId) else {
             setComponentsUseCase(categoryComponentManager.category(of: index)?.id)
             return
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.numOfItemsViewModel.setHasItems(count: self?.componentViews[selected.item].collectionView.numberOfItems(inSection: 0))
         }
     }
     

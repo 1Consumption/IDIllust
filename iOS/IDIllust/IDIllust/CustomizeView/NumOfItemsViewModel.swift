@@ -12,7 +12,7 @@ final class NumOfItemsViewModel {
     
     private let hasItems: Dynamic<Bool> = Dynamic<Bool>()
     
-    func setHasItems(count: Int) {
+    func setHasItems(count: Int?) {
         hasItems.value = count != 0
     }
     
