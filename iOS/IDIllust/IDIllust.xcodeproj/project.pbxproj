@@ -36,6 +36,7 @@
 		A537746F25627F4E00482BEF /* TutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537746E25627F4E00482BEF /* TutorialViewModel.swift */; };
 		A53774792562966300482BEF /* TutorialViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53774782562966300482BEF /* TutorialViewModelTest.swift */; };
 		A5434F0B2538238D00782F2C /* ComponentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5434F0A2538238D00782F2C /* ComponentCollectionView.swift */; };
+		A548562B256503E400B38D41 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A548562A256503E400B38D41 /* ComponentView.swift */; };
 		A5511436253B22040068A4D2 /* ColorSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5511435253B22040068A4D2 /* ColorSelectViewController.swift */; };
 		A551143E253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A551143D253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift */; };
 		A5511444253B2E880068A4D2 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5511443253B2E880068A4D2 /* UIDevice.swift */; };
@@ -118,6 +119,7 @@
 		A537746E25627F4E00482BEF /* TutorialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewModel.swift; sourceTree = "<group>"; };
 		A53774782562966300482BEF /* TutorialViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewModelTest.swift; sourceTree = "<group>"; };
 		A5434F0A2538238D00782F2C /* ComponentCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionView.swift; sourceTree = "<group>"; };
+		A548562A256503E400B38D41 /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		A5511435253B22040068A4D2 /* ColorSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectViewController.swift; sourceTree = "<group>"; };
 		A551143D253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5511443253B2E880068A4D2 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				A5EDB6242532228900E6078B /* ComponentCollectionViewCell.swift */,
 				A5434F0A2538238D00782F2C /* ComponentCollectionView.swift */,
 				A5B67F7C254B2F8F005F098C /* ComponentCollectionViewEvent.swift */,
+				A548562A256503E400B38D41 /* ComponentView.swift */,
 			);
 			path = ComponentCollectionView;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				A551143E253B224B0068A4D2 /* ColorSelectCollectionViewCell.swift in Sources */,
 				A537746F25627F4E00482BEF /* TutorialViewModel.swift in Sources */,
 				A50BA707254B374D00985306 /* SelectionManager.swift in Sources */,
+				A548562B256503E400B38D41 /* ComponentView.swift in Sources */,
 				A5F893442500A8C7002258EA /* SceneDelegate.swift in Sources */,
 				A5B67F7D254B2F8F005F098C /* ComponentCollectionViewEvent.swift in Sources */,
 				A52D7056253D51280071613B /* HTTPMethod.swift in Sources */,

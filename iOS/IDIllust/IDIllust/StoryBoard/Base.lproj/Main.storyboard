@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -220,23 +219,20 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GkQ-I7-nr1" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                <rect key="frame" x="10" y="350" width="40" height="40"/>
+                                <rect key="frame" x="10" y="352.5" width="75" height="37.5"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="VCP-3d-sQg"/>
-                                    <constraint firstAttribute="width" secondItem="GkQ-I7-nr1" secondAttribute="height" multiplier="1:1" id="Vmq-gl-nJz"/>
+                                    <constraint firstAttribute="width" secondItem="GkQ-I7-nr1" secondAttribute="height" multiplier="2:1" id="TzC-cl-RGC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="large"/>
-                                </state>
+                                <state key="normal" title="Reset"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
@@ -245,6 +241,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kDE-6u-U7f" firstAttribute="top" secondItem="1lZ-Ip-0rH" secondAttribute="bottom" id="3IG-XE-SYF"/>
+                            <constraint firstItem="GkQ-I7-nr1" firstAttribute="width" secondItem="Z8d-ty-sDV" secondAttribute="width" multiplier="0.2" id="5wI-19-Ibr"/>
                             <constraint firstItem="Y0t-gu-9BP" firstAttribute="trailing" secondItem="DgB-c4-5xv" secondAttribute="trailing" constant="10" id="Cnw-HI-ifB"/>
                             <constraint firstItem="kDE-6u-U7f" firstAttribute="height" secondItem="Z8d-ty-sDV" secondAttribute="height" multiplier="0.4" id="HEJ-Gp-wIy"/>
                             <constraint firstItem="GkQ-I7-nr1" firstAttribute="leading" secondItem="Y0t-gu-9BP" secondAttribute="leading" constant="10" id="J9H-iM-vSS"/>
@@ -253,6 +250,7 @@
                             <constraint firstItem="kDE-6u-U7f" firstAttribute="top" secondItem="GkQ-I7-nr1" secondAttribute="bottom" constant="10" id="V92-9i-ODH"/>
                             <constraint firstItem="Y0t-gu-9BP" firstAttribute="bottom" secondItem="kDE-6u-U7f" secondAttribute="bottom" id="Zgb-QA-d9b"/>
                             <constraint firstItem="DgB-c4-5xv" firstAttribute="width" secondItem="Z8d-ty-sDV" secondAttribute="width" multiplier="0.2" id="bjh-Ye-QrT"/>
+                            <constraint firstItem="DgB-c4-5xv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GkQ-I7-nr1" secondAttribute="trailing" constant="8" symbolic="YES" id="dNC-DZ-IIc"/>
                             <constraint firstItem="DgB-c4-5xv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Y0t-gu-9BP" secondAttribute="leading" symbolic="YES" id="hrF-gq-ydd"/>
                             <constraint firstItem="kDE-6u-U7f" firstAttribute="top" secondItem="DgB-c4-5xv" secondAttribute="bottom" constant="10" id="pAD-Jm-PFI"/>
                             <constraint firstItem="1lZ-Ip-0rH" firstAttribute="centerX" secondItem="Y0t-gu-9BP" secondAttribute="centerX" id="pa5-dR-hd6"/>
@@ -626,7 +624,7 @@
             <size key="intrinsicContentSize" width="50" height="36"/>
         </designable>
         <designable name="GkQ-I7-nr1">
-            <size key="intrinsicContentSize" width="22" height="25.5"/>
+            <size key="intrinsicContentSize" width="54" height="36"/>
         </designable>
         <designable name="Yfi-eL-Ob6">
             <size key="intrinsicContentSize" width="53" height="30"/>
@@ -642,7 +640,6 @@
         <image name="4" width="360.5" height="720.5"/>
         <image name="5" width="360.5" height="721"/>
         <image name="6" width="360.5" height="721"/>
-        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <namedColor name="DivisionColor">
             <color red="0.90600001811981201" green="0.90600001811981201" blue="0.90600001811981201" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
