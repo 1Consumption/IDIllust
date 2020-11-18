@@ -33,14 +33,14 @@ final class CustomizeViewController: UIViewController {
     }
     
     static let identifier: String = "customizeViewController"
-    private var componentCollectionViews: [ComponentCollectionView] = [ComponentCollectionView]()
+    private var componentViews: [ComponentView] = [ComponentView]()
     private var componentCollectionViewDataSources: [ComponentCollectionViewDataSource] = [ComponentCollectionViewDataSource]()
     private var thumbnailImageViews: [UIImageView] = [UIImageView]()
     private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     private let selectionManager: SelectionManager
     private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .medium)
-    private let applyPreviousSelectionQueue: DispatchQueue = DispatchQueue(label: "com.applyPreviousSelectionQueue")
+    private let applyPreviousSelectionQueue: DispatchQueue = DispatchQueue(label: "com.applyPreviousSelection.queue")
     
     init?(coder: NSCoder, selectionManager: SelectionManager) {
         self.selectionManager = selectionManager
@@ -58,6 +58,7 @@ final class CustomizeViewController: UIViewController {
         addObserves()
         setCategoriesUseCase()
         componentScrollView.delegate = self
+        componentScrollView.delaysContentTouches = false
         setResetButton()
     }
     
@@ -72,13 +73,12 @@ final class CustomizeViewController: UIViewController {
         for _ in 0..<count {
             let dataSource = ComponentCollectionViewDataSource()
             componentCollectionViewDataSources.append(dataSource)
-            let collectionView = ComponentCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-            componentCollectionViews.append(collectionView)
-            componentsStackView.addArrangedSubview(collectionView)
-            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-            collectionView.dataSource = dataSource
-            collectionView.backgroundColor = .systemBackground
-            collectionView.delegate = self
+            let componentView = ComponentView()
+            componentViews.append(componentView)
+            componentsStackView.addArrangedSubview(componentView)
+            componentView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+            componentView.dataSource = dataSource
+            componentView.delegate = self
         }
     }
     
@@ -103,7 +103,6 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func setResetButton() {
-        resetButton.setImage(UIImage(systemName: "arrow.clockwise", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), for: .normal)
         resetButton.addTarget(self, action: #selector(resetSelection), for: .touchUpInside)
     }
     
@@ -183,14 +182,14 @@ final class CustomizeViewController: UIViewController {
         applyPreviousSelectionQueue.async {
             DispatchQueue.main.sync { [weak self] in
                 self?.componentCollectionViewDataSources[selected].components = self?.categoryComponentManager.components(of: categoryId)
-                self?.componentCollectionViews[selected].reloadData()
+                self?.componentViews[selected].reloadData()
             }
         }
         
         applyPreviousSelectionQueue.async { [weak self] in
             DispatchQueue.main.async {
                 let previousSelected = self?.selectionManager.selection[categoryId]?.componentIndexPath
-                self?.componentCollectionViews[selected].selectItem(at: previousSelected, animated: false, scrollPosition: .bottom)
+                self?.componentViews[selected].selectItem(at: previousSelected, animated: false, scrollPosition: .bottom)
             }
         }
     }
@@ -219,7 +218,7 @@ final class CustomizeViewController: UIViewController {
         guard let selected = selectionManager.current.categoryIndex else { return }
         guard let categoryId = selectionManager.current.categoryId else { return }
         
-        let convertedPoint = componentCollectionViews[selected].convert(point, to: view)
+        let convertedPoint = componentViews[selected].collectionView.convert(point, to: view)
         
         colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
         
@@ -271,7 +270,7 @@ final class CustomizeViewController: UIViewController {
         if selectionManager.isSelectedComponent(with: categoryId, and: componentId) {
             selectionManager.removeCurrentComponent()
             guard var categoryIndex = selectionManager.current.categoryIndex else { return }
-            componentCollectionViews[categoryIndex].selectItem(at: nil, animated: false, scrollPosition: .bottom)
+            componentViews[categoryIndex].selectItem(at: nil, animated: false, scrollPosition: .bottom)
             
             correct(categoryIndex: &categoryIndex)
             thumbnailImageViews[categoryIndex].image = nil
@@ -357,7 +356,7 @@ final class CustomizeViewController: UIViewController {
         thumbnailImageViews.forEach {
             $0.image = nil
         }
-        componentCollectionViews.forEach {
+        componentViews.forEach {
             $0.selectItem(at: nil, animated: false, scrollPosition: .left)
         }
     }
@@ -412,7 +411,7 @@ extension CustomizeViewController: ColorSelectViewControllerDelegate {
         let componentIndexPath = selectionManager.current.componentInfo?.componentIndexPath
         
         DispatchQueue.main.async { [weak self] in
-            self?.componentCollectionViews[categoryIndex].selectItem(at: componentIndexPath, animated: false, scrollPosition: .right)
+            self?.componentViews[categoryIndex].selectItem(at: componentIndexPath, animated: false, scrollPosition: .right)
             self?.colorSelectView.isHidden = true
         }
         
