@@ -27,8 +27,6 @@ final class CustomizeViewController: UIViewController {
         saveViewController.delegate = self
         saveViewController.modalPresentationStyle = .overCurrentContext
         
-        selectionManager.saveCurrentSelection(to: UserDefaults.standard)
-        
         show(saveViewController, sender: self)
     }
     
@@ -145,6 +143,10 @@ final class CustomizeViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(componentCollectionViewEventHandler(_:)),
                                                name: ComponentCollectionViewEvent.DidSelect,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(saveCurrent),
+                                               name: UIApplication.didEnterBackgroundNotification,
                                                object: nil)
     }
     
@@ -386,6 +388,10 @@ final class CustomizeViewController: UIViewController {
         componentViews.forEach {
             $0.selectItem(at: nil, animated: false, scrollPosition: .left)
         }
+    }
+    
+    @objc private func saveCurrent() {
+        selectionManager.saveCurrentSelection(to: UserDefaults.standard)
     }
 }
 

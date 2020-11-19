@@ -73,6 +73,7 @@ final class EntryViewController: UIViewController {
     
     private func loadSelections() {
         guard let selectionManager = SelectionManager(userDefaults: UserDefaults.standard) else { return }
+        guard selectionManager.selection.count != 0 else { return }
         
         let loadAlert = UIAlertController(title: nil, message: Localization.previousItemEditAlertMessage, preferredStyle: .alert)
         loadAlert.addAction(UIAlertAction(title: Localization.cancel, style: .cancel, handler: { _ in
