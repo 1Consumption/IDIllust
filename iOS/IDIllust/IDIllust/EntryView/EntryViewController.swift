@@ -13,6 +13,9 @@ final class EntryViewController: UIViewController {
     
     // MARK: - @IBOutlet
     @IBOutlet private weak var entryImageView: UIImageView!
+    @IBAction func idIllustButtonPushed(_ sender: Any) {
+        presentNextScence()
+    }
     
     // MARK: Properties
     private var entryImage: EntryImage? {
@@ -26,6 +29,11 @@ final class EntryViewController: UIViewController {
         super.viewDidLoad()
         entryImageView.kf.indicatorType = .activity
         entryImageUseCase()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadSelections()
     }
     
     // MARK: - Methods
@@ -45,5 +53,44 @@ final class EntryViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.entryImageView.kf.setImage(with: URL(string: imageURL))
         }
+    }
+    
+    private func presentNextScence() {
+        guard let isBeginner = UserDefaults.standard.value(forKey: UserDefaults.beginnerKey) as? Bool else {
+            presentTutorialViewController()
+            return
+        }
+        
+        isBeginner ? presentTutorialViewController() : presentCusomizeViewController(selectionManager: SelectionManager())
+    }
+    
+    private func presentTutorialViewController() {
+        guard let tutorialViewController = storyboard?.instantiateViewController(withIdentifier: TutorialViewController.identifier) else { return }
+        
+        tutorialViewController.modalPresentationStyle = .fullScreen
+        present(tutorialViewController, animated: true, completion: nil)
+    }
+    
+    private func loadSelections() {
+        guard let selectionManager = SelectionManager(userDefaults: UserDefaults.standard) else { return }
+        guard selectionManager.selection.count != 0 else { return }
+        
+        let loadAlert = UIAlertController(title: nil, message: Localization.previousItemEditAlertMessage, preferredStyle: .alert)
+        loadAlert.addAction(UIAlertAction(title: Localization.cancel, style: .cancel, handler: { _ in
+            selectionManager.removeCurrentSelection(from: UserDefaults.standard)
+        }))
+        loadAlert.addAction(UIAlertAction(title: Localization.confirm, style: .default, handler: { [weak self] _ in
+            self?.presentCusomizeViewController(selectionManager: selectionManager)
+        }))
+        present(loadAlert, animated: true, completion: nil)
+    }
+    
+    private func presentCusomizeViewController(selectionManager: SelectionManager) {
+        guard let customizeViewController = storyboard?.instantiateViewController(identifier: CustomizeViewController.identifier, creator: { (coder) -> CustomizeViewController? in
+            CustomizeViewController.init(coder: coder, selectionManager: selectionManager)
+        }) else { return }
+        
+        customizeViewController.modalPresentationStyle = .fullScreen
+        present(customizeViewController, animated: true, completion: nil)
     }
 }

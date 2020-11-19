@@ -80,6 +80,11 @@ final class ColorSelectViewController: UIViewController {
         
         switch object {
         case .longPressChanged(let currentX):
+            var currentX = currentX
+            if view.frame.width < colorSelectCollectionView.contentSize.width {
+                currentX *= colorSelectCollectionView.contentSize.width / view.frame.width
+            }
+            
             guard let parentView = parent?.view else { return }
             let calibratedX = currentX - view.convert(view.frame.origin, to: parentView).x
             
@@ -88,7 +93,7 @@ final class ColorSelectViewController: UIViewController {
             
             guard selectedIndexPath != currentIndexPath else { return }
             
-            colorSelectCollectionView.selectItem(at: currentIndexPath, animated: false, scrollPosition: .left)
+            colorSelectCollectionView.selectItem(at: currentIndexPath, animated: false, scrollPosition: .centeredHorizontally)
             UIDevice.vibrate(style: .light)
             
         case .longPressEnded:

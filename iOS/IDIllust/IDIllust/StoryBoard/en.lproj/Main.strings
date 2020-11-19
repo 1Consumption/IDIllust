@@ -1,0 +1,18 @@
+
+/* Class = "UIButton"; normalTitle = "취소"; ObjectID = "4bU-cb-chg"; */
+"4bU-cb-chg.normalTitle" = "Cancel";
+
+/* Class = "UITextField"; placeholder = "제목을 입력하세요."; ObjectID = "CcA-b7-87p"; */
+"CcA-b7-87p.placeholder" = "제목을 입력하세요.";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "DgB-c4-5xv"; */
+"DgB-c4-5xv.normalTitle" = "Done";
+
+/* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "GkQ-I7-nr1"; */
+"GkQ-I7-nr1.normalTitle" = "Reset";
+
+/* Class = "UIButton"; normalTitle = "저장"; ObjectID = "Uag-Pc-HgC"; */
+"Uag-Pc-HgC.normalTitle" = "Save";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "Yfi-eL-Ob6"; */
+"Yfi-eL-Ob6.normalTitle" = "Skip";

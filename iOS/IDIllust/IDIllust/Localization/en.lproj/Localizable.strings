@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  IDIllust
+
+  Created by 신한섭 on 2020/11/19.
+  Copyright © 2020 신한섭. All rights reserved.
+*/
+
+"1" = "1_eng";
+"2" = "2_eng";
+"3" = "3_eng";
+"4" = "4_eng";
+"5" = "5_eng";
+"6" = "6_eng";
+"skip" = "Skip";
+"start" = "Start";
+"imageLoadingFailureAlertTitle" = "Image loading failure";
+"shouldSelectImageAlertMessage" = "Please select an image!";
+"imageLoadingFailureAlertMessage" = "Failed to load image.";
+"saveSuccessAlertTitle" = "Save success";
+"saveSuccessAlertMessage" = "Your IDillust has been successfully saved to Photo Library.";
+"furtherEditing" = "Further editing";
+"createNew" = "Create new IDillust";
+"requestForPermissionAlertTitle" = "Request for permission";
+"requestForPermissionAlertMessage" = "In order to save your IDillust to an album, you need permission to the Photo Library.";
+"cancel" = "Cancel";
+"save" = "Save";
+"confirm" = "Confirm";
+"settingUp" = "Setting up";
+"previousItemEditAlertMessage" = "Oops... You have an IDillust that you couldn't save before.\nWould you like to load the previous IDillust?";

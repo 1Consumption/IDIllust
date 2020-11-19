@@ -19,11 +19,8 @@ class TextLengthViewModelTests: XCTestCase {
     }
     
     func testBind() {
-        let expectation = XCTestExpectation(description: "bind")
-        
         textLengthViewModel.bind { [weak self] value in
             XCTAssertEqual(value, self?.expectedValue)
-            expectation.fulfill()
         }
         
         textLengthViewModel.fire()
@@ -31,7 +28,5 @@ class TextLengthViewModelTests: XCTestCase {
         expectedValue = 5
         
         textLengthViewModel.value = expectedValue
-        
-        wait(for: [expectation], timeout: 5.0)
     }
 }

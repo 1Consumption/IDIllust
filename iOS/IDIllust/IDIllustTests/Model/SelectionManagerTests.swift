@@ -18,6 +18,7 @@ class SelectionManagerTests: XCTestCase {
     private let componentId = 1
     private let componentIndexPath = IndexPath(item: 0, section: 0)
     private let colorId = 2
+    private let userDefaults = UserDefaults(suiteName: "test")!
     
     override func setUpWithError() throws {
         selectionManager = SelectionManager()
@@ -33,6 +34,8 @@ class SelectionManagerTests: XCTestCase {
         selectionManager.setCurrentCategory(with: categoryId, for: 0)
         selectionManager.setCurrentComponentInfo(with: componentInfo.componentId)
         selectionManager.setCurrentColor(with: componentInfo.colorId)
+        
+        selectionManager.removeCurrentSelection(from: userDefaults)
     }
     
     func testSetCurrentCategoryIdCategoryIndex() {
@@ -92,5 +95,30 @@ class SelectionManagerTests: XCTestCase {
         selectionManager.setSelection(with: categoryId, for: "url")
         
         XCTAssertEqual(selectionManager.selection[categoryId]?.thumbnailUrl, "url")
+    }
+    
+    func testResetAll() {
+        selectionManager.resetAll()
+        
+        XCTAssertEqual(selectionManager.selection, [:])
+        XCTAssertEqual(selectionManager.colorSelectionForEachComponent, [:])
+        XCTAssertNil(selectionManager.current.componentInfo)
+    }
+    
+    func testSaveCurrentSelection() {
+        selectionManager.saveCurrentSelection(to: userDefaults)
+        let loadedSelectionManager = SelectionManager(userDefaults: userDefaults)
+        
+        XCTAssertEqual(selectionManager.selection, loadedSelectionManager?.selection)
+        XCTAssertEqual(selectionManager.colorSelectionForEachComponent, loadedSelectionManager?.colorSelectionForEachComponent)
+        XCTAssertEqual(selectionManager.current, loadedSelectionManager?.current)
+    }
+    
+    func testRemoveCurrentSelection() {
+        selectionManager.saveCurrentSelection(to: userDefaults)
+        XCTAssertNotNil(SelectionManager(userDefaults: userDefaults))
+        
+        selectionManager.removeCurrentSelection(from: userDefaults)
+        XCTAssertNil(SelectionManager(userDefaults: userDefaults))
     }
 }

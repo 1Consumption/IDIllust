@@ -11,12 +11,35 @@ import Foundation
 typealias CategoryId = Int
 typealias ComponentId = Int
 typealias ColorId = Int
+typealias ComponentSelectionForCategryId = [CategoryId: ComponentInfo]
+typealias ColorSelectionForComponentId = [ComponentId?: ColorId?]
 
 final class SelectionManager {
     
-    private(set) var selection: [CategoryId: ComponentInfo] = [CategoryId: ComponentInfo]()
-    private(set) var colorSelectionForEachComponent: [ComponentId?: ColorId?] = [ComponentId?: ColorId?]()
-    private(set) var current: CurrentSelection = CurrentSelection()
+    static private let selectionKey: String = "selectionKey"
+    static private let colorSelectionKey: String = "colorSelectionKey"
+    static private let currentKey: String = "currentKey"
+    private(set) var selection: ComponentSelectionForCategryId
+    private(set) var colorSelectionForEachComponent: ColorSelectionForComponentId
+    private(set) var current: CurrentSelection
+    
+    init(wholeSelection: ComponentSelectionForCategryId, colorSelection: ColorSelectionForComponentId, currentSelection: CurrentSelection) {
+        selection = wholeSelection
+        colorSelectionForEachComponent = colorSelection
+        current = currentSelection
+    }
+    
+    convenience init() {
+        self.init(wholeSelection: ComponentSelectionForCategryId(), colorSelection: ColorSelectionForComponentId(), currentSelection: CurrentSelection())
+    }
+    
+    convenience init?(userDefaults: UserDefaults) {
+        guard let wholeSelection = userDefaults.loadSelection(ComponentSelectionForCategryId.self, forKey: SelectionManager.selectionKey),
+              let colorSelection = userDefaults.loadSelection(ColorSelectionForComponentId.self, forKey: SelectionManager.colorSelectionKey),
+              let currentSelection = userDefaults.loadSelection(CurrentSelection.self, forKey: SelectionManager.currentKey) else { return nil }
+        
+        self.init(wholeSelection: wholeSelection, colorSelection: colorSelection, currentSelection: currentSelection)
+    }
     
     func setCurrentCategory(with categoryId: Int?, for categoryIndex: Int?) {
         current.categoryId = categoryId
@@ -59,6 +82,24 @@ final class SelectionManager {
         return componentInfo
     }
     
+    func resetAll() {
+        selection = [:]
+        colorSelectionForEachComponent = [:]
+        current.componentInfo = nil
+    }
+    
+    func saveCurrentSelection(to userDefaults: UserDefaults) {
+        userDefaults.saveSelection(colorSelectionForEachComponent, forKey: SelectionManager.colorSelectionKey)
+        userDefaults.saveSelection(current, forKey: SelectionManager.currentKey)
+        userDefaults.saveSelection(selection, forKey: SelectionManager.selectionKey)
+    }
+    
+    func removeCurrentSelection(from userDefaults: UserDefaults) {
+        userDefaults.removeSelection(forKey: SelectionManager.colorSelectionKey)
+        userDefaults.removeSelection(forKey: SelectionManager.currentKey)
+        userDefaults.removeSelection(forKey: SelectionManager.selectionKey)
+    }
+    
     private func setSelection(with current: CurrentSelection) {
         guard let categoryId = current.categoryId, let componentInfo = current.componentInfo else { return }
         selection[categoryId] = componentInfo
@@ -66,13 +107,13 @@ final class SelectionManager {
     }
 }
 
-struct CurrentSelection {
+struct CurrentSelection: Codable {
     var categoryIndex: Int?
     var categoryId: Int?
     var componentInfo: ComponentInfo?
 }
 
-struct ComponentInfo {
+struct ComponentInfo: Codable {
     var componentId: Int?
     var componentIndexPath: IndexPath?
     var colorId: Int?
