@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 final class BorderPaddingButton: UIButton {
-
+    
     // MARK: - IBInspectables
     // MARK: Border
     @IBInspectable public var borderWidth: CGFloat {
@@ -67,15 +67,23 @@ final class BorderPaddingButton: UIButton {
     }
     
     private func scaleUp(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.15, delay: 0, options: .allowUserInteraction, animations: {
-            sender.transform = .identity
-        })
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.15,
+                                                       delay: 0,
+                                                       options: .allowUserInteraction,
+                                                       animations: {
+                                                        sender.transform = .identity
+                                                       },
+                                                       completion: nil)
     }
     
     private func scaleDown(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.15, delay: 0, options: .allowUserInteraction, animations: {
-            sender.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
-        })
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.15,
+                                                       delay: 0,
+                                                       options: .allowUserInteraction,
+                                                       animations: {
+                                                        sender.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
+                                                       },
+                                                       completion: nil)
     }
     
     // MARK: - Objc

@@ -98,6 +98,12 @@ final class SaveViewController: UIViewController {
     }
     
     private func overlayImages() {
+        guard images.count != 0 else {
+            let alert = UIAlertController().confirmAlert(title: "이미지 로딩 실패", message: "이미지를 선택해주세요!")
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
         guard let size = images.first??.size else {
             let alert = UIAlertController().confirmAlert(title: "이미지 로딩 실패", message: "이미지를 불러오는데 실패 했습니다.")
             present(alert, animated: true, completion: nil)
