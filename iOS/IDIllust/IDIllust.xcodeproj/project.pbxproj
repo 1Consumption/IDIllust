@@ -315,12 +315,12 @@
 			path = EntrtyView;
 			sourceTree = "<group>";
 		};
-		A5DD996525598BB000D92F82 /* StoreView */ = {
+		A5DD996525598BB000D92F82 /* SaveView */ = {
 			isa = PBXGroup;
 			children = (
 				A5DD996625598BBF00D92F82 /* SaveViewController.swift */,
 			);
-			path = StoreView;
+			path = SaveView;
 			sourceTree = "<group>";
 		};
 		A5E1331C255ABDD100C1F43A /* Model */ = {
@@ -424,7 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				A53774672562756A00482BEF /* TutorialView */,
-				A5DD996525598BB000D92F82 /* StoreView */,
+				A5DD996525598BB000D92F82 /* SaveView */,
 				A506C9982542729100E6BCE6 /* Protocols */,
 				A53241EF253DAF80004FEF3C /* Errors */,
 				A5844AA1253D6A7400A24256 /* Model */,

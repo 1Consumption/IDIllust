@@ -7,7 +7,6 @@
 //
 
 import Kingfisher
-import Photos
 import UIKit
 
 protocol SaveViewControllerDelegate: AnyObject {
@@ -144,13 +143,11 @@ final class SaveViewController: UIViewController {
     }
     
     @objc func saveResult(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized, .limited:
+        if error == nil {
             showSuccessAlert()
             delegate?.saveCompletion()
-            
-        case .denied: showSaveFailureAlert()
-        default: break
+        } else {
+            showSaveFailureAlert()
         }
     }
 }
