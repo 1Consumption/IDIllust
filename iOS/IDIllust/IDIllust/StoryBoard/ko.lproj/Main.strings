@@ -1,0 +1,33 @@
+
+/* Class = "UIButton"; normalTitle = "취소"; ObjectID = "4bU-cb-chg"; */
+"4bU-cb-chg.normalTitle" = "취소";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "5VS-e0-AAh"; */
+"5VS-e0-AAh.title" = "Item";
+
+/* Class = "UITextField"; placeholder = "제목을 입력하세요."; ObjectID = "CcA-b7-87p"; */
+"CcA-b7-87p.placeholder" = "제목을 입력하세요.";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "DgB-c4-5xv"; */
+"DgB-c4-5xv.normalTitle" = "Done";
+
+/* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "GkQ-I7-nr1"; */
+"GkQ-I7-nr1.normalTitle" = "Reset";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "Lay-Ud-3JA"; */
+"Lay-Ud-3JA.text" = "10";
+
+/* Class = "UILabel"; text = "/"; ObjectID = "OYx-ag-RFp"; */
+"OYx-ag-RFp.text" = "/";
+
+/* Class = "UIButton"; normalTitle = "저장"; ObjectID = "Uag-Pc-HgC"; */
+"Uag-Pc-HgC.normalTitle" = "저장";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "Yfi-eL-Ob6"; */
+"Yfi-eL-Ob6.normalTitle" = "Skip";
+
+/* Class = "UIButton"; normalTitle = "Get your own IDIllust"; ObjectID = "bsc-00-5EK"; */
+"bsc-00-5EK.normalTitle" = "Get your own IDillust";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "eV5-ta-9uG"; */
+"eV5-ta-9uG.text" = "10";

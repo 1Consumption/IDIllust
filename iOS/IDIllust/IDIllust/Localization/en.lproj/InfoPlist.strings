@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  IDIllust
+
+  Created by 신한섭 on 2020/11/19.
+  Copyright © 2020 신한섭. All rights reserved.
+*/
+
+NSPhotoLibraryAddUsageDescription = "In order to save your IDillust to an album, you need permission to the Photo Library.";

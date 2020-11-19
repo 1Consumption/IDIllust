@@ -44,7 +44,7 @@
                                         <rect key="frame" x="37.5" y="0.0" width="300" height="44"/>
                                         <color key="backgroundColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Get your own IDIllust">
+                                        <state key="normal" title="Get your own IDillust">
                                             <color key="titleColor" name="TabBarColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>

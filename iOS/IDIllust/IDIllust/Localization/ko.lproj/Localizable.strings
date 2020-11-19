@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  IDIllust
+
+  Created by 신한섭 on 2020/11/19.
+  Copyright © 2020 신한섭. All rights reserved.
+*/
+
+"1" = "1_kr";
+"2" = "2_kr";
+"3" = "3_kr";
+"4" = "4_kr";
+"5" = "5_kr";
+"6" = "6_kr";
+"skip" = "건너뛰기";
+"start" = "시작하기";
+"imageLoadingFailureAlertTitle" = "이미지 로딩 실패";
+"shouldSelectImageAlertMessage" = "이미지를 선택해주세요!";
+"imageLoadingFailureAlertMessage" = "이미지를 불러오는데 실패 했습니다.";
+"saveSuccessAlertTitle" = "저장 성공";
+"saveSuccessAlertMessage" = "당신의 IDillust가 Photo Library에 성공적으로 저장되었습니다.";
+"furtherEditing" = "마저 수정하기";
+"createNew" = "새로 만들기";
+"requestForPermissionAlertTitle" = "권한 요청";
+"requestForPermissionAlertMessage" = "당신의 IDillust를 앨범에 저장하기 위해서는 Photo Library에 대한 권한이 필요합니다.";
+"cancel" = "취소";
+"save" = "저장";
+"confirm" = "확인";
+"settingUp" = "설정하기";
+"previousItemEditAlertMessage" = "이런... 미처 저장하지 못한\nIDillust가 있으시군요.\n이전 선택사항을 불러오시겠어요?";
