@@ -99,13 +99,13 @@ final class SaveViewController: UIViewController {
     
     private func overlayImages() {
         guard images.count != 0 else {
-            let alert = UIAlertController().confirmAlert(title: "이미지 로딩 실패", message: "이미지를 선택해주세요!")
+            let alert = UIAlertController().confirmAlert(title: Localization.imageLoadingFailureAlertTitle, message: Localization.shouldSelectImageAlertMessage)
             present(alert, animated: true, completion: nil)
             return
         }
         
         guard let size = images.first??.size else {
-            let alert = UIAlertController().confirmAlert(title: "이미지 로딩 실패", message: "이미지를 불러오는데 실패 했습니다.")
+            let alert = UIAlertController().confirmAlert(title: Localization.imageLoadingFailureAlertTitle, message: Localization.imageLoadingFailureAlertTitle)
             present(alert, animated: true, completion: nil)
             return
         }
@@ -124,11 +124,11 @@ final class SaveViewController: UIViewController {
     }
     
     private func showSuccessAlert() {
-        let success = UIAlertController(title: "저장 성공", message: "당신의 IDIllust가 PhotoLibrary에 성공적으로 저장되었습니다.", preferredStyle: .alert)
-        success.addAction(UIAlertAction(title: "마저 수정하기", style: .default, handler: { [weak self] _ in
+        let success = UIAlertController(title: Localization.saveSuccessAlertTitle, message: Localization.saveSuccessAlertMessage, preferredStyle: .alert)
+        success.addAction(UIAlertAction(title: Localization.furtherEditing, style: .default, handler: { [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
         }))
-        success.addAction(UIAlertAction(title: "새로 만들기", style: .default, handler: { [weak self] _ in
+        success.addAction(UIAlertAction(title: Localization.createNew, style: .default, handler: { [weak self] _ in
             self?.dismiss(animated: true, completion: {
                 self?.delegate?.createNewIDIllust()
             })
@@ -138,9 +138,9 @@ final class SaveViewController: UIViewController {
     }
     
     private func showSaveFailureAlert() {
-        let failure = UIAlertController(title: "권한 요청", message: "당신의 IDIllust를 앨범에 저장하기 위해서는 Photo Library에 대한 권한이 필요합니다.", preferredStyle: .alert)
-        failure.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-        failure.addAction(UIAlertAction(title: "설정하기", style: .default, handler: { _ in
+        let failure = UIAlertController(title: Localization.requestForPermissionAlertTitle, message: Localization.requestForPermissionAlertMessage, preferredStyle: .alert)
+        failure.addAction(UIAlertAction(title: Localization.cancel, style: .cancel, handler: nil))
+        failure.addAction(UIAlertAction(title: Localization.settingUp, style: .default, handler: { _ in
             guard let settingURL = URL(string: UIApplication.openSettingsURLString) else { return }
             UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
         }))

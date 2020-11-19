@@ -74,11 +74,11 @@ final class EntryViewController: UIViewController {
     private func loadSelections() {
         guard let selectionManager = SelectionManager(userDefaults: UserDefaults.standard) else { return }
         
-        let loadAlert = UIAlertController(title: nil, message: "이런... 미처 저장하지 못한\nIDIllust가 있으시군요.\n이전 선택사항을 불러오시겠어요?", preferredStyle: .alert)
-        loadAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { _ in
+        let loadAlert = UIAlertController(title: nil, message: Localization.previousItemEditAlertMessage, preferredStyle: .alert)
+        loadAlert.addAction(UIAlertAction(title: Localization.cancel, style: .cancel, handler: { _ in
             selectionManager.removeCurrentSelection(from: UserDefaults.standard)
         }))
-        loadAlert.addAction(UIAlertAction(title: "확인", style: .default, handler: { [weak self] _ in
+        loadAlert.addAction(UIAlertAction(title: Localization.confirm, style: .default, handler: { [weak self] _ in
             self?.presentCusomizeViewController(selectionManager: selectionManager)
         }))
         present(loadAlert, animated: true, completion: nil)

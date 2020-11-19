@@ -15,6 +15,7 @@ final class TutorialViewController: UIViewController {
     @IBOutlet weak var tutorialScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var skipButton: BorderPaddingButton!
+    @IBOutlet var tutorialImageViews: [UIImageView]!
     
     private let tutorialViewModel: TutorialViewModel = TutorialViewModel()
     
@@ -22,8 +23,15 @@ final class TutorialViewController: UIViewController {
         super.viewDidLoad()
         tutorialScrollView.delegate = self
         pageControl.currentPageIndicatorTintColor = .black
+        setTutorialImageViews()
         setTutorialViewModel()
         skipButton.addTarget(self, action: #selector(skipButtonPushed), for: .touchUpInside)
+    }
+    
+    private func setTutorialImageViews() {
+        for index in 0..<tutorialImageViews.count {
+            tutorialImageViews[index].image = UIImage(named: Localization.tutorialImageName[index])
+        }
     }
     
     private func setTutorialViewModel() {
@@ -33,9 +41,9 @@ final class TutorialViewController: UIViewController {
             pageControl.currentPage = page
             
             if pageControl.numberOfPages - 1 == page {
-                self?.skipButton.setTitle("Start", for: .normal)
+                self?.skipButton.setTitle(Localization.start, for: .normal)
             } else {
-                self?.skipButton.setTitle("Skip", for: .normal)
+                self?.skipButton.setTitle(Localization.skip, for: .normal)
             }
         }
         tutorialViewModel.fireCurrentPage()
