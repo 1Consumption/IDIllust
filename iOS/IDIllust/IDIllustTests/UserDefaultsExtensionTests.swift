@@ -19,18 +19,12 @@ class UserDefaultsExtensionTests: XCTestCase {
         key = "KEY"
     }
     
-    func testSaveSelection() {
-        UserDefaults.standard.saveSelection(componentInfo, forKey: key)
-        XCTAssertEqual(UserDefaults.standard.loadSelection(ComponentInfo.self, forKey: key), componentInfo)
+    func testSaveEncodableObject() {
+        UserDefaults.standard.saveEncodableObject(componentInfo, forKey: key)
+        XCTAssertEqual(UserDefaults.standard.loadDecodableObject(ComponentInfo.self, forKey: key), componentInfo)
     }
     
-    func testInvalidLoadSelection() {
-        XCTAssertNil(UserDefaults.standard.loadSelection(ComponentInfo.self, forKey: "invalidKey"))
-    }
-    
-    func testRemoveSelection() {
-        UserDefaults.standard.saveSelection(componentInfo, forKey: key)
-        UserDefaults.standard.removeSelection(forKey: key)
-        XCTAssertNil(UserDefaults.standard.loadSelection(ComponentInfo.self, forKey: key))
+    func testInvalidLoadDecoableObject() {
+        XCTAssertNil(UserDefaults.standard.loadDecodableObject(ComponentInfo.self, forKey: "invalidKey"))
     }
 }

@@ -13,9 +13,11 @@ class TutorialViewModelTest: XCTestCase {
 
     private var tutorialViewModel: TutorialViewModel!
     private var result: Int?
+    private var titleResult: String?
+    private let numOfPage: Int = 6
     
     override func setUpWithError() throws {
-        tutorialViewModel = TutorialViewModel()
+        tutorialViewModel = TutorialViewModel(numOfPage: numOfPage)
     }
     
     func testBindCurrentPage() {
@@ -40,5 +42,30 @@ class TutorialViewModelTest: XCTestCase {
         
         tutorialViewModel.fireCurrentPage()
         XCTAssertEqual(result, 5)
+    }
+    
+    func testBindButtonTitle() {
+        tutorialViewModel.setPage(numOfPage - 1)
+        XCTAssertEqual(titleResult, nil)
+        
+        tutorialViewModel.bindButtonTitle { [weak self] title in
+            self?.titleResult = title
+        }
+        
+        tutorialViewModel.setPage(numOfPage - 1)
+        XCTAssertEqual(titleResult, Localization.start)
+        tutorialViewModel.setPage(numOfPage - 2)
+        XCTAssertEqual(titleResult, Localization.skip)
+    }
+
+    func testFireButtonTitle() {
+        tutorialViewModel.setPage(numOfPage - 1)
+        tutorialViewModel.bindButtonTitle(handler: { [weak self] title in
+            self?.titleResult = title
+        })
+        XCTAssertNil(titleResult)
+
+        tutorialViewModel.fireButtonTitle()
+        XCTAssertEqual(titleResult, Localization.start)
     }
 }

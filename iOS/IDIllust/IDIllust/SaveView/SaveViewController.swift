@@ -66,7 +66,7 @@ final class SaveViewController: UIViewController {
     }
     
     private func setUpBackgroundColor() {
-        view.backgroundColor = UIColor.systemBackground.withAlphaComponent(0)
+        view.backgroundColor = .clear
     }
     
     private func setTitleLimitLabel() {

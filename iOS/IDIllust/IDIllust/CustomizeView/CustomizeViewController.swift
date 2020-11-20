@@ -79,18 +79,7 @@ final class CustomizeViewController: UIViewController {
             componentView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
             componentView.dataSource = dataSource
             componentView.delegate = self
-            componentView.button.addTarget(self, action: #selector(fuck), for: .touchUpInside)
-        }
-    }
-    
-    @objc func fuck() {
-        guard let selected = selectionManager.current.categoryIndex else { return }
-        guard let categoryId = selectionManager.current.categoryId else { return }
-        componentCollectionViewDataSources[selected].components = categoryComponentManager.components(of: categoryId)
-        componentViews[selected].reloadData()
-        DispatchQueue.main.async { [weak self] in
-            let count = self?.componentViews[selected].collectionView.numberOfItems(inSection: 0)
-            self?.numOfItemsViewModel.setHasItems(count: count)
+            componentView.button.addTarget(self, action: #selector(retrieveModel), for: .touchUpInside)
         }
     }
     
@@ -306,16 +295,12 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func resultBySelection() -> [LayerOrder: String] {
-        var result = [LayerOrder: String]()
-        
-        selectionManager.selection.forEach {
-            guard var layerOrder = categoryComponentManager.firstIndex(of: $0.key) else { return }
+        return selectionManager.selection.reduce(into: [LayerOrder: String]()) { (result, selection) in
+            guard var layerOrder = categoryComponentManager.firstIndex(of: selection.key) else { return }
             correct(categoryIndex: &layerOrder)
             
-            result[layerOrder] = $0.value.thumbnailUrl
+            result[layerOrder] = selection.value.thumbnailUrl
         }
-        
-        return result
     }
     
     private func setThumbnailImageView(with index: Int, path: String) {
@@ -392,6 +377,17 @@ final class CustomizeViewController: UIViewController {
     
     @objc private func saveCurrent() {
         selectionManager.saveCurrentSelection(to: UserDefaults.standard)
+    }
+    
+    @objc func retrieveModel() {
+        guard let selected = selectionManager.current.categoryIndex else { return }
+        guard let categoryId = selectionManager.current.categoryId else { return }
+        componentCollectionViewDataSources[selected].components = categoryComponentManager.components(of: categoryId)
+        componentViews[selected].reloadData()
+        DispatchQueue.main.async { [weak self] in
+            let count = self?.componentViews[selected].collectionView.numberOfItems(inSection: 0)
+            self?.numOfItemsViewModel.setHasItems(count: count)
+        }
     }
 }
 
