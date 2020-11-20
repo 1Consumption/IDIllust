@@ -12,19 +12,15 @@ extension UserDefaults {
     
     static let beginnerKey: String = "beginner"
     
-    func saveSelection<T: Encodable>(_ encodable: T, forKey key: String) {
+    func saveEncodableObject<T: Encodable>(_ encodable: T, forKey key: String) {
         let encoded = try? JSONEncoder().encode(encodable)
         setValue(encoded, forKey: key)
     }
     
-    func loadSelection<T: Decodable>(_ type: T.Type, forKey key: String) -> T? {
+    func loadDecodableObject<T: Decodable>(_ type: T.Type, forKey key: String) -> T? {
         guard let data = value(forKey: key) as? Data else { return nil }
         let result = try? JSONDecoder().decode(type, from: data)
         
         return result
-    }
-    
-    func removeSelection(forKey key: String) {
-        removeObject(forKey: key)
     }
 }

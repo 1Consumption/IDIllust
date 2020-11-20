@@ -34,9 +34,9 @@ final class SelectionManager {
     }
     
     convenience init?(userDefaults: UserDefaults) {
-        guard let wholeSelection = userDefaults.loadSelection(ComponentSelectionForCategryId.self, forKey: SelectionManager.selectionKey),
-              let colorSelection = userDefaults.loadSelection(ColorSelectionForComponentId.self, forKey: SelectionManager.colorSelectionKey),
-              let currentSelection = userDefaults.loadSelection(CurrentSelection.self, forKey: SelectionManager.currentKey) else { return nil }
+        guard let wholeSelection = userDefaults.loadDecodableObject(ComponentSelectionForCategryId.self, forKey: SelectionManager.selectionKey),
+              let colorSelection = userDefaults.loadDecodableObject(ColorSelectionForComponentId.self, forKey: SelectionManager.colorSelectionKey),
+              let currentSelection = userDefaults.loadDecodableObject(CurrentSelection.self, forKey: SelectionManager.currentKey) else { return nil }
         
         self.init(wholeSelection: wholeSelection, colorSelection: colorSelection, currentSelection: currentSelection)
     }
@@ -89,15 +89,15 @@ final class SelectionManager {
     }
     
     func saveCurrentSelection(to userDefaults: UserDefaults) {
-        userDefaults.saveSelection(colorSelectionForEachComponent, forKey: SelectionManager.colorSelectionKey)
-        userDefaults.saveSelection(current, forKey: SelectionManager.currentKey)
-        userDefaults.saveSelection(selection, forKey: SelectionManager.selectionKey)
+        userDefaults.saveEncodableObject(colorSelectionForEachComponent, forKey: SelectionManager.colorSelectionKey)
+        userDefaults.saveEncodableObject(current, forKey: SelectionManager.currentKey)
+        userDefaults.saveEncodableObject(selection, forKey: SelectionManager.selectionKey)
     }
     
     func removeCurrentSelection(from userDefaults: UserDefaults) {
-        userDefaults.removeSelection(forKey: SelectionManager.colorSelectionKey)
-        userDefaults.removeSelection(forKey: SelectionManager.currentKey)
-        userDefaults.removeSelection(forKey: SelectionManager.selectionKey)
+        userDefaults.removeObject(forKey: SelectionManager.colorSelectionKey)
+        userDefaults.removeObject(forKey: SelectionManager.currentKey)
+        userDefaults.removeObject(forKey: SelectionManager.selectionKey)
     }
     
     private func setSelection(with current: CurrentSelection) {
