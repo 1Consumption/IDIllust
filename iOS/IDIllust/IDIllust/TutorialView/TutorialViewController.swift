@@ -15,7 +15,7 @@ final class TutorialViewController: UIViewController {
     @IBOutlet weak var tutorialScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var skipButton: BorderPaddingButton!
-    @IBOutlet var tutorialImageViews: [UIImageView]!
+    @IBOutlet weak var tutorialStackView: UIStackView!
     
     private let tutorialViewModel: TutorialViewModel = TutorialViewModel()
     
@@ -29,8 +29,14 @@ final class TutorialViewController: UIViewController {
     }
     
     private func setTutorialImageViews() {
-        for index in 0..<tutorialImageViews.count {
-            tutorialImageViews[index].image = UIImage(named: Localization.tutorialImageName[index])
+        Localization.tutorialImageName.forEach {
+            let imageView = UIImageView()
+            imageView.contentMode = UIView.ContentMode.scaleAspectFit
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            tutorialStackView.addArrangedSubview(imageView)
+            imageView.widthAnchor.constraint(equalTo: tutorialScrollView.frameLayoutGuide.widthAnchor).isActive = true
+            imageView.heightAnchor.constraint(equalTo: tutorialScrollView.frameLayoutGuide.heightAnchor).isActive = true
+            imageView.image = UIImage(named: $0)
         }
     }
     

@@ -286,25 +286,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="600.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="po4-Qp-eMq">
-                                                <rect key="frame" x="0.0" y="0.0" width="2250" height="600.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="600.5"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QYV-SL-j09">
+                                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QYV-SL-j09" userLabel="Dummy Image View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="600.5"/>
-                                                    </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X4K-lP-nTm">
-                                                        <rect key="frame" x="375" y="0.0" width="375" height="600.5"/>
-                                                    </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ce-k5-PEb">
-                                                        <rect key="frame" x="750" y="0.0" width="375" height="600.5"/>
-                                                    </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qeK-vo-24J">
-                                                        <rect key="frame" x="1125" y="0.0" width="375" height="600.5"/>
-                                                    </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iEt-Yl-W6p">
-                                                        <rect key="frame" x="1500" y="0.0" width="375" height="600.5"/>
-                                                    </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ozB-hL-bjz">
-                                                        <rect key="frame" x="1875" y="0.0" width="375" height="600.5"/>
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
@@ -383,12 +368,7 @@
                         <outlet property="pageControl" destination="BDj-BZ-ZXI" id="EUF-23-yd5"/>
                         <outlet property="skipButton" destination="Yfi-eL-Ob6" id="tVy-VM-aux"/>
                         <outlet property="tutorialScrollView" destination="Itn-TY-V2T" id="VQH-Bb-SzC"/>
-                        <outletCollection property="tutorialImageViews" destination="QYV-SL-j09" collectionClass="NSMutableArray" id="aYU-31-4Bz"/>
-                        <outletCollection property="tutorialImageViews" destination="X4K-lP-nTm" collectionClass="NSMutableArray" id="0wE-pn-kcY"/>
-                        <outletCollection property="tutorialImageViews" destination="8ce-k5-PEb" collectionClass="NSMutableArray" id="oBw-dP-Ojg"/>
-                        <outletCollection property="tutorialImageViews" destination="qeK-vo-24J" collectionClass="NSMutableArray" id="Ero-bi-B7v"/>
-                        <outletCollection property="tutorialImageViews" destination="iEt-Yl-W6p" collectionClass="NSMutableArray" id="zxW-P0-eRx"/>
-                        <outletCollection property="tutorialImageViews" destination="ozB-hL-bjz" collectionClass="NSMutableArray" id="FgZ-ch-Xnp"/>
+                        <outlet property="tutorialStackView" destination="po4-Qp-eMq" id="ifg-LX-07M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fa6-ze-K9f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
