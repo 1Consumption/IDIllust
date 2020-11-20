@@ -17,12 +17,12 @@ final class TutorialViewController: UIViewController {
     @IBOutlet weak var skipButton: BorderPaddingButton!
     @IBOutlet weak var tutorialStackView: UIStackView!
     
-    private let tutorialViewModel: TutorialViewModel = TutorialViewModel()
+    private var tutorialViewModel: TutorialViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tutorialScrollView.delegate = self
-        pageControl.currentPageIndicatorTintColor = .black
+        setPageControl()
         setTutorialImageViews()
         setTutorialViewModel()
         skipButton.addTarget(self, action: #selector(skipButtonPushed), for: .touchUpInside)
@@ -40,19 +40,25 @@ final class TutorialViewController: UIViewController {
         }
     }
     
+    private func setPageControl() {
+        pageControl.currentPageIndicatorTintColor = .black
+        pageControl.numberOfPages = Localization.tutorialImageName.count
+    }
+    
     private func setTutorialViewModel() {
-        tutorialViewModel.bindCurrentPage { [weak self] in
+        tutorialViewModel = TutorialViewModel(numOfPage: pageControl.numberOfPages)
+        
+        tutorialViewModel?.bindCurrentPage { [weak self] in
             guard let page = $0 else { return }
-            guard let pageControl = self?.pageControl else { return }
-            pageControl.currentPage = page
-            
-            if pageControl.numberOfPages - 1 == page {
-                self?.skipButton.setTitle(Localization.start, for: .normal)
-            } else {
-                self?.skipButton.setTitle(Localization.skip, for: .normal)
-            }
+            self?.pageControl.currentPage = page
         }
-        tutorialViewModel.fireCurrentPage()
+        
+        tutorialViewModel?.bindButtonTitle(handler: { [weak self] in
+            self?.skipButton.setTitle($0, for: .normal)
+        })
+        
+        tutorialViewModel?.fireCurrentPage()
+        tutorialViewModel?.fireButtonTitle()
     }
     
     @objc private func skipButtonPushed() {
@@ -73,6 +79,6 @@ extension TutorialViewController: UIScrollViewDelegate {
         let width = view.frame.width
         let page = Int(round(curX / width))
         
-        tutorialViewModel.setPage(page)
+        tutorialViewModel?.setPage(page)
     }
 }

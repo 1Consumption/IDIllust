@@ -41,7 +41,7 @@
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsc-00-5EK" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="0.0" width="300" height="44"/>
+                                        <rect key="frame" x="37.5" y="0.0" width="300" height="39"/>
                                         <color key="backgroundColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Get your own IDillust">
@@ -320,7 +320,7 @@
                                                 <color key="pageIndicatorTintColor" systemColor="systemGray2Color"/>
                                             </pageControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yfi-eL-Ob6" customClass="BorderPaddingButton" customModule="IDIllust" customModuleProvider="target">
-                                                <rect key="frame" x="304" y="17.5" width="51" height="30"/>
+                                                <rect key="frame" x="324" y="17.5" width="31" height="30"/>
                                                 <color key="backgroundColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <state key="normal" title="Skip">
@@ -613,10 +613,10 @@
             <size key="intrinsicContentSize" width="45" height="33"/>
         </designable>
         <designable name="Yfi-eL-Ob6">
-            <size key="intrinsicContentSize" width="51" height="30"/>
+            <size key="intrinsicContentSize" width="31" height="30"/>
         </designable>
         <designable name="bsc-00-5EK">
-            <size key="intrinsicContentSize" width="196" height="44"/>
+            <size key="intrinsicContentSize" width="196" height="39"/>
         </designable>
     </designables>
     <resources>
