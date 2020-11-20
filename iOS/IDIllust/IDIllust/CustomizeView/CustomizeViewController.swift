@@ -79,18 +79,7 @@ final class CustomizeViewController: UIViewController {
             componentView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
             componentView.dataSource = dataSource
             componentView.delegate = self
-            componentView.button.addTarget(self, action: #selector(fuck), for: .touchUpInside)
-        }
-    }
-    
-    @objc func fuck() {
-        guard let selected = selectionManager.current.categoryIndex else { return }
-        guard let categoryId = selectionManager.current.categoryId else { return }
-        componentCollectionViewDataSources[selected].components = categoryComponentManager.components(of: categoryId)
-        componentViews[selected].reloadData()
-        DispatchQueue.main.async { [weak self] in
-            let count = self?.componentViews[selected].collectionView.numberOfItems(inSection: 0)
-            self?.numOfItemsViewModel.setHasItems(count: count)
+            componentView.button.addTarget(self, action: #selector(retrieveModel), for: .touchUpInside)
         }
     }
     
@@ -392,6 +381,17 @@ final class CustomizeViewController: UIViewController {
     
     @objc private func saveCurrent() {
         selectionManager.saveCurrentSelection(to: UserDefaults.standard)
+    }
+    
+    @objc func retrieveModel() {
+        guard let selected = selectionManager.current.categoryIndex else { return }
+        guard let categoryId = selectionManager.current.categoryId else { return }
+        componentCollectionViewDataSources[selected].components = categoryComponentManager.components(of: categoryId)
+        componentViews[selected].reloadData()
+        DispatchQueue.main.async { [weak self] in
+            let count = self?.componentViews[selected].collectionView.numberOfItems(inSection: 0)
+            self?.numOfItemsViewModel.setHasItems(count: count)
+        }
     }
 }
 
