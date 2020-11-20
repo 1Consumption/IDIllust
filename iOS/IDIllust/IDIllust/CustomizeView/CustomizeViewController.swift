@@ -295,16 +295,12 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func resultBySelection() -> [LayerOrder: String] {
-        var result = [LayerOrder: String]()
-        
-        selectionManager.selection.forEach {
-            guard var layerOrder = categoryComponentManager.firstIndex(of: $0.key) else { return }
+        return selectionManager.selection.reduce(into: [LayerOrder: String]()) { (result, selection) in
+            guard var layerOrder = categoryComponentManager.firstIndex(of: selection.key) else { return }
             correct(categoryIndex: &layerOrder)
             
-            result[layerOrder] = $0.value.thumbnailUrl
+            result[layerOrder] = selection.value.thumbnailUrl
         }
-        
-        return result
     }
     
     private func setThumbnailImageView(with index: Int, path: String) {
