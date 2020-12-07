@@ -13,6 +13,7 @@
 ## 트러블 슈팅
 - [ColorSelectView 구현](https://github.com/1Consumption/IDIllust/blob/dev/iOS/Documents/ColorSelectView구현.md)
 - [UISynchronization](https://github.com/1Consumption/IDIllust/blob/dev/iOS/Documents/UISynchronization.md), [issue #46](https://github.com/1Consumption/IDIllust/issues/46)
+- [여러장의 이미지를 겹쳐서 하나의 이미지로 만들기](https://github.com/1Consumption/IDIllust/blob/dev/iOS/Documents/이미지겹치기.md)
 
 ## 데모 영상
 ### 튜토리얼 - 로컬리제이션
