@@ -1,9 +1,13 @@
 # ColorSelectView 구현
 
-<img width="1922" alt="colorSelect" src="https://user-images.githubusercontent.com/37682858/99883088-56d5b880-2c68-11eb-9fa6-98378b3575c9.png">
+## 구현하고자 하는 기능
+아래와 같이 애플에서 기본 이모지에 대해 색상을 선택하는 기능을 제공하는데, 이를 구현하고자 함.
+<img src = "https://user-images.githubusercontent.com/37682858/101515953-404a9380-39c2-11eb-9923-64fd13a58f5e.gif">
+
 
 
 ## 배경
+<img width="1922" alt="colorSelect" src="https://user-images.githubusercontent.com/37682858/99883088-56d5b880-2c68-11eb-9fa6-98378b3575c9.png">
 
 `ComponentCollectionView`에 `LongPressGesture`가 등록되어 있고 `LongPressBegan` 이벤트가 발생하면 해당 cell 위에 `ColorSelectView`를 띄움. 그리고 `LongPressChanged` 이벤트가 발생하면 발생한 좌표에 맞게 `ColorSelectViewController` 내에 있는 `ColorSelectCollectionView` 의 cell을 선택해야함. `LongPressEended` 제스처가 발생하면 `ColorSelectView` 를 hidden 하고 color 에 맞는 thumbnailImage를 받아와야함.
 
