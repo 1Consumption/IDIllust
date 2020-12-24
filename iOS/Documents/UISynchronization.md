@@ -14,15 +14,35 @@
 
 ## 해결 방법
 
-`DispatchQueue.main`은 Serial Queue임을 이용했음. Serial Queue는 한 번에 하나의 작업만 수행 가능함. 또한 ViewController의 코드는 `DispatchQueue.main.sync` 내에서 돌아감. 따라서 `ColorSelectViewController`에서 `reloadData()`를 실행하고 `DispachQueue.main.async`에서 delegate 메소드를 통해 contentSize를 불렀더니 `reloadData()`가 되고 난 후에 contentSize가 불려서 의도했던 기능을 구현할 수 있었음.
+한 번에 하나의 작업만 수행 가능한 Serial Queue의 속성과 `sync` 작업은 작업을 시킨 객체가 작업이 끝날 때 까지 기다린다는 점을 이용함.
+
+### 작업 큐를 하나 둬서 한번에 하나의 작업만 수행하기.
+
+`reloadQueue` 는 한번에 하나의 작업만 수행 가능한 Serial Queue임. 
+
+첫번째 단락을 보면 async 내에서 DispatchQueue.main.sync 작업을 수행하는데, 이 동안 `reloadQueue`는 DispatchQueue.main.sync 내의 작업이 끝날 때 까지 기다림. 따라서 `reloadData()` 작업이 완료 될 때까지 기다린 다음, 원하는 작업을 수행할 수 있었음.
 
 
 
 ``` swift
-colorSelectCollectionView.reloadData()
-            
-DispatchQueue.async { [weak self] in
+reloadQueue.async { [weak self] in
+    self?.reloadColorSelectCollectionViewSynchronous()
+}
+
+reloadQueue.async { [weak self] in
+    self?.selectItemIfSelectedIdExist()
+}
+
+reloadQueue.async { [weak self] in
     self?.delegate?.colorSelectCollectionViewReloaded(self?.colorSelectCollectionView)
+}
+```
+
+``` swift
+private func reloadColorSelectCollectionViewSynchronous() {
+  	DispatchQueue.main.sync {
+      	colorSelectCollectionView.reloadData()
+    }
 }
 ```
 
