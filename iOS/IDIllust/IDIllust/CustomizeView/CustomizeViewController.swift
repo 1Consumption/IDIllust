@@ -14,7 +14,6 @@ typealias LayerOrder = Int
 final class CustomizeViewController: UIViewController {
     
     // MARK: - Properties
-    @IBOutlet private weak var thumbnailView: UIView!
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
     @IBOutlet private weak var componentsStackView: UIStackView!
     @IBOutlet private weak var componentScrollView: UIScrollView!
@@ -37,7 +36,7 @@ final class CustomizeViewController: UIViewController {
     private let categoryCollectionViewDataSource: CategoryCollectionViewDataSource = CategoryCollectionViewDataSource()
     private let categoryComponentManager: CategoryComponentManager = CategoryComponentManager()
     private let selectionManager: SelectionManager
-    private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .medium)
+//    private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .medium)
     private let applyPreviousSelectionQueue: DispatchQueue = DispatchQueue(label: "com.applyPreviousSelection.queue")
     private let numOfItemsViewModel: NumOfItemsViewModel = NumOfItemsViewModel()
     
@@ -83,18 +82,18 @@ final class CustomizeViewController: UIViewController {
         }
     }
     
-    private func addThumbnailImageViews(_ count: Int) {
-        for _ in 0..<count {
-            let imageView = UIImageView()
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            thumbnailView.addSubview(imageView)
-            imageView.centerYAnchor.constraint(equalTo: thumbnailView.centerYAnchor).isActive = true
-            imageView.centerXAnchor.constraint(equalTo: thumbnailView.centerXAnchor).isActive = true
-            imageView.widthAnchor.constraint(equalTo: thumbnailView.widthAnchor).isActive = true
-            imageView.heightAnchor.constraint(equalTo: thumbnailView.heightAnchor).isActive = true
-            thumbnailImageViews.append(imageView)
-        }
-    }
+//    private func addThumbnailImageViews(_ count: Int) {
+//        for _ in 0..<count {
+//            let imageView = UIImageView()
+//            imageView.translatesAutoresizingMaskIntoConstraints = false
+//            thumbnailView.addSubview(imageView)
+//            imageView.centerYAnchor.constraint(equalTo: thumbnailView.centerYAnchor).isActive = true
+//            imageView.centerXAnchor.constraint(equalTo: thumbnailView.centerXAnchor).isActive = true
+//            imageView.widthAnchor.constraint(equalTo: thumbnailView.widthAnchor).isActive = true
+//            imageView.heightAnchor.constraint(equalTo: thumbnailView.heightAnchor).isActive = true
+//            thumbnailImageViews.append(imageView)
+//        }
+//    }
     
     private func setNumOfItemsViewModel() {
         numOfItemsViewModel.bindHasItems { [weak self] hasItems in
@@ -105,12 +104,12 @@ final class CustomizeViewController: UIViewController {
         numOfItemsViewModel.fireHasItems()
     }
     
-    private func addActivityIndicator() {
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        thumbnailView.addSubview(activityIndicator)
-        activityIndicator.centerYAnchor.constraint(equalTo: thumbnailView.centerYAnchor, constant: thumbnailView.frame.height / 3).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: thumbnailView.centerXAnchor).isActive = true
-    }
+//    private func addActivityIndicator() {
+//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        thumbnailView.addSubview(activityIndicator)
+//        activityIndicator.centerYAnchor.constraint(equalTo: thumbnailView.centerYAnchor, constant: thumbnailView.frame.height / 3).isActive = true
+//        activityIndicator.centerXAnchor.constraint(equalTo: thumbnailView.centerXAnchor).isActive = true
+//    }
     
     private func setResetButton() {
         resetButton.addTarget(self, action: #selector(resetSelection), for: .touchUpInside)
@@ -169,8 +168,8 @@ final class CustomizeViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.setCategoryCollectionView()
                 self?.setComponentCollectionViews(count)
-                self?.addThumbnailImageViews(count)
-                self?.addActivityIndicator()
+//                self?.addThumbnailImageViews(count)
+//                self?.addActivityIndicator()
             }
         }
         
@@ -249,11 +248,11 @@ final class CustomizeViewController: UIViewController {
     }
     
     private func retrieveThumbnail(current: CurrentSelection) {
-        DispatchQueue.main.async { [weak self] in
-            if self?.activityIndicator.isAnimating != true {
-                self?.activityIndicator.startAnimating()
-            }
-        }
+//        DispatchQueue.main.async { [weak self] in
+//            if self?.activityIndicator.isAnimating != true {
+//                self?.activityIndicator.startAnimating()
+//            }
+//        }
         
         ThumbnailUseCase().retrieveThumbnail(current, networkManager: NetworkManager(), successHandler: { [weak self] model in
             guard let categoryId = current.categoryId else { return }
@@ -310,13 +309,13 @@ final class CustomizeViewController: UIViewController {
             thumbnailImageViews[index].kf.setImage(with: URL(string: path),
                                                    options: [.keepCurrentImageWhileLoading, .cacheOriginalImage, .processor(downsize)],
                                                    completionHandler: { [weak self] _ in
-                                                    self?.activityIndicator.stopAnimating()
+//                                                    self?.activityIndicator.stopAnimating()
                                                    })
         } else {
             thumbnailImageViews[index].kf.setImage(with: URL(string: path),
                                                    options: [.keepCurrentImageWhileLoading],
                                                    completionHandler: { [weak self] _ in
-                                                    self?.activityIndicator.stopAnimating()
+//                                                    self?.activityIndicator.stopAnimating()
                                                    })
         }
     }
