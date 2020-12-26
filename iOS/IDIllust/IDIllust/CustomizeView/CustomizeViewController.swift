@@ -25,7 +25,7 @@ final class CustomizeViewController: UIViewController {
         saveViewController.delegate = self
         saveViewController.modalPresentationStyle = .overCurrentContext
         
-        show(saveViewController, sender: self)
+        present(saveViewController, animated: true)
     }
     
     static let identifier: String = "customizeViewController"
@@ -63,7 +63,16 @@ final class CustomizeViewController: UIViewController {
     private func setCategoryCollectionView() {
         categoryCollectionView.setSquarCell(factor: categoryCollectionView.frame.height)
         categoryCollectionView.dataSource = categoryCollectionViewDataSource
-        categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)
+        
+        DispatchQueue.global().async { [weak self] in
+            DispatchQueue.main.sync {
+                self?.categoryCollectionView.reloadData()
+            }
+            
+            DispatchQueue.main.async {
+                self?.categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)
+            }
+        }
     }
     
     private func setComponentCollectionViews(_ count: Int) {
@@ -213,16 +222,18 @@ final class CustomizeViewController: UIViewController {
         
         colorSelectView.frame = CGRect(origin: convertedPoint, size: colorSelectView.frame.size)
         
-        guard let colorSelectViewController = children.first as? ColorSelectViewController else { return }
-        
-        let component = categoryComponentManager.component(with: categoryId, for: componentIndexPath.item)
-        let colors = component?.colors
-        
-        colorSelectViewController.delegate = self
-        colorSelectViewController.selectedId = selectionManager.colorSelectionForEachComponent[component?.id] ?? colors?.first?.id
-        colorSelectViewController.colors = colors
-        
-        selectionManager.setCurrentComponentInfo(with: component?.id, for: componentIndexPath)
+        children.forEach {
+            if let colorSelectViewController = $0 as? ColorSelectViewController {
+                let component = categoryComponentManager.component(with: categoryId, for: componentIndexPath.item)
+                let colors = component?.colors
+                
+                colorSelectViewController.delegate = self
+                colorSelectViewController.selectedId = selectionManager.colorSelectionForEachComponent[component?.id] ?? colors?.first?.id
+                colorSelectViewController.colors = colors
+                
+                selectionManager.setCurrentComponentInfo(with: component?.id, for: componentIndexPath)
+            }
+        }
     }
     
     private func retrieveThumbnail(current: CurrentSelection) {
