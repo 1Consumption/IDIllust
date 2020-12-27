@@ -27,6 +27,16 @@ final class SaveViewController: UIViewController {
         guard let image = resultImageView.image else { return }
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveResult(_:didFinishSavingWithError:contextInfo:)), nil)
     }
+    @IBAction func share(_ sender: Any) {
+        guard let image = resultImageView.image else {
+            let alert = UIAlertController().confirmAlert(title: Localization.imageLoadingFailureAlertTitle, message: Localization.shouldSelectImageAlertMessage)
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        let shareActivity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        shareActivity.popoverPresentationController?.sourceView = view
+        present(shareActivity, animated: true)
+    }
     
     static let identifier: String = "saveViewController"
     private var textLengthViewModel: Dynamic<Int> = Dynamic<Int>()
