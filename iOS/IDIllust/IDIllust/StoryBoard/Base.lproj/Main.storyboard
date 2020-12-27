@@ -538,10 +538,10 @@
                                             <rect key="frame" x="0.0" y="590.66666666666663" width="390" height="253.33333333333337"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qSZ-Ot-YpZ">
-                                                    <rect key="frame" x="58.666666666666657" y="0.0" width="273" height="42"/>
+                                                    <rect key="frame" x="19.666666666666657" y="0.0" width="351" height="42"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bU-cb-chg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="136.33333333333334" height="42"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="117" height="42"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                             <state key="normal" title="취소">
                                                                 <color key="titleColor" systemColor="labelColor"/>
@@ -551,13 +551,23 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uag-Pc-HgC">
-                                                            <rect key="frame" x="136.33333333333337" y="0.0" width="136.66666666666663" height="42"/>
+                                                            <rect key="frame" x="117" y="0.0" width="117" height="42"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                             <state key="normal" title="저장">
                                                                 <color key="titleColor" systemColor="labelColor"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="save:" destination="efz-N7-xH5" eventType="touchUpInside" id="zGq-W3-ONh"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v37-4R-4hb">
+                                                            <rect key="frame" x="234" y="0.0" width="117" height="42"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                            <state key="normal" title="공유">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="share:" destination="efz-N7-xH5" eventType="touchUpInside" id="rI6-WF-tXT"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -567,11 +577,11 @@
                                             <constraints>
                                                 <constraint firstItem="qSZ-Ot-YpZ" firstAttribute="top" secondItem="A9o-25-Q1r" secondAttribute="top" id="13v-JZ-tyv"/>
                                                 <constraint firstItem="qSZ-Ot-YpZ" firstAttribute="centerX" secondItem="A9o-25-Q1r" secondAttribute="centerX" id="SVq-b6-9rW"/>
+                                                <constraint firstItem="qSZ-Ot-YpZ" firstAttribute="width" secondItem="A9o-25-Q1r" secondAttribute="width" multiplier="0.9" id="XdB-z2-2xP"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="qSZ-Ot-YpZ" firstAttribute="width" secondItem="Gsj-nc-kqK" secondAttribute="width" id="4I2-Px-Rl4"/>
                                         <constraint firstItem="o5s-Fg-FQ2" firstAttribute="leading" secondItem="6ue-Jr-6Js" secondAttribute="leading" id="8vb-vn-xoT"/>
                                         <constraint firstAttribute="trailing" secondItem="o5s-Fg-FQ2" secondAttribute="trailing" id="FfD-aG-Yx1"/>
                                         <constraint firstAttribute="bottom" secondItem="A9o-25-Q1r" secondAttribute="bottom" id="Fx7-eR-xMQ"/>
@@ -612,6 +622,7 @@
                     <view key="view" contentMode="scaleToFill" id="g0i-Nv-4gi">
                         <rect key="frame" x="0.0" y="0.0" width="321.33333333333326" height="428.33333333333331"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="zsE-bn-PAi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
