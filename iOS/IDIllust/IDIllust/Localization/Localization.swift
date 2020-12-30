@@ -9,7 +9,7 @@
 import Foundation
 
 struct Localization {
-    static let tutorialImageName = (1...6).map { String($0).localized() }
+    static let tutorialImageName = (1...6).map { String($0) }
     static let skip = "skip".localized()
     static let start = "start".localized()
     static let imageLoadingFailureAlertTitle = "imageLoadingFailureAlertTitle".localized()

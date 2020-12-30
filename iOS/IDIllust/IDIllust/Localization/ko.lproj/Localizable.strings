@@ -6,12 +6,6 @@
   Copyright © 2020 신한섭. All rights reserved.
 */
 
-"1" = "1_kr";
-"2" = "2_kr";
-"3" = "3_kr";
-"4" = "4_kr";
-"5" = "5_kr";
-"6" = "6_kr";
 "skip" = "건너뛰기";
 "start" = "시작하기";
 "imageLoadingFailureAlertTitle" = "이미지 로딩 실패";
